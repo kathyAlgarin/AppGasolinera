@@ -25,6 +25,7 @@ struct PriceEditView: View {
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                         .frame(width: 100)
+                        .numericInput($priceText, decimal: true)
                 }
             }
 
@@ -53,6 +54,7 @@ struct PriceEditView: View {
             }
         }
         .navigationTitle("\(fuelType.rawValue) · \(branch.name)")
+        .dismissKeyboardSupport()
         .onAppear {
             let current = store.currentPrice(branchID: branch.id, fuelType: fuelType) ?? 0
             priceText = String(format: "%.2f", current)

@@ -36,7 +36,7 @@ struct BranchFormView: View {
                 TextField("Dirección", text: $address)
             }
 
-            Section("Capacidad de tanques (litros)") {
+            Section {
                 ForEach(FuelType.allCases) { type in
                     HStack {
                         Image(systemName: type.symbolName)
@@ -50,7 +50,18 @@ struct BranchFormView: View {
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.trailing)
                         .frame(width: 100)
+                        .numericInput(Binding(
+                            get: { capacities[type] ?? "" },
+                            set: { capacities[type] = $0 }
+                        ))
                     }
+                }
+            } header: {
+                Text("Capacidad de tanques (litros)")
+            } footer: {
+                if let existingBranch, !capacitiesAreValid {
+                    let levels = existingBranch.tanks.map { "\($0.fuelType.rawValue) \(Int($0.currentLevel)) L" }.joined(separator: " · ")
+                    Text("La capacidad no puede ser menor al nivel actual del tanque (\(levels)).")
                 }
             }
 
@@ -64,10 +75,28 @@ struct BranchFormView: View {
                 Button(existingBranch == nil ? "Crear sucursal" : "Guardar cambios") {
                     save()
                 }
-                .disabled(name.isEmpty || address.isEmpty)
+                .disabled(name.isEmpty || address.isEmpty || !capacitiesAreValid)
             }
         }
         .navigationTitle(existingBranch == nil ? "Nueva sucursal" : "Editar sucursal")
+        .dismissKeyboardSupport()
+        .toolbar {
+            // Al crear una sucursal el formulario se abre como hoja: botón para cerrarla.
+            if existingBranch == nil {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button { dismiss() } label: { Image(systemName: "xmark") }
+                }
+            }
+        }
+    }
+
+    /// Las 3 capacidades deben ser mayores a 0 y no menores al nivel actual del tanque.
+    private var capacitiesAreValid: Bool {
+        FuelType.allCases.allSatisfy { type in
+            let capacity = Double(capacities[type] ?? "") ?? 0
+            let level = existingBranch?.tanks.first(where: { $0.fuelType == type })?.currentLevel ?? 0
+            return capacity > 0 && capacity >= level
+        }
     }
 
     private func save() {

@@ -31,9 +31,10 @@ struct ChangePasswordView: View {
                 }
             }
             .navigationTitle("Cambiar contraseña")
+            .dismissKeyboardSupport()
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancelar") { dismiss() }
+                    Button { dismiss() } label: { Image(systemName: "xmark") }
                 }
             }
         }
@@ -45,7 +46,11 @@ struct ChangePasswordView: View {
             errorMessage = "La contraseña actual no es correcta."
             return
         }
-        guard !newPassword.isEmpty, newPassword == confirmPassword else {
+        guard newPassword.count >= 4 else {
+            errorMessage = "La nueva contraseña debe tener al menos 4 caracteres."
+            return
+        }
+        guard newPassword == confirmPassword else {
             errorMessage = "Las contraseñas nuevas no coinciden."
             return
         }
