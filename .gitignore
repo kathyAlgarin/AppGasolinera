@@ -1,5 +1,30 @@
+# macOS
 .DS_Store
-xcuserdata/
-DerivedData/
+
+# Xcode
 build/
+DerivedData/
 *.xcuserstate
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+
+# CocoaPods / Carthage
+Pods/
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/test_output
+
+# Secrets
+*.env
