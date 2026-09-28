@@ -15,18 +15,15 @@
 		D22B95E942737B1D86F082D1 /* FuelCut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940E9803DAEF7B6832BB10BC /* FuelCut.swift */; };
 		E77FEE67ECA72EEF638354D5 /* FuelPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D992342F6AF9EE7C1D6DE2 /* FuelPrice.swift */; };
 		149DB9CF0978C9746C0E48AC /* FuelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A352C9DFD783ABFB30F2DA /* FuelType.swift */; };
-		BD56132C331282EA2D4B5A10 /* Reception.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7A66288EBB64EE67F6BF51 /* Reception.swift */; };
 		A888D89F583B788CD34EDB7B /* Tank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EFD2B697D12ACFA23909F8 /* Tank.swift */; };
 		8DDF8ECF14AC4668DAA7CFA1 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CB154E4BF5AFDE69A054FD /* UserRole.swift */; };
 		F49FF2A87CDC56FA59D2230B /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24024CF354B3AB510D335AEB /* AppStore.swift */; };
 		48452D2F26633A95D671609A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94D33C423E2F201C02C8EE /* Colors.swift */; };
 		0D3F7551EE64A7CADAB785E3 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB49122257A41C6EB55CD52 /* ChangePasswordView.swift */; };
-		2014240146582F8BBACD4CA5 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC41218B97D2722EBCE9A64 /* ForgotPasswordView.swift */; };
 		9DCCB493F41553A07F0CF4F5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB7DA946176CEEB7BE2BCA0 /* LoginView.swift */; };
 		508568F9E9E6EAC81E75A14E /* BMDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567787B10B1DCA89B9F0AAEF /* BMDashboardView.swift */; };
 		A7A67092A9A75EC2F9357EC3 /* BranchManagerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125B28AB54091262E8BE09DF /* BranchManagerTabView.swift */; };
 		776E4D1B5CE96D2EF288412C /* CutFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF8515A5FF3F169ECDA263 /* CutFormView.swift */; };
-		52841494310CE53AE18207D5 /* ReceptionFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E13C5DEFA4CB2B7D303B2 /* ReceptionFormView.swift */; };
 		046DF22068ACEF6E900A0A90 /* BranchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495AB7EB7B3BC19C12252E82 /* BranchDetailView.swift */; };
 		831FA917875B0913EA3AF069 /* BranchFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265AE5F2C555C80E9D73836E /* BranchFormView.swift */; };
 		FD2251A23571C82AD6D7CCDD /* BranchManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512AA3C0F94A6A527F1D300 /* BranchManagementView.swift */; };
@@ -40,6 +37,7 @@
 		D83C79B41769ED35AD6242A0 /* BranchSummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1DD81E67FA8E2922C1013B /* BranchSummaryRow.swift */; };
 		DD4E1EB1071DD29BAC0BC70E /* SummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F6C84709E93769BA5433F /* SummaryCard.swift */; };
 		1414C4A4F95501F065E4B837 /* TankLevelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4E0B9566374615807CDDE0 /* TankLevelRow.swift */; };
+		A1B2C3D4E5F60718293A4B5D /* FuelDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B5C /* FuelDetailView.swift */; };
 		5B89B25BFA3CD92D1A440AF0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC17028E7123C816BCF87898 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,18 +51,15 @@
 		940E9803DAEF7B6832BB10BC /* FuelCut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelCut.swift; sourceTree = "<group>"; };
 		C5D992342F6AF9EE7C1D6DE2 /* FuelPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelPrice.swift; sourceTree = "<group>"; };
 		15A352C9DFD783ABFB30F2DA /* FuelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelType.swift; sourceTree = "<group>"; };
-		EA7A66288EBB64EE67F6BF51 /* Reception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reception.swift; sourceTree = "<group>"; };
 		65EFD2B697D12ACFA23909F8 /* Tank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tank.swift; sourceTree = "<group>"; };
 		75CB154E4BF5AFDE69A054FD /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
 		24024CF354B3AB510D335AEB /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		3B94D33C423E2F201C02C8EE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		9DB49122257A41C6EB55CD52 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
-		8CC41218B97D2722EBCE9A64 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		ACB7DA946176CEEB7BE2BCA0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		567787B10B1DCA89B9F0AAEF /* BMDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMDashboardView.swift; sourceTree = "<group>"; };
 		125B28AB54091262E8BE09DF /* BranchManagerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchManagerTabView.swift; sourceTree = "<group>"; };
 		79DF8515A5FF3F169ECDA263 /* CutFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutFormView.swift; sourceTree = "<group>"; };
-		FA7E13C5DEFA4CB2B7D303B2 /* ReceptionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceptionFormView.swift; sourceTree = "<group>"; };
 		495AB7EB7B3BC19C12252E82 /* BranchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchDetailView.swift; sourceTree = "<group>"; };
 		265AE5F2C555C80E9D73836E /* BranchFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchFormView.swift; sourceTree = "<group>"; };
 		B512AA3C0F94A6A527F1D300 /* BranchManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchManagementView.swift; sourceTree = "<group>"; };
@@ -78,6 +73,7 @@
 		DA1DD81E67FA8E2922C1013B /* BranchSummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchSummaryRow.swift; sourceTree = "<group>"; };
 		D40F6C84709E93769BA5433F /* SummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCard.swift; sourceTree = "<group>"; };
 		AF4E0B9566374615807CDDE0 /* TankLevelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankLevelRow.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A4B5C /* FuelDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelDetailView.swift; sourceTree = "<group>"; };
 		FC17028E7123C816BCF87898 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,7 +134,6 @@
 				940E9803DAEF7B6832BB10BC /* FuelCut.swift */,
 				C5D992342F6AF9EE7C1D6DE2 /* FuelPrice.swift */,
 				15A352C9DFD783ABFB30F2DA /* FuelType.swift */,
-				EA7A66288EBB64EE67F6BF51 /* Reception.swift */,
 				65EFD2B697D12ACFA23909F8 /* Tank.swift */,
 				75CB154E4BF5AFDE69A054FD /* UserRole.swift */,
 			);
@@ -165,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				9DB49122257A41C6EB55CD52 /* ChangePasswordView.swift */,
-				8CC41218B97D2722EBCE9A64 /* ForgotPasswordView.swift */,
 				ACB7DA946176CEEB7BE2BCA0 /* LoginView.swift */,
 			);
 			path = Auth;
@@ -177,7 +171,6 @@
 				567787B10B1DCA89B9F0AAEF /* BMDashboardView.swift */,
 				125B28AB54091262E8BE09DF /* BranchManagerTabView.swift */,
 				79DF8515A5FF3F169ECDA263 /* CutFormView.swift */,
-				FA7E13C5DEFA4CB2B7D303B2 /* ReceptionFormView.swift */,
 			);
 			path = BranchManager;
 			sourceTree = "<group>";
@@ -220,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				FD98DE014F65728F249ABFA9 /* Components */,
+				A1B2C3D4E5F60718293A4B5C /* FuelDetailView.swift */,
 				FC17028E7123C816BCF87898 /* ProfileView.swift */,
 			);
 			path = Shared;
@@ -313,18 +307,15 @@
 				D22B95E942737B1D86F082D1 /* FuelCut.swift in Sources */,
 				E77FEE67ECA72EEF638354D5 /* FuelPrice.swift in Sources */,
 				149DB9CF0978C9746C0E48AC /* FuelType.swift in Sources */,
-				BD56132C331282EA2D4B5A10 /* Reception.swift in Sources */,
 				A888D89F583B788CD34EDB7B /* Tank.swift in Sources */,
 				8DDF8ECF14AC4668DAA7CFA1 /* UserRole.swift in Sources */,
 				F49FF2A87CDC56FA59D2230B /* AppStore.swift in Sources */,
 				48452D2F26633A95D671609A /* Colors.swift in Sources */,
 				0D3F7551EE64A7CADAB785E3 /* ChangePasswordView.swift in Sources */,
-				2014240146582F8BBACD4CA5 /* ForgotPasswordView.swift in Sources */,
 				9DCCB493F41553A07F0CF4F5 /* LoginView.swift in Sources */,
 				508568F9E9E6EAC81E75A14E /* BMDashboardView.swift in Sources */,
 				A7A67092A9A75EC2F9357EC3 /* BranchManagerTabView.swift in Sources */,
 				776E4D1B5CE96D2EF288412C /* CutFormView.swift in Sources */,
-				52841494310CE53AE18207D5 /* ReceptionFormView.swift in Sources */,
 				046DF22068ACEF6E900A0A90 /* BranchDetailView.swift in Sources */,
 				831FA917875B0913EA3AF069 /* BranchFormView.swift in Sources */,
 				FD2251A23571C82AD6D7CCDD /* BranchManagementView.swift in Sources */,
@@ -338,6 +329,7 @@
 				D83C79B41769ED35AD6242A0 /* BranchSummaryRow.swift in Sources */,
 				DD4E1EB1071DD29BAC0BC70E /* SummaryCard.swift in Sources */,
 				1414C4A4F95501F065E4B837 /* TankLevelRow.swift in Sources */,
+				A1B2C3D4E5F60718293A4B5D /* FuelDetailView.swift in Sources */,
 				5B89B25BFA3CD92D1A440AF0 /* ProfileView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

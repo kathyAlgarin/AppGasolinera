@@ -5,7 +5,6 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var showError = false
-    @State private var showForgotPassword = false
 
     var body: some View {
         NavigationStack {
@@ -54,12 +53,6 @@ struct LoginView: View {
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(.gas76Orange)
-
-                        Button("Olvidé mi contraseña") {
-                            showForgotPassword = true
-                        }
-                        .font(.footnote)
-                        .foregroundColor(.gas76Blue)
                     }
                     .padding(.horizontal, 32)
 
@@ -67,9 +60,7 @@ struct LoginView: View {
                     Spacer()
                 }
             }
-            .sheet(isPresented: $showForgotPassword) {
-                ForgotPasswordView()
-            }
+            .dismissKeyboardSupport()
         }
     }
 }
