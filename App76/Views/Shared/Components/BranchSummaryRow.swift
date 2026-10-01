@@ -3,6 +3,8 @@ import SwiftUI
 /// Fila de lista para representar una sucursal (usada por el Gerente General).
 struct BranchSummaryRow: View {
     let branch: Branch
+    /// false cuando la fila va dentro de una `List` con `NavigationLink` (que ya dibuja su flecha).
+    var showsChevron = true
 
     var body: some View {
         HStack {
@@ -26,8 +28,10 @@ struct BranchSummaryRow: View {
                     .foregroundColor(.secondary)
             }
             Spacer()
-            Image(systemName: "chevron.right")
-                .foregroundColor(.secondary)
+            if showsChevron {
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.secondary)
+            }
         }
         .padding()
         .background(Color.gas76Card)
