@@ -1,61 +1,40 @@
 import SwiftUI
 
 struct ChangePasswordView: View {
-    @EnvironmentObject var store: AppStore
+    @StateObject private var viewModel = ChangePasswordViewModel()
     @Environment(\.dismiss) var dismiss
 
-    @State private var currentPassword = ""
-    @State private var newPassword = ""
-    @State private var confirmPassword = ""
-    @State private var errorMessage: String?
 
     var body: some View {
         NavigationStack {
             Form {
                 Section("Contraseña actual") {
-                    SecureField("Contraseña actual", text: $currentPassword)
+                    SecureField("Contraseña actual", text: $viewModel.currentPassword)
                 }
                 Section("Nueva contraseña") {
-                    SecureField("Nueva contraseña", text: $newPassword)
-                    SecureField("Confirmar contraseña", text: $confirmPassword)
+                    SecureField("Nueva contraseña", text: $viewModel.newPassword)
+                    SecureField("Confirmar contraseña", text: $viewModel.confirmPassword)
                 }
 
-                if let errorMessage {
+                if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
                         .foregroundColor(.red)
                         .font(.footnote)
                 }
 
                 Section {
-                    Button("Guardar") { save() }
+                    Button("Guardar") { viewModel.save() }
                 }
             }
             .navigationTitle("Cambiar contraseña")
-            .dismissKeyboardSupport()
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button { dismiss() } label: { Image(systemName: "xmark") }
+                    Button("Cancelar") { dismiss() }
                 }
             }
+            .onChange(of: viewModel.didSave) { _, saved in
+                if saved { dismiss() }
+            }
         }
-    }
-
-    private func save() {
-        guard var user = store.currentUser else { return }
-        guard user.password == currentPassword else {
-            errorMessage = "La contraseña actual no es correcta."
-            return
-        }
-        guard newPassword.count >= 4 else {
-            errorMessage = "La nueva contraseña debe tener al menos 4 caracteres."
-            return
-        }
-        guard newPassword == confirmPassword else {
-            errorMessage = "Las contraseñas nuevas no coinciden."
-            return
-        }
-        user.password = newPassword
-        _ = store.updateUser(user)
-        dismiss()
     }
 }

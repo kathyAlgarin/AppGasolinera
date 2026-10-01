@@ -1,15 +1,15 @@
 import SwiftUI
 
 struct BranchManagementView: View {
-    @EnvironmentObject var store: AppStore
+    @StateObject private var viewModel = BranchManagementViewModel()
     @State private var showAddBranch = false
 
     var body: some View {
         NavigationStack {
             List {
-                ForEach(store.branches) { branch in
+                ForEach(viewModel.branches) { branch in
                     NavigationLink(value: branch) {
-                        BranchSummaryRow(branch: branch, showsChevron: false)
+                        BranchSummaryRow(branch: branch)
                     }
                     .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
                     .listRowSeparator(.hidden)

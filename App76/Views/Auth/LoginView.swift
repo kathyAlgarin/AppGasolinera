@@ -1,10 +1,8 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var store: AppStore
-    @State private var email = ""
-    @State private var password = ""
-    @State private var showError = false
+    @StateObject private var viewModel = LoginViewModel()
+    @State private var showForgotPassword = false
 
     var body: some View {
         NavigationStack {
@@ -28,24 +26,23 @@ struct LoginView: View {
                     .padding(.bottom, 8)
 
                     VStack(spacing: 16) {
-                        TextField("Correo electrónico", text: $email)
+                        TextField("Correo electrónico", text: $viewModel.email)
                             .textFieldStyle(.roundedBorder)
                             .textInputAutocapitalization(.never)
                             .keyboardType(.emailAddress)
                             .autocorrectionDisabled()
 
-                        SecureField("Contraseña", text: $password)
+                        SecureField("Contraseña", text: $viewModel.password)
                             .textFieldStyle(.roundedBorder)
 
-                        if showError {
+                        if viewModel.showError {
                             Text("Correo o contraseña incorrectos.")
                                 .font(.footnote)
                                 .foregroundColor(.red)
                         }
 
                         Button {
-                            let success = store.login(email: email, password: password)
-                            showError = !success
+                            viewModel.login()
                         } label: {
                             Text("Ingresar")
                                 .frame(maxWidth: .infinity)
@@ -53,6 +50,12 @@ struct LoginView: View {
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(.gas76Orange)
+
+                        Button("Olvidé mi contraseña") {
+                            showForgotPassword = true
+                        }
+                        .font(.footnote)
+                        .foregroundColor(.gas76Blue)
                     }
                     .padding(.horizontal, 32)
 
@@ -60,7 +63,9 @@ struct LoginView: View {
                     Spacer()
                 }
             }
-            .dismissKeyboardSupport()
+            .sheet(isPresented: $showForgotPassword) {
+                ForgotPasswordView()
+            }
         }
     }
 }
