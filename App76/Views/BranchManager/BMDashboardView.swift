@@ -25,7 +25,7 @@ struct BMDashboardView: View {
 
                             ActionCard(
                                 title: "Recepción y pérdidas",
-                                subtitle: "Camión cisterna o litros perdidos",
+                                subtitle: viewModel.receptionStatusText,
                                 systemImage: "shippingbox.fill",
                                 tint: .gas76Blue
                             ) { showReceptionForm = true }

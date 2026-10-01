@@ -11,6 +11,14 @@ struct ReceptionFormView: View {
 
     var body: some View {
         Form {
+            if let shiftMessage = viewModel.shiftMessage {
+                Section {
+                    Label(shiftMessage, systemImage: "lock.fill")
+                        .font(.footnote)
+                        .foregroundColor(.orange)
+                }
+            }
+
             Section {
                 Picker("Tipo de registro", selection: $viewModel.mode) {
                     ForEach(ReceptionFormViewModel.Mode.allCases) { mode in

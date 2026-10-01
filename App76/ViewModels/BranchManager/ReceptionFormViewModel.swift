@@ -53,13 +53,17 @@ final class ReceptionFormViewModel: ViewModel {
             : "No puede ser mayor que el nivel actual (\(Int(maxQuantity)) L)."
     }
 
+    /// Si el turno no está abierto (falta la apertura o ya hay cierre), no se puede registrar.
+    var shiftMessage: String? { repository.shiftError(branchID: branchID)?.errorDescription }
+
     var canSave: Bool {
-        guard let quantity, quantity <= maxQuantity else { return false }
+        guard shiftMessage == nil, let quantity, quantity <= maxQuantity else { return false }
         return mode == .reception || !reason.isEmpty
     }
 
     func save() {
         guard let quantity, canSave else { return }
+        errorMessage = nil
         do {
             switch mode {
             case .reception:
