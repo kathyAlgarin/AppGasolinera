@@ -13,9 +13,10 @@ struct LoginView: View {
                     Spacer()
 
                     VStack(spacing: 8) {
-                        Image(systemName: "fuelpump.fill")
-                            .font(.system(size: 48))
-                            .foregroundColor(.gas76Orange)
+                        Image("Logo76")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 96, height: 96)
                         Text("Gasolinera 76")
                             .font(.title2.bold())
                             .foregroundColor(.gas76Blue)

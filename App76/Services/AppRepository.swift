@@ -28,7 +28,7 @@ final class AppRepository: ObservableObject {
 
     func authenticate(email: String, password: String) -> AppUser? {
         users.first {
-            $0.email.lowercased() == email.lowercased() &&
+            $0.email.lowercased() == email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() &&
             $0.password == password &&
             $0.isActive
         }
