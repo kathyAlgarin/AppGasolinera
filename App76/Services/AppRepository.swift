@@ -119,9 +119,15 @@ final class AppRepository: ObservableObject {
         case receptionExceedsCapacity(fuel: FuelType, available: Double)
         case lossExceedsLevel(fuel: FuelType, current: Double)
         case levelOutOfRange(fuel: FuelType, capacity: Double)
+        case shiftNotOpen
+        case shiftClosed
 
         var errorDescription: String? {
             switch self {
+            case .shiftNotOpen:
+                return "Primero registra el corte de apertura de hoy: las recepciones y pérdidas se registran con el turno abierto."
+            case .shiftClosed:
+                return "El corte de cierre de hoy ya está registrado, así que no se pueden registrar más recepciones ni pérdidas hoy. Se reflejarán al medir el nivel en la apertura de mañana."
             case .invalidQuantity:
                 return "La cantidad debe ser mayor que 0."
             case .tankNotFound:
@@ -141,8 +147,20 @@ final class AppRepository: ObservableObject {
         branch(id: branchID)?.tanks.first { $0.fuelType == fuelType }
     }
 
+    /// Recepciones y pérdidas solo se registran con el turno abierto: después de la apertura
+    /// y antes del cierre. Así siempre caen dentro de la ventana que usa el cuadre; una
+    /// recepción registrada tras el cierre (con el nivel de cierre ya medido) provocaría
+    /// una diferencia falsa.
+    func shiftError(branchID: UUID, on date: Date = Date()) -> TankError? {
+        let today = cuts(for: branchID, on: date)
+        if today.opening == nil { return .shiftNotOpen }
+        if today.closing != nil { return .shiftClosed }
+        return nil
+    }
+
     /// Registra una recepción. No permite pasar de la capacidad del tanque.
     func addReception(branchID: UUID, fuelType: FuelType, quantity: Double, date: Date = Date()) throws {
+        if let error = shiftError(branchID: branchID, on: date) { throw error }
         guard quantity > 0 else { throw TankError.invalidQuantity }
         guard let tank = tank(branchID: branchID, fuelType: fuelType) else { throw TankError.tankNotFound }
         let available = tank.capacity - tank.currentLevel
@@ -256,6 +274,7 @@ final class AppRepository: ObservableObject {
 
     /// Registra una pérdida de combustible con su razón y descuenta los litros del tanque.
     func addLoss(branchID: UUID, fuelType: FuelType, liters: Double, reason: String, date: Date = Date()) throws {
+        if let error = shiftError(branchID: branchID, on: date) { throw error }
         guard liters > 0 else { throw TankError.invalidQuantity }
         guard let tank = tank(branchID: branchID, fuelType: fuelType) else { throw TankError.tankNotFound }
         guard liters <= tank.currentLevel else {

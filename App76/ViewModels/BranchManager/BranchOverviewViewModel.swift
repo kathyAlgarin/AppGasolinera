@@ -81,6 +81,13 @@ final class BranchOverviewViewModel: ViewModel {
         return "Falta la apertura"
     }
 
+    /// Subtítulo de la tarjeta de recepciones/pérdidas según el estado del turno.
+    var receptionStatusText: String {
+        if !openingDone { return "Disponible tras la apertura" }
+        if closingDone { return "Turno cerrado" }
+        return "Camión cisterna o litros perdidos"
+    }
+
     /// Pérdidas registradas hoy (con su razón), aunque todavía no haya reporte.
     var lossRows: [LossRow] {
         guard let branchID else { return [] }
