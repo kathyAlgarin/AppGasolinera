@@ -199,5 +199,5 @@ Cada sucursal con historial vende 1,700 L (Regular 700, Súper 400, Diésel 600)
 2. "Recepción y pérdidas" → Recepción de 1000 L Regular → registrar. Luego pestaña **Pérdida**: 50 L, razón "Fuga en manguera".
 3. "Registrar corte" → **Cierre**: ventas de cada bomba 100 Regular + 50 Súper + 0 Diésel (600 / 300 / 0 L en total) y niveles medidos Regular **5,350**, Súper **2,700**, Diésel **4,000** (el formulario viene precargado con los niveles actuales; hay que corregirlos con lo "medido").
 4. Revisa el panel: ventas, ingresos, consolidado y cuadre.
-5. Experimento: repite con un nivel de cierre distinto (por ejemplo Regular 5,950) y verás "No cuadra" con la explicación de la diferencia.
+5. Experimento: reinicia la app (los datos vuelven a los de demostración), repite todo con un nivel de cierre distinto (por ejemplo Regular 5,950) y verás "No cuadra" con la explicación de la diferencia.
 6. Intenta romper reglas: nivel mayor a la capacidad, recepción que no cabe, otro cierre, recepción tras el cierre.
