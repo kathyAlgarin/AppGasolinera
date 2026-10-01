@@ -15,30 +15,24 @@ struct BMDashboardView: View {
             ScrollView {
                 if let branch = viewModel.branch {
                     VStack(alignment: .leading, spacing: 20) {
-                        BranchReportSection(viewModel: viewModel)
+                        HStack(spacing: 14) {
+                            ActionCard(
+                                title: "Registrar corte",
+                                subtitle: viewModel.cutStatusText,
+                                systemImage: viewModel.cutsComplete ? "checkmark.seal.fill" : "clipboard.fill",
+                                tint: viewModel.cutsComplete ? .green : .gas76Orange
+                            ) { showCutForm = true }
 
-                        HStack(spacing: 16) {
-                            Button {
-                                showReceptionForm = true
-                            } label: {
-                                Label("Registrar recepción", systemImage: "shippingbox.fill")
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 8)
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .tint(.gas76Blue)
-
-                            Button {
-                                showCutForm = true
-                            } label: {
-                                Label("Registrar corte", systemImage: "clipboard.fill")
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 8)
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .tint(.gas76Orange)
+                            ActionCard(
+                                title: "Recepción y pérdidas",
+                                subtitle: "Camión cisterna o litros perdidos",
+                                systemImage: "shippingbox.fill",
+                                tint: .gas76Blue
+                            ) { showReceptionForm = true }
                         }
                         .padding(.horizontal)
+
+                        BranchReportSection(viewModel: viewModel)
                     }
                     .padding(.vertical)
                     .sheet(isPresented: $showReceptionForm) {

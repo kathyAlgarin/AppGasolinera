@@ -34,8 +34,16 @@ struct ReconciliationRowView: View {
                 Text("\(Int(row.pumpLiters)) L").font(.footnote).foregroundColor(.secondary)
             }
 
+            if row.loss > 0 {
+                HStack {
+                    Text("Pérdidas registradas").font(.caption.bold())
+                    Spacer()
+                    Text("\(Int(row.loss)) L").font(.footnote).foregroundColor(.secondary)
+                }
+            }
+
             HStack {
-                Text("Diferencia (tanque − bombas)").font(.caption.bold())
+                Text("Diferencia (tanque − bombas − pérdidas)").font(.caption.bold())
                 Spacer()
                 Text("\(Int(row.difference.rounded())) L")
                     .font(.footnote.bold())

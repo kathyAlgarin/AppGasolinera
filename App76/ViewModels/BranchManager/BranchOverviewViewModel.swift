@@ -17,21 +17,30 @@ struct ReconciliationRow: Identifiable {
     let pumpLiters: Double      // lo que registraron las bombas
     let difference: Double      // tanque − bombas
     let tolerance: Double
+    let loss: Double            // pérdidas registradas
     let isBalanced: Bool
 
     /// Explicación en lenguaje natural de por qué cuadra o no.
     var explanation: String {
         let diff = Int(abs(difference).rounded())
         let tol = Int(tolerance.rounded())
+        let lossText = loss > 0 ? " más \(Int(loss)) L de pérdidas registradas" : ""
         if isBalanced {
-            return "Cuadra: el tanque bajó \(Int(tankLiters)) L y las bombas registraron \(Int(pumpLiters)) L. "
+            return "Cuadra: el tanque bajó \(Int(tankLiters)) L y las bombas registraron \(Int(pumpLiters)) L\(lossText). "
                 + "La diferencia (\(diff) L) está dentro de la tolerancia de ±\(tol) L."
         }
         let detail = difference > 0
-            ? "del tanque salieron \(diff) L más de los que registraron las bombas"
-            : "las bombas registraron \(diff) L más de los que bajó el tanque"
+            ? "del tanque salieron \(diff) L más de los que explican las bombas\(lossText)"
+            : "las bombas\(lossText) explican \(diff) L más de los que bajó el tanque"
         return "No cuadra: \(detail) (tolerancia ±\(tol) L). Posible fuga, merma, bomba descalibrada o error de captura."
     }
+}
+
+struct LossRow: Identifiable {
+    let id: UUID
+    let fuel: FuelType
+    let liters: Double
+    let reason: String
 }
 
 final class BranchOverviewViewModel: ViewModel {
@@ -54,6 +63,30 @@ final class BranchOverviewViewModel: ViewModel {
         branchID.flatMap { repository.dailyReport(branchID: $0, on: Date()) }
     }
     var hasReport: Bool { report != nil }
+
+    // MARK: Estado de los cortes de hoy
+
+    private var todayCuts: (opening: FuelCut?, closing: FuelCut?) {
+        guard let branchID else { return (nil, nil) }
+        return repository.cuts(for: branchID, on: Date())
+    }
+    var openingDone: Bool { todayCuts.opening != nil }
+    var closingDone: Bool { todayCuts.closing != nil }
+    var cutsComplete: Bool { openingDone && closingDone }
+
+    /// Texto de la tarjeta "Registrar corte": qué falta o que ya está completo.
+    var cutStatusText: String {
+        if cutsComplete { return "Apertura ✓ · Cierre ✓" }
+        if openingDone { return "Apertura ✓ · Falta el cierre" }
+        return "Falta la apertura"
+    }
+
+    /// Pérdidas registradas hoy (con su razón), aunque todavía no haya reporte.
+    var lossRows: [LossRow] {
+        guard let branchID else { return [] }
+        return repository.losses(for: branchID, on: Date())
+            .map { LossRow(id: $0.id, fuel: $0.fuelType, liters: $0.liters, reason: $0.reason) }
+    }
 
     var totalLitersText: String { "\(Int(report?.totalLiters ?? 0)) L" }
     var revenueText: String { (report?.revenue ?? 0).formatted(.currency(code: "USD")) }
@@ -84,6 +117,7 @@ final class BranchOverviewViewModel: ViewModel {
                 pumpLiters: report.litersByFuel[$0] ?? 0,
                 difference: report.difference(for: $0),
                 tolerance: report.tolerance(for: $0),
+                loss: report.lossesByFuel[$0] ?? 0,
                 isBalanced: report.isBalanced(for: $0)
             )
         }

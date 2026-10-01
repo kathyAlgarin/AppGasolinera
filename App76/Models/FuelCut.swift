@@ -6,15 +6,16 @@ enum CutType: String, Codable, Hashable {
     case closing = "Cierre"
 }
 
-/// Lectura del contador acumulado de una bomba para un tipo de combustible.
+/// Litros vendidos en el día por una bomba de un tipo de combustible
+/// (se registra en el corte de cierre).
 struct PumpReading: Codable, Equatable, Hashable {
     var pumpID: UUID
     var fuelType: FuelType
-    var meterLiters: Double
+    var liters: Double
 }
 
-/// Corte de niveles de tanque y contadores de bomba, tomado manualmente por el
-/// Gerente de Sucursal dos veces al día (apertura y cierre).
+/// Corte diario del Gerente de Sucursal. La apertura registra los niveles de tanque;
+/// el cierre registra además los litros vendidos por cada bomba.
 struct FuelCut: Identifiable, Codable, Equatable {
     let id: UUID
     var branchID: UUID
@@ -37,7 +38,7 @@ struct FuelCut: Identifiable, Codable, Equatable {
         self.pumpReadings = pumpReadings
     }
 
-    func meter(pumpID: UUID, fuelType: FuelType) -> Double? {
-        pumpReadings.first { $0.pumpID == pumpID && $0.fuelType == fuelType }?.meterLiters
+    func liters(pumpID: UUID, fuelType: FuelType) -> Double? {
+        pumpReadings.first { $0.pumpID == pumpID && $0.fuelType == fuelType }?.liters
     }
 }

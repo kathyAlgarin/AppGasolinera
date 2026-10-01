@@ -41,6 +41,7 @@
 		A7A67092A9A75EC2F9357EC3 /* BranchManagerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125B28AB54091262E8BE09DF /* BranchManagerTabView.swift */; };
 		A888D89F583B788CD34EDB7B /* Tank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EFD2B697D12ACFA23909F8 /* Tank.swift */; };
 		AC8E5F8CDB947465D0749521 /* PriceEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454460FC90536DA2B8605C91 /* PriceEditView.swift */; };
+		AF8223B004131F34D28FA0EB /* FuelLoss.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC1D5BB1435A2642D794AE5 /* FuelLoss.swift */; };
 		B238F3B31D796E61932746D1 /* PumpSalesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F606F7FFBC135B62A3903EE2 /* PumpSalesRowView.swift */; };
 		B40048D5D55B2F64A5A5453B /* GeneralManagerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D81BD6140480E9D2464B43D /* GeneralManagerTabView.swift */; };
 		B4E7469A288CBBC1FC3F35C4 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6239E2E748722DE7D91A41E4 /* ForgotPasswordViewModel.swift */; };
@@ -56,6 +57,7 @@
 		DCB99A96EF6A8A80A01EEED3 /* UserManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4837ED98983614D43A30F591 /* UserManagementViewModel.swift */; };
 		DD4E1EB1071DD29BAC0BC70E /* SummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F6C84709E93769BA5433F /* SummaryCard.swift */; };
 		E09F28DC249132419C69760B /* Pump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA5B692F2038E4770101ABA /* Pump.swift */; };
+		E1D68A8D3CCE10F6356733F6 /* ActionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777525BA718C306173848C1E /* ActionCard.swift */; };
 		E4A6163E25002A9BF4AF5A3B /* SalesCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C092960D1DB5A226D5D5F /* SalesCalculator.swift */; };
 		E6CDC5DB54287420EF62D7ED /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEDB0AE787BF2F7586FBA57 /* Branch.swift */; };
 		E77FEE67ECA72EEF638354D5 /* FuelPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D992342F6AF9EE7C1D6DE2 /* FuelPrice.swift */; };
@@ -94,6 +96,7 @@
 		6746857D1363B0EC3BEFD177 /* LoginViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		6BA5B692F2038E4770101ABA /* Pump.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Pump.swift; sourceTree = "<group>"; };
 		75CB154E4BF5AFDE69A054FD /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
+		777525BA718C306173848C1E /* ActionCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ActionCard.swift; sourceTree = "<group>"; };
 		79DF8515A5FF3F169ECDA263 /* CutFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutFormView.swift; sourceTree = "<group>"; };
 		8CC41218B97D2722EBCE9A64 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		8D81BD6140480E9D2464B43D /* GeneralManagerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralManagerTabView.swift; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 		F606F7FFBC135B62A3903EE2 /* PumpSalesRowView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PumpSalesRowView.swift; sourceTree = "<group>"; };
 		F644CDAE792E1B0AF387D748 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		FA7E13C5DEFA4CB2B7D303B2 /* ReceptionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceptionFormView.swift; sourceTree = "<group>"; };
+		FAC1D5BB1435A2642D794AE5 /* FuelLoss.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FuelLoss.swift; sourceTree = "<group>"; };
 		FC17028E7123C816BCF87898 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		FDEDB0AE787BF2F7586FBA57 /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
 		FEDAC804A4C25088BF890D26 /* ProfileViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 				65EFD2B697D12ACFA23909F8 /* Tank.swift */,
 				75CB154E4BF5AFDE69A054FD /* UserRole.swift */,
 				6BA5B692F2038E4770101ABA /* Pump.swift */,
+				FAC1D5BB1435A2642D794AE5 /* FuelLoss.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 				A8E6217983EDE666D5E216A5 /* BranchReportSection.swift */,
 				F606F7FFBC135B62A3903EE2 /* PumpSalesRowView.swift */,
 				170AA65E83097D596793A31F /* ReconciliationRowView.swift */,
+				777525BA718C306173848C1E /* ActionCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -477,6 +483,8 @@
 				FD2AFB55006BB67C99EDEE33 /* BranchReportSection.swift in Sources */,
 				B238F3B31D796E61932746D1 /* PumpSalesRowView.swift in Sources */,
 				57A8DD43BE0EC8A6DE4CE2F7 /* ReconciliationRowView.swift in Sources */,
+				AF8223B004131F34D28FA0EB /* FuelLoss.swift in Sources */,
+				E1D68A8D3CCE10F6356733F6 /* ActionCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,7 @@
 import SwiftUI
 
-/// Registro de corte (apertura o cierre): niveles de tanque y contador de cada bomba.
+/// Registro de corte. La apertura captura los niveles de tanque; el cierre captura además
+/// los litros vendidos por cada bomba. Un corte ya guardado queda de solo lectura.
 struct CutFormView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject private var viewModel: CutFormViewModel
@@ -13,29 +14,52 @@ struct CutFormView: View {
         Form {
             Section("Tipo de corte") {
                 Picker("Corte", selection: $viewModel.cutType) {
-                    Text("Apertura").tag(CutType.opening)
-                    Text("Cierre").tag(CutType.closing)
+                    Text(viewModel.label(for: .opening)).tag(CutType.opening)
+                    Text(viewModel.label(for: .closing)).tag(CutType.closing)
                 }
                 .pickerStyle(.segmented)
             }
 
-            Section("Niveles de tanque (litros)") {
-                ForEach(FuelType.allCases) { type in
-                    fuelRow(type, text: viewModel.levelBinding(for: type))
+            if viewModel.isLocked {
+                Section {
+                    Label(viewModel.lockedMessage, systemImage: "lock.fill")
+                        .font(.footnote)
+                        .foregroundColor(.green)
+                }
+            } else if viewModel.closingBlocked {
+                Section {
+                    Label("Primero debes registrar el corte de apertura de hoy.", systemImage: "exclamationmark.triangle.fill")
+                        .font(.footnote)
+                        .foregroundColor(.orange)
                 }
             }
 
-            ForEach(viewModel.pumps) { pump in
-                Section {
+            Group {
+                Section("Niveles de tanque (litros)") {
                     ForEach(FuelType.allCases) { type in
-                        fuelRow(type, text: viewModel.meterBinding(pump: pump, fuel: type))
+                        fuelRow(type, text: viewModel.levelBinding(for: type))
                     }
-                } header: {
-                    Text(pump.name)
-                } footer: {
-                    Text("Contador acumulado del surtidor (litros)")
+                }
+
+                if viewModel.showsSales {
+                    Section {
+                        Text("Anota los litros que vendió hoy cada bomba, por tipo de combustible.")
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                    } header: {
+                        Text("Ventas por bomba")
+                    }
+
+                    ForEach(viewModel.pumps) { pump in
+                        Section(pump.name) {
+                            ForEach(FuelType.allCases) { type in
+                                fuelRow(type, text: viewModel.saleBinding(pump: pump, fuel: type))
+                            }
+                        }
+                    }
                 }
             }
+            .disabled(viewModel.isLocked)
 
             if let errorMessage = viewModel.errorMessage {
                 Section {
@@ -46,14 +70,14 @@ struct CutFormView: View {
             }
 
             Section {
-                Button("Guardar corte") { viewModel.save() }
+                Button(viewModel.isLocked ? "Corte ya registrado" : "Guardar corte") { viewModel.save() }
                     .disabled(!viewModel.canSave)
             }
         }
         .navigationTitle("Registrar corte")
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button("Cancelar") { dismiss() }
+                Button(viewModel.isLocked ? "Cerrar" : "Cancelar") { dismiss() }
             }
         }
         .onChange(of: viewModel.didSave) { _, saved in
