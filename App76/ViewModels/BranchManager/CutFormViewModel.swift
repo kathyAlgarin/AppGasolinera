@@ -77,6 +77,19 @@ final class CutFormViewModel: ViewModel {
         }
     }
 
+    /// Mensaje de validación del nivel escrito (fuera de 0…capacidad), o nil si es válido.
+    func levelWarning(for fuel: FuelType) -> String? {
+        guard let capacity = repository.tank(branchID: branchID, fuelType: fuel)?.capacity,
+              let level = Double(levelTexts[fuel] ?? "") else { return nil }
+        if level < 0 { return "No puede ser menor que 0." }
+        if level > capacity { return "Máximo \(Int(capacity)) L (capacidad del tanque)." }
+        return nil
+    }
+
+    func capacity(for fuel: FuelType) -> Double {
+        repository.tank(branchID: branchID, fuelType: fuel)?.capacity ?? 0
+    }
+
     func levelBinding(for fuel: FuelType) -> Binding<String> {
         Binding(get: { self.levelTexts[fuel] ?? "" }, set: { self.levelTexts[fuel] = $0 })
     }
@@ -92,10 +105,12 @@ final class CutFormViewModel: ViewModel {
 
     var canSave: Bool {
         guard !isLocked, !closingBlocked else { return false }
-        let levelsOK = FuelType.allCases.allSatisfy { Double(levelTexts[$0] ?? "") != nil }
+        let levelsOK = FuelType.allCases.allSatisfy {
+            Double(levelTexts[$0] ?? "") != nil && levelWarning(for: $0) == nil
+        }
         guard showsSales else { return levelsOK }
         return levelsOK && pumps.allSatisfy { pump in
-            FuelType.allCases.allSatisfy { sale(pump, $0) != nil }
+            FuelType.allCases.allSatisfy { (sale(pump, $0) ?? -1) >= 0 }
         }
     }
 

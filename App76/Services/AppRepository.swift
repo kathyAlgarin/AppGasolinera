@@ -112,9 +112,45 @@ final class AppRepository: ObservableObject {
 
     // MARK: - Recepción de combustible
 
-    func addReception(branchID: UUID, fuelType: FuelType, quantity: Double, date: Date = Date()) {
-        let reception = Reception(branchID: branchID, fuelType: fuelType, quantity: quantity, date: date)
-        receptions.append(reception)
+    /// Errores de validación contra la capacidad de los tanques.
+    enum TankError: LocalizedError {
+        case invalidQuantity
+        case tankNotFound
+        case receptionExceedsCapacity(fuel: FuelType, available: Double)
+        case lossExceedsLevel(fuel: FuelType, current: Double)
+        case levelOutOfRange(fuel: FuelType, capacity: Double)
+
+        var errorDescription: String? {
+            switch self {
+            case .invalidQuantity:
+                return "La cantidad debe ser mayor que 0."
+            case .tankNotFound:
+                return "La sucursal no tiene un tanque para ese combustible."
+            case .receptionExceedsCapacity(let fuel, let available):
+                return "La recepción excede la capacidad del tanque de \(fuel.rawValue): solo caben \(Int(available)) L más."
+            case .lossExceedsLevel(let fuel, let current):
+                return "La pérdida no puede ser mayor que el nivel actual del tanque de \(fuel.rawValue) (\(Int(current)) L)."
+            case .levelOutOfRange(let fuel, let capacity):
+                return "El nivel de \(fuel.rawValue) debe estar entre 0 y \(Int(capacity)) L (capacidad del tanque)."
+            }
+        }
+    }
+
+    /// Tanque de un combustible en una sucursal.
+    func tank(branchID: UUID, fuelType: FuelType) -> Tank? {
+        branch(id: branchID)?.tanks.first { $0.fuelType == fuelType }
+    }
+
+    /// Registra una recepción. No permite pasar de la capacidad del tanque.
+    func addReception(branchID: UUID, fuelType: FuelType, quantity: Double, date: Date = Date()) throws {
+        guard quantity > 0 else { throw TankError.invalidQuantity }
+        guard let tank = tank(branchID: branchID, fuelType: fuelType) else { throw TankError.tankNotFound }
+        let available = tank.capacity - tank.currentLevel
+        guard quantity <= available else {
+            throw TankError.receptionExceedsCapacity(fuel: fuelType, available: max(available, 0))
+        }
+
+        receptions.append(Reception(branchID: branchID, fuelType: fuelType, quantity: quantity, date: date))
 
         if let branchIdx = branches.firstIndex(where: { $0.id == branchID }),
            let tankIdx = branches[branchIdx].tanks.firstIndex(where: { $0.fuelType == fuelType }) {
@@ -162,6 +198,13 @@ final class AppRepository: ObservableObject {
                 date: Date = Date()) throws -> FuelCut {
 
         guard let branch = branch(id: branchID) else { throw CutError.branchNotFound }
+
+        // Los niveles de tanque deben estar entre 0 y la capacidad del tanque.
+        for tank in branch.tanks {
+            guard let level = levels[tank.fuelType], level >= 0, level <= tank.capacity else {
+                throw TankError.levelOutOfRange(fuel: tank.fuelType, capacity: tank.capacity)
+            }
+        }
 
         let calendar = Calendar.current
         let sameDay = cuts.filter {
@@ -212,7 +255,13 @@ final class AppRepository: ObservableObject {
     // MARK: - Pérdidas
 
     /// Registra una pérdida de combustible con su razón y descuenta los litros del tanque.
-    func addLoss(branchID: UUID, fuelType: FuelType, liters: Double, reason: String, date: Date = Date()) {
+    func addLoss(branchID: UUID, fuelType: FuelType, liters: Double, reason: String, date: Date = Date()) throws {
+        guard liters > 0 else { throw TankError.invalidQuantity }
+        guard let tank = tank(branchID: branchID, fuelType: fuelType) else { throw TankError.tankNotFound }
+        guard liters <= tank.currentLevel else {
+            throw TankError.lossExceedsLevel(fuel: fuelType, current: tank.currentLevel)
+        }
+
         losses.append(FuelLoss(branchID: branchID, fuelType: fuelType, liters: liters, reason: reason, date: date))
 
         if let branchIdx = branches.firstIndex(where: { $0.id == branchID }),
@@ -341,7 +390,7 @@ final class AppRepository: ObservableObject {
             ]
             _ = try? addCut(branchID: branch.id, type: .opening, levels: openingLevels, date: morning)
 
-            addReception(branchID: branch.id, fuelType: .regular, quantity: 1000, date: midday)
+            try? addReception(branchID: branch.id, fuelType: .regular, quantity: 1000, date: midday)
 
             if let updatedBranch = branches.first(where: { $0.id == branch.id }) {
                 let closingLevels: [FuelType: Double] = [

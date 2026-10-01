@@ -15,6 +15,7 @@ final class ReceptionFormViewModel: ViewModel {
     @Published var quantityText = ""
     @Published var reasonText = ""
     @Published var didSave = false
+    @Published var errorMessage: String?
 
     init(branchID: UUID, repository: AppRepository = .shared) {
         self.branchID = branchID
@@ -29,18 +30,46 @@ final class ReceptionFormViewModel: ViewModel {
     var quantityLabel: String { mode == .reception ? "Cantidad recibida (L)" : "Litros perdidos (L)" }
     var saveLabel: String { mode == .reception ? "Registrar recepción" : "Registrar pérdida" }
 
+    private var tank: Tank? { repository.tank(branchID: branchID, fuelType: fuelType) }
+
+    /// Litros máximos que admite la operación: espacio libre (recepción) o nivel actual (pérdida).
+    var maxQuantity: Double {
+        guard let tank else { return 0 }
+        return mode == .reception ? max(tank.capacity - tank.currentLevel, 0) : tank.currentLevel
+    }
+
+    var limitHint: String {
+        guard let tank else { return "" }
+        return mode == .reception
+            ? "Nivel actual \(Int(tank.currentLevel)) de \(Int(tank.capacity)) L · caben \(Int(maxQuantity)) L más"
+            : "Nivel actual del tanque: \(Int(tank.currentLevel)) L"
+    }
+
+    /// Aviso en vivo cuando la cantidad escrita pasa del límite.
+    var quantityWarning: String? {
+        guard let quantity, quantity > maxQuantity else { return nil }
+        return mode == .reception
+            ? "Excede la capacidad: solo caben \(Int(maxQuantity)) L más en el tanque de \(fuelType.rawValue)."
+            : "No puede ser mayor que el nivel actual (\(Int(maxQuantity)) L)."
+    }
+
     var canSave: Bool {
-        quantity != nil && (mode == .reception || !reason.isEmpty)
+        guard let quantity, quantity <= maxQuantity else { return false }
+        return mode == .reception || !reason.isEmpty
     }
 
     func save() {
         guard let quantity, canSave else { return }
-        switch mode {
-        case .reception:
-            repository.addReception(branchID: branchID, fuelType: fuelType, quantity: quantity)
-        case .loss:
-            repository.addLoss(branchID: branchID, fuelType: fuelType, liters: quantity, reason: reason)
+        do {
+            switch mode {
+            case .reception:
+                try repository.addReception(branchID: branchID, fuelType: fuelType, quantity: quantity)
+            case .loss:
+                try repository.addLoss(branchID: branchID, fuelType: fuelType, liters: quantity, reason: reason)
+            }
+            didSave = true
+        } catch {
+            errorMessage = error.localizedDescription
         }
-        didSave = true
     }
 }

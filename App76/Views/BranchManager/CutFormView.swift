@@ -37,7 +37,15 @@ struct CutFormView: View {
             Group {
                 Section("Niveles de tanque (litros)") {
                     ForEach(FuelType.allCases) { type in
-                        fuelRow(type, text: viewModel.levelBinding(for: type))
+                        VStack(alignment: .leading, spacing: 2) {
+                            fuelRow(type, text: viewModel.levelBinding(for: type))
+                            if let warning = viewModel.levelWarning(for: type) {
+                                Text(warning).font(.caption).foregroundColor(.red)
+                            } else if !viewModel.isLocked {
+                                Text("Capacidad: \(Int(viewModel.capacity(for: type))) L")
+                                    .font(.caption).foregroundColor(.secondary)
+                            }
+                        }
                     }
                 }
 

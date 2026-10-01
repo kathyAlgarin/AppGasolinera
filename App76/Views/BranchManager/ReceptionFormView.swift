@@ -20,7 +20,7 @@ struct ReceptionFormView: View {
                 .pickerStyle(.segmented)
             }
 
-            Section(viewModel.mode == .reception ? "Recepción de combustible" : "Pérdida de combustible") {
+            Section {
                 Picker("Tipo de combustible", selection: $viewModel.fuelType) {
                     ForEach(FuelType.allCases) { type in
                         Text(type.rawValue).tag(type)
@@ -38,6 +38,21 @@ struct ReceptionFormView: View {
 
                 if viewModel.mode == .loss {
                     TextField("Razón de la pérdida (fuga, derrame…)", text: $viewModel.reasonText, axis: .vertical)
+                }
+            } header: {
+                Text(viewModel.mode == .reception ? "Recepción de combustible" : "Pérdida de combustible")
+            } footer: {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(viewModel.limitHint)
+                    if let warning = viewModel.quantityWarning {
+                        Text(warning).foregroundColor(.red)
+                    }
+                }
+            }
+
+            if let errorMessage = viewModel.errorMessage {
+                Section {
+                    Text(errorMessage).foregroundColor(.red).font(.footnote)
                 }
             }
 
