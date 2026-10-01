@@ -278,10 +278,10 @@ final class AppRepository: ObservableObject {
 
         branches = [branch1, branch2, branch3]
 
-        let gm = AppUser(name: "María Gómez", email: "gerente.general@gas76.com", password: "admin123", role: .generalManager)
-        let bm1 = AppUser(name: "Carlos Pérez", email: "centro@gas76.com", password: "sucursal123", role: .branchManager, branchID: branch1.id)
-        let bm2 = AppUser(name: "Ana Torres", email: "norte@gas76.com", password: "sucursal123", role: .branchManager, branchID: branch2.id)
-        let bm3 = AppUser(name: "Luis Ramírez", email: "sur@gas76.com", password: "sucursal123", role: .branchManager, branchID: branch3.id)
+        let gm = AppUser(name: "María Gómez", email: "gerente.general@gas76.com", password: "1234", role: .generalManager)
+        let bm1 = AppUser(name: "Carlos Pérez", email: "centro@gas76.com", password: "1234", role: .branchManager, branchID: branch1.id)
+        let bm2 = AppUser(name: "Ana Torres", email: "norte@gas76.com", password: "1234", role: .branchManager, branchID: branch2.id)
+        let bm3 = AppUser(name: "Luis Ramírez", email: "sur@gas76.com", password: "1234", role: .branchManager, branchID: branch3.id)
         users = [gm, bm1, bm2, bm3]
 
         for branch in branches {
