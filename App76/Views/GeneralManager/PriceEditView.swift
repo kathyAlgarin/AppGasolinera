@@ -1,18 +1,11 @@
 import SwiftUI
 
 struct PriceEditView: View {
-    @EnvironmentObject var store: AppStore
     @Environment(\.dismiss) var dismiss
+    @StateObject private var viewModel: PriceEditViewModel
 
-    let branch: Branch
-    let fuelType: FuelType
-
-    @State private var priceText: String = ""
-
-    private var history: [PriceHistoryEntry] {
-        store.priceHistory
-            .filter { $0.branchID == branch.id && $0.fuelType == fuelType }
-            .sorted { $0.changedAt > $1.changedAt }
+    init(branchID: UUID, fuelType: FuelType) {
+        _viewModel = StateObject(wrappedValue: PriceEditViewModel(branchID: branchID, fuelType: fuelType))
     }
 
     var body: some View {
@@ -21,27 +14,21 @@ struct PriceEditView: View {
                 HStack {
                     Text("Precio")
                     Spacer()
-                    TextField("0.00", text: $priceText)
+                    TextField("0.00", text: $viewModel.priceText)
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                         .frame(width: 100)
-                        .numericInput($priceText, decimal: true)
                 }
             }
 
             Section {
-                Button("Guardar precio") {
-                    if let newPrice = Double(priceText) {
-                        store.updatePrice(branchID: branch.id, fuelType: fuelType, newPrice: newPrice)
-                        dismiss()
-                    }
-                }
-                .disabled(Double(priceText) == nil)
+                Button("Guardar precio") { viewModel.save() }
+                    .disabled(!viewModel.canSave)
             }
 
-            if !history.isEmpty {
+            if !viewModel.history.isEmpty {
                 Section("Historial de cambios") {
-                    ForEach(history) { entry in
+                    ForEach(viewModel.history) { entry in
                         VStack(alignment: .leading, spacing: 2) {
                             Text("\(entry.oldPrice.formatted(.currency(code: "USD"))) → \(entry.newPrice.formatted(.currency(code: "USD")))")
                                 .font(.subheadline)
@@ -53,11 +40,9 @@ struct PriceEditView: View {
                 }
             }
         }
-        .navigationTitle("\(fuelType.rawValue) · \(branch.name)")
-        .dismissKeyboardSupport()
-        .onAppear {
-            let current = store.currentPrice(branchID: branch.id, fuelType: fuelType) ?? 0
-            priceText = String(format: "%.2f", current)
+        .navigationTitle(viewModel.title)
+        .onChange(of: viewModel.didSave) { _, saved in
+            if saved { dismiss() }
         }
     }
 }

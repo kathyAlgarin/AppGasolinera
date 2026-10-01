@@ -2,13 +2,13 @@ import SwiftUI
 
 /// Gestión de usuarios: solo visible/accesible para el Gerente General.
 struct UserManagementView: View {
-    @EnvironmentObject var store: AppStore
+    @StateObject private var viewModel = UserManagementViewModel()
     @State private var showAddUser = false
 
     var body: some View {
         NavigationStack {
             List {
-                ForEach(store.users) { user in
+                ForEach(viewModel.users) { user in
                     NavigationLink(value: user) {
                         VStack(alignment: .leading, spacing: 4) {
                             HStack(spacing: 6) {
@@ -26,7 +26,7 @@ struct UserManagementView: View {
                             Text(user.email)
                                 .font(.caption)
                                 .foregroundColor(.secondary)
-                            Text(roleDescription(for: user))
+                            Text(viewModel.roleDescription(for: user))
                                 .font(.caption)
                                 .foregroundColor(.gas76Blue)
                         }
@@ -53,15 +53,5 @@ struct UserManagementView: View {
                 }
             }
         }
-    }
-
-    private func roleDescription(for user: AppUser) -> String {
-        if user.role == .generalManager {
-            return "Gerente General"
-        }
-        if let branchID = user.branchID, let branch = store.branches.first(where: { $0.id == branchID }) {
-            return "Gerente de \(branch.name)"
-        }
-        return "Gerente de Sucursal"
     }
 }

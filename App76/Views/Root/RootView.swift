@@ -3,21 +3,19 @@ import SwiftUI
 /// Punto de entrada de navegación: decide qué mostrar según si hay sesión
 /// iniciada y cuál es el rol del usuario actual.
 struct RootView: View {
-    @EnvironmentObject var store: AppStore
+    @StateObject private var viewModel = RootViewModel()
 
     var body: some View {
         Group {
-            if let user = store.currentUser {
-                switch user.role {
-                case .generalManager:
-                    GeneralManagerTabView()
-                case .branchManager:
-                    BranchManagerTabView()
-                }
-            } else {
+            switch viewModel.destination {
+            case .generalManager:
+                GeneralManagerTabView()
+            case .branchManager:
+                BranchManagerTabView()
+            case .login:
                 LoginView()
             }
         }
-        .animation(.default, value: store.currentUser)
+        .animation(.default, value: viewModel.destination)
     }
 }

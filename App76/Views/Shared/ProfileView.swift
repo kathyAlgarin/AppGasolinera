@@ -1,20 +1,19 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject var store: AppStore
+    @StateObject private var viewModel = ProfileViewModel()
     @State private var showChangePassword = false
 
     var body: some View {
         NavigationStack {
             List {
-                if let user = store.currentUser {
+                if let user = viewModel.user {
                     Section("Datos de la cuenta") {
                         LabeledContent("Nombre", value: user.name)
                         LabeledContent("Correo", value: user.email)
                         LabeledContent("Rol", value: user.role.rawValue)
-                        if let branchID = user.branchID,
-                           let branch = store.branches.first(where: { $0.id == branchID }) {
-                            LabeledContent("Sucursal", value: branch.name)
+                        if let branchName = viewModel.branchName {
+                            LabeledContent("Sucursal", value: branchName)
                         }
                     }
                 }
@@ -27,7 +26,7 @@ struct ProfileView: View {
 
                 Section {
                     Button("Cerrar sesión", role: .destructive) {
-                        store.logout()
+                        viewModel.logout()
                     }
                 }
             }

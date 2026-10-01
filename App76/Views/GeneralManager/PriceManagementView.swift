@@ -2,25 +2,17 @@ import SwiftUI
 
 /// Gestión de precios por sucursal: el precio puede variar entre sucursales.
 struct PriceManagementView: View {
-    @EnvironmentObject var store: AppStore
-    @State private var selectedBranchID: UUID?
-
-    private var selectedBranch: Branch? {
-        if let id = selectedBranchID, let branch = store.branches.first(where: { $0.id == id }) {
-            return branch
-        }
-        return store.branches.first
-    }
+    @StateObject private var viewModel = PriceManagementViewModel()
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
-                if store.branches.count > 1 {
+                if viewModel.branches.count > 1 {
                     Picker("Sucursal", selection: Binding(
-                        get: { selectedBranchID ?? store.branches.first?.id },
-                        set: { selectedBranchID = $0 }
+                        get: { viewModel.selectedBranchID ?? viewModel.branches.first?.id },
+                        set: { viewModel.selectedBranchID = $0 }
                     )) {
-                        ForEach(store.branches) { branch in
+                        ForEach(viewModel.branches) { branch in
                             Text(branch.name).tag(Optional(branch.id))
                         }
                     }
@@ -28,18 +20,18 @@ struct PriceManagementView: View {
                     .padding(.horizontal)
                 }
 
-                if let branch = selectedBranch {
+                if let branch = viewModel.selectedBranch {
                     List {
                         ForEach(FuelType.allCases) { type in
                             NavigationLink {
-                                PriceEditView(branch: branch, fuelType: type)
+                                PriceEditView(branchID: branch.id, fuelType: type)
                             } label: {
                                 HStack {
                                     Image(systemName: type.symbolName)
                                         .foregroundColor(.gas76Orange)
                                     Text(type.rawValue)
                                     Spacer()
-                                    Text((store.currentPrice(branchID: branch.id, fuelType: type) ?? 0).formatted(.currency(code: "USD")))
+                                    Text(viewModel.price(branchID: branch.id, fuelType: type).formatted(.currency(code: "USD")))
                                         .foregroundColor(.secondary)
                                 }
                             }
