@@ -9,7 +9,7 @@ struct BranchManagementView: View {
             List {
                 ForEach(viewModel.branches) { branch in
                     NavigationLink(value: branch) {
-                        BranchSummaryRow(branch: branch)
+                        BranchSummaryRow(branch: branch, showsChevron: false)
                     }
                     .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
                     .listRowSeparator(.hidden)
