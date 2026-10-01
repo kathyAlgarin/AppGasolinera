@@ -33,6 +33,30 @@ struct BranchReportSection: View {
                 }
             }
 
+            if !viewModel.lossRows.isEmpty {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Pérdidas registradas hoy")
+                        .font(.headline)
+                        .padding(.horizontal)
+                    ForEach(viewModel.lossRows) { row in
+                        VStack(alignment: .leading, spacing: 2) {
+                            HStack {
+                                Text(row.fuel.rawValue).font(.subheadline.bold())
+                                Spacer()
+                                Text("\(Int(row.liters)) L").foregroundColor(.red)
+                            }
+                            Text(row.reason)
+                                .font(.footnote)
+                                .foregroundColor(.secondary)
+                        }
+                        .padding()
+                        .background(Color.gas76Card)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .padding(.horizontal)
+                    }
+                }
+            }
+
             if viewModel.hasReport {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Ventas por bomba")

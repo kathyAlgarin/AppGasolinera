@@ -9,6 +9,8 @@ struct DailyReport {
     let litersByFuel: [FuelType: Double]
     /// Litros vendidos según tanques (apertura + recepciones − cierre). Solo control.
     let tankLitersByFuel: [FuelType: Double]
+    /// Pérdidas registradas (litros) por combustible en el periodo.
+    let lossesByFuel: [FuelType: Double]
     /// Datos con los que se calculó el control por tanques, para poder explicarlo.
     let openingLevels: [FuelType: Double]
     let receivedByFuel: [FuelType: Double]
@@ -21,9 +23,10 @@ struct DailyReport {
         pumpSales[pumpID]?.values.reduce(0, +) ?? 0
     }
 
-    /// Tanques − bombas. Positivo = salió más combustible del tanque que lo medido en bombas.
+    /// Tanques − bombas − pérdidas registradas. Positivo = salió del tanque más combustible
+    /// del que explican las ventas de las bombas y las pérdidas registradas.
     func difference(for fuel: FuelType) -> Double {
-        (tankLitersByFuel[fuel] ?? 0) - (litersByFuel[fuel] ?? 0)
+        (tankLitersByFuel[fuel] ?? 0) - (litersByFuel[fuel] ?? 0) - (lossesByFuel[fuel] ?? 0)
     }
 
     /// Diferencia máxima aceptada: 1 % de lo vendido por bombas, mínimo 1 L.
@@ -48,18 +51,19 @@ enum SalesCalculator {
                        opening: FuelCut,
                        closing: FuelCut,
                        receptions: [Reception],
+                       losses: [FuelLoss] = [],
                        prices: [FuelType: Double]) -> DailyReport {
 
-        // 1) Ventas por bomba: contador de cierre − contador de apertura.
+        // 1) Ventas por bomba: litros registrados en el corte de cierre.
         var pumpSales: [UUID: [FuelType: Double]] = [:]
         for reading in closing.pumpReadings {
-            guard let start = opening.meter(pumpID: reading.pumpID, fuelType: reading.fuelType) else { continue }
-            pumpSales[reading.pumpID, default: [:]][reading.fuelType] = reading.meterLiters - start
+            pumpSales[reading.pumpID, default: [:]][reading.fuelType] = reading.liters
         }
 
         var litersByFuel: [FuelType: Double] = [:]
         var tankLiters: [FuelType: Double] = [:]
         var receivedByFuel: [FuelType: Double] = [:]
+        var lossesByFuel: [FuelType: Double] = [:]
 
         for fuel in FuelType.allCases {
             // 2) Consolidación de las bombas por combustible.
@@ -68,6 +72,7 @@ enum SalesCalculator {
             // 3) Control por tanques.
             let received = receptions.filter { $0.fuelType == fuel }.reduce(0) { $0 + $1.quantity }
             receivedByFuel[fuel] = received
+            lossesByFuel[fuel] = losses.filter { $0.fuelType == fuel }.reduce(0) { $0 + $1.liters }
             tankLiters[fuel] = (opening.levels[fuel] ?? 0) + received - (closing.levels[fuel] ?? 0)
         }
 
@@ -78,6 +83,7 @@ enum SalesCalculator {
                            pumpSales: pumpSales,
                            litersByFuel: litersByFuel,
                            tankLitersByFuel: tankLiters,
+                           lossesByFuel: lossesByFuel,
                            openingLevels: opening.levels,
                            receivedByFuel: receivedByFuel,
                            closingLevels: closing.levels,

@@ -16,6 +16,7 @@ final class AppRepository: ObservableObject {
     @Published var users: [AppUser] = []
     @Published var branches: [Branch] = []
     @Published var receptions: [Reception] = []
+    @Published var losses: [FuelLoss] = []
     @Published var cuts: [FuelCut] = []
     @Published var prices: [FuelPrice] = []
     @Published var priceHistory: [PriceHistoryEntry] = []
@@ -129,7 +130,7 @@ final class AppRepository: ObservableObject {
         case closingAlreadyExists
         case branchNotFound
         case incompleteReadings
-        case meterDecreased(pump: Int, fuel: FuelType)
+        case negativeLiters
 
         var errorDescription: String? {
             switch self {
@@ -142,29 +143,25 @@ final class AppRepository: ObservableObject {
             case .branchNotFound:
                 return "No se encontró la sucursal."
             case .incompleteReadings:
-                return "Faltan lecturas de contador de alguna bomba."
-            case .meterDecreased(let pump, let fuel):
-                return "El contador de cierre de la Bomba \(pump) (\(fuel.rawValue)) no puede ser menor que el de apertura."
+                return "Faltan los litros vendidos de alguna bomba."
+            case .negativeLiters:
+                return "Los litros no pueden ser negativos."
             }
         }
     }
 
     /// Registra un corte (apertura o cierre). Valida que no se registre un cierre
-    /// sin apertura previa, que no se dupliquen cortes del mismo tipo en el día y
-    /// que los contadores de las bombas estén completos y no retrocedan.
+    /// sin apertura previa y que no se dupliquen cortes del mismo tipo en el día.
+    /// La apertura registra solo niveles de tanque; el cierre exige además los litros
+    /// vendidos por cada bomba y combustible (6 × 3 = 18).
     @discardableResult
     func addCut(branchID: UUID,
                 type: CutType,
                 levels: [FuelType: Double],
-                pumpReadings: [PumpReading],
+                pumpReadings: [PumpReading] = [],
                 date: Date = Date()) throws -> FuelCut {
 
         guard let branch = branch(id: branchID) else { throw CutError.branchNotFound }
-
-        // Debe haber una lectura por cada bomba y cada combustible (6 × 3 = 18).
-        guard pumpReadings.count == branch.pumps.count * FuelType.allCases.count else {
-            throw CutError.incompleteReadings
-        }
 
         let calendar = Calendar.current
         let sameDay = cuts.filter {
@@ -177,24 +174,20 @@ final class AppRepository: ObservableObject {
                 throw CutError.openingAlreadyExists
             }
         case .closing:
-            guard let opening = sameDay.first(where: { $0.type == .opening }) else {
+            guard sameDay.contains(where: { $0.type == .opening }) else {
                 throw CutError.closingRequiresOpening
             }
             if sameDay.contains(where: { $0.type == .closing }) {
                 throw CutError.closingAlreadyExists
             }
-
-            // Un contador acumulado nunca puede bajar.
-            for reading in pumpReadings {
-                if let start = opening.meter(pumpID: reading.pumpID, fuelType: reading.fuelType),
-                   reading.meterLiters < start {
-                    let number = branch.pumps.first { $0.id == reading.pumpID }?.number ?? 0
-                    throw CutError.meterDecreased(pump: number, fuel: reading.fuelType)
-                }
+            guard pumpReadings.count == branch.pumps.count * FuelType.allCases.count else {
+                throw CutError.incompleteReadings
             }
+            guard pumpReadings.allSatisfy({ $0.liters >= 0 }) else { throw CutError.negativeLiters }
         }
 
-        let cut = FuelCut(branchID: branchID, type: type, date: date, levels: levels, pumpReadings: pumpReadings)
+        let cut = FuelCut(branchID: branchID, type: type, date: date, levels: levels,
+                          pumpReadings: type == .closing ? pumpReadings : [])
         cuts.append(cut)
 
         // El corte refleja una lectura física del tanque: actualizamos el nivel actual.
@@ -216,16 +209,27 @@ final class AppRepository: ObservableObject {
         return (sameDay.first(where: { $0.type == .opening }), sameDay.first(where: { $0.type == .closing }))
     }
 
-    // MARK: - Contadores y reporte diario
+    // MARK: - Pérdidas
 
-    /// Último contador conocido de una bomba/combustible (para precargar el formulario).
-    func lastMeter(branchID: UUID, pumpID: UUID, fuelType: FuelType) -> Double {
-        cuts.filter { $0.branchID == branchID }
-            .sorted { $0.date > $1.date }
-            .lazy
-            .compactMap { $0.meter(pumpID: pumpID, fuelType: fuelType) }
-            .first ?? 0
+    /// Registra una pérdida de combustible con su razón y descuenta los litros del tanque.
+    func addLoss(branchID: UUID, fuelType: FuelType, liters: Double, reason: String, date: Date = Date()) {
+        losses.append(FuelLoss(branchID: branchID, fuelType: fuelType, liters: liters, reason: reason, date: date))
+
+        if let branchIdx = branches.firstIndex(where: { $0.id == branchID }),
+           let tankIdx = branches[branchIdx].tanks.firstIndex(where: { $0.fuelType == fuelType }) {
+            let level = branches[branchIdx].tanks[tankIdx].currentLevel
+            branches[branchIdx].tanks[tankIdx].currentLevel = max(level - liters, 0)
+        }
     }
+
+    func losses(for branchID: UUID, on date: Date) -> [FuelLoss] {
+        let calendar = Calendar.current
+        return losses
+            .filter { $0.branchID == branchID && calendar.isDate($0.date, inSameDayAs: date) }
+            .sorted { $0.date > $1.date }
+    }
+
+    // MARK: - Reporte diario
 
     /// Reporte del día: nil si faltan la apertura o el cierre.
     func dailyReport(branchID: UUID, on date: Date) -> DailyReport? {
@@ -235,12 +239,15 @@ final class AppRepository: ObservableObject {
         let dayReceptions = receptions.filter {
             $0.branchID == branchID && $0.date >= opening.date && $0.date <= closing.date
         }
+        let dayLosses = losses.filter {
+            $0.branchID == branchID && $0.date >= opening.date && $0.date <= closing.date
+        }
         var prices: [FuelType: Double] = [:]
         for fuel in FuelType.allCases {
             prices[fuel] = currentPrice(branchID: branchID, fuelType: fuel) ?? 0
         }
         return SalesCalculator.report(branchID: branchID, opening: opening, closing: closing,
-                                      receptions: dayReceptions, prices: prices)
+                                      receptions: dayReceptions, losses: dayLosses, prices: prices)
     }
 
     // MARK: - Datos de demostración
@@ -276,13 +283,26 @@ final class AppRepository: ObservableObject {
             ]
         )
 
-        branches = [branch1, branch2, branch3]
+        // Sucursal vacía para probar cortes: no tiene cortes de hoy, así que se puede
+        // registrar apertura y cierre desde cero con el usuario prueba@gas76.com.
+        let branch4 = Branch(
+            name: "76 Pruebas",
+            address: "Calle de Prueba 1",
+            tanks: [
+                Tank(fuelType: .regular, capacity: 8000, currentLevel: 5000),
+                Tank(fuelType: .premium, capacity: 6000, currentLevel: 3000),
+                Tank(fuelType: .diesel, capacity: 9000, currentLevel: 4000)
+            ]
+        )
+
+        branches = [branch1, branch2, branch3, branch4]
 
         let gm = AppUser(name: "María Gómez", email: "gerente.general@gas76.com", password: "1234", role: .generalManager)
         let bm1 = AppUser(name: "Carlos Pérez", email: "centro@gas76.com", password: "1234", role: .branchManager, branchID: branch1.id)
         let bm2 = AppUser(name: "Ana Torres", email: "norte@gas76.com", password: "1234", role: .branchManager, branchID: branch2.id)
         let bm3 = AppUser(name: "Luis Ramírez", email: "sur@gas76.com", password: "1234", role: .branchManager, branchID: branch3.id)
-        users = [gm, bm1, bm2, bm3]
+        let bm4 = AppUser(name: "Usuario Pruebas", email: "prueba@gas76.com", password: "1234", role: .branchManager, branchID: branch4.id)
+        users = [gm, bm1, bm2, bm3, bm4]
 
         for branch in branches {
             updatePrice(branchID: branch.id, fuelType: .regular, newPrice: 1.05)
@@ -305,16 +325,12 @@ final class AppRepository: ObservableObject {
             .diesel:  [100, 90, 110, 80, 120, 100]     // = 600
         ]
 
-        func meterBase(_ pump: Pump) -> Double { 50_000 + 1_000 * Double(pump.number) }
-
-        for branch in branches {
-            let openingReadings = branch.pumps.flatMap { pump in
-                FuelType.allCases.map { PumpReading(pumpID: pump.id, fuelType: $0, meterLiters: meterBase(pump)) }
-            }
+        // Solo las tres sucursales con historial de hoy; "76 Pruebas" queda sin cortes.
+        for branch in [branch1, branch2, branch3] {
             let closingReadings = branch.pumps.flatMap { pump in
                 FuelType.allCases.map { fuel in
                     PumpReading(pumpID: pump.id, fuelType: fuel,
-                                meterLiters: meterBase(pump) + (soldByPump[fuel]?[pump.number - 1] ?? 0))
+                                liters: soldByPump[fuel]?[pump.number - 1] ?? 0)
                 }
             }
 
@@ -323,8 +339,7 @@ final class AppRepository: ObservableObject {
                 .premium: branch.tanks.first(where: { $0.fuelType == .premium })?.currentLevel ?? 0,
                 .diesel: branch.tanks.first(where: { $0.fuelType == .diesel })?.currentLevel ?? 0
             ]
-            _ = try? addCut(branchID: branch.id, type: .opening, levels: openingLevels,
-                        pumpReadings: openingReadings, date: morning)
+            _ = try? addCut(branchID: branch.id, type: .opening, levels: openingLevels, date: morning)
 
             addReception(branchID: branch.id, fuelType: .regular, quantity: 1000, date: midday)
 
