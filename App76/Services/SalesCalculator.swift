@@ -9,6 +9,10 @@ struct DailyReport {
     let litersByFuel: [FuelType: Double]
     /// Litros vendidos según tanques (apertura + recepciones − cierre). Solo control.
     let tankLitersByFuel: [FuelType: Double]
+    /// Datos con los que se calculó el control por tanques, para poder explicarlo.
+    let openingLevels: [FuelType: Double]
+    let receivedByFuel: [FuelType: Double]
+    let closingLevels: [FuelType: Double]
     let revenue: Double
 
     var totalLiters: Double { litersByFuel.values.reduce(0, +) }
@@ -22,9 +26,13 @@ struct DailyReport {
         (tankLitersByFuel[fuel] ?? 0) - (litersByFuel[fuel] ?? 0)
     }
 
+    /// Diferencia máxima aceptada: 1 % de lo vendido por bombas, mínimo 1 L.
+    func tolerance(for fuel: FuelType) -> Double {
+        max((litersByFuel[fuel] ?? 0) * SalesCalculator.toleranceRatio, 1)
+    }
+
     func isBalanced(for fuel: FuelType) -> Bool {
-        let pumped = litersByFuel[fuel] ?? 0
-        return abs(difference(for: fuel)) <= max(pumped * SalesCalculator.toleranceRatio, 1)
+        abs(difference(for: fuel)) <= tolerance(for: fuel)
     }
 
     var isBalanced: Bool {
@@ -51,6 +59,7 @@ enum SalesCalculator {
 
         var litersByFuel: [FuelType: Double] = [:]
         var tankLiters: [FuelType: Double] = [:]
+        var receivedByFuel: [FuelType: Double] = [:]
 
         for fuel in FuelType.allCases {
             // 2) Consolidación de las bombas por combustible.
@@ -58,6 +67,7 @@ enum SalesCalculator {
 
             // 3) Control por tanques.
             let received = receptions.filter { $0.fuelType == fuel }.reduce(0) { $0 + $1.quantity }
+            receivedByFuel[fuel] = received
             tankLiters[fuel] = (opening.levels[fuel] ?? 0) + received - (closing.levels[fuel] ?? 0)
         }
 
@@ -68,6 +78,9 @@ enum SalesCalculator {
                            pumpSales: pumpSales,
                            litersByFuel: litersByFuel,
                            tankLitersByFuel: tankLiters,
+                           openingLevels: opening.levels,
+                           receivedByFuel: receivedByFuel,
+                           closingLevels: closing.levels,
                            revenue: revenue)
     }
 }

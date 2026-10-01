@@ -70,23 +70,14 @@ struct BranchReportSection: View {
                     Text("Cuadre con tanques")
                         .font(.headline)
                         .padding(.horizontal)
-                    VStack(spacing: 8) {
-                        ForEach(viewModel.reconciliation) { row in
-                            HStack {
-                                Text(row.fuel.rawValue)
-                                Spacer()
-                                if row.isBalanced {
-                                    Text("Cuadra").foregroundColor(.green)
-                                } else {
-                                    Text("Diferencia: \(Int(row.difference)) L").foregroundColor(.red)
-                                }
-                            }
-                            .padding()
-                            .background(Color.gas76Card)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                        }
+                    Text("Compara lo que vendieron las bombas con lo que bajó el tanque.")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        .padding(.horizontal)
+                    ForEach(viewModel.reconciliation) { row in
+                        ReconciliationRowView(row: row)
+                            .padding(.horizontal)
                     }
-                    .padding(.horizontal)
                 }
             } else {
                 Text("Aún no hay corte de apertura y cierre de hoy")
