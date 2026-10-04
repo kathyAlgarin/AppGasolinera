@@ -106,11 +106,13 @@ modelos, servicios, `AppRepository` y `SalesCalculator` se eliminan.
 
 Cada fase deja la app ejecutable. "Listo cuando" es el criterio de aceptación; "Qué probar" lo hace Katherinne en el Mac.
 
-### Fase 0 · Preparación
-- Agregar `supabase-swift` al proyecto (Xcode → File → Add Package Dependencies). Crear `Core/` con la configuración y el cliente.
-- Retirar el código demo que ya no aplica y conservar lo visual reutilizable.
+### Fase 0 · Preparación (código escrito, pendiente de compilar en el Mac)
+- Sin paquete local: el código vive directo en `App76/` (MVVM). Los archivos nuevos se registran en el proyecto con
+  `python3 tools/sincronizar_proyecto.py` (cierra Xcode antes; también agrega `supabase-swift` ≥ 2.0.0).
+- Hecho: `Core/` (Configuracion, ClienteSupabase, ErrorApp, Formateadores), `Services/ConexionService`, `ArranqueViewModel`, `RootView`.
+  Se borró la demo anterior; se conservaron `Theme/Colors`, `SummaryCard` y `ActionCard`.
 - **Listo cuando**: el proyecto compila y arranca en una pantalla vacía conectada al cliente.
-- **Qué probar**: compila; al abrir no hay errores de red.
+- **Qué probar**: pegar la clave `sb_publishable_…` en `Core/Configuracion.swift`; compila; al abrir dice «Conectado al servidor».
 
 ### Fase 1 · Acceso y navegación por rol
 - Login, sesión persistente, enrutamiento por rol, cambio obligatorio de contraseña, "Olvidé mi contraseña" (código), perfil y cerrar sesión.

@@ -7,128 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		043921080337354AD0D5CF3E /* PriceManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DCC7980FBD61877001FD1B /* PriceManagementViewModel.swift */; };
-		046DF22068ACEF6E900A0A90 /* BranchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495AB7EB7B3BC19C12252E82 /* BranchDetailView.swift */; };
-		0D3F7551EE64A7CADAB785E3 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB49122257A41C6EB55CD52 /* ChangePasswordView.swift */; };
-		1414C4A4F95501F065E4B837 /* TankLevelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4E0B9566374615807CDDE0 /* TankLevelRow.swift */; };
-		149DB9CF0978C9746C0E48AC /* FuelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A352C9DFD783ABFB30F2DA /* FuelType.swift */; };
-		1F91836D3EE1D200617302FB /* BranchManagerTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16CE3A55EDF5EC506C6D51F /* BranchManagerTabViewModel.swift */; };
-		2014240146582F8BBACD4CA5 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC41218B97D2722EBCE9A64 /* ForgotPasswordView.swift */; };
-		2E30CC879E43B7A34DE49684 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAC804A4C25088BF890D26 /* ProfileViewModel.swift */; };
-		2FA4753AA628D55DF62DC1FF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE6C80B456DBDD8DE4EDF03 /* SessionManager.swift */; };
-		33DD5F6CEA7596C5459C4F3B /* GMDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCDD26774249FD8283AA03 /* GMDashboardView.swift */; };
-		367B8314CEC4958153053025 /* CutFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC382FD6661A9869BCEE339 /* CutFormViewModel.swift */; };
-		3823489096C0CA1A4E50D38B /* PriceManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F94507DF9A22C18CD42FEBA /* PriceManagementView.swift */; };
-		48452D2F26633A95D671609A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94D33C423E2F201C02C8EE /* Colors.swift */; };
-		4CE4ED0D519D51A68C51F2FB /* BranchFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2239A3566EA3EB68B6EAFADC /* BranchFormViewModel.swift */; };
-		4F8AD19286B170A22DAF5AFA /* BranchManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B09A5EF0C179902D4DC5495 /* BranchManagementViewModel.swift */; };
-		508568F9E9E6EAC81E75A14E /* BMDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567787B10B1DCA89B9F0AAEF /* BMDashboardView.swift */; };
-		52841494310CE53AE18207D5 /* ReceptionFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E13C5DEFA4CB2B7D303B2 /* ReceptionFormView.swift */; };
-		57A8DD43BE0EC8A6DE4CE2F7 /* ReconciliationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170AA65E83097D596793A31F /* ReconciliationRowView.swift */; };
-		58475BED773316EBB55F8DEE /* ReceptionFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EB96E3C2400B6BA2E0F8E5 /* ReceptionFormViewModel.swift */; };
-		5B89B25BFA3CD92D1A440AF0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC17028E7123C816BCF87898 /* ProfileView.swift */; };
-		62A00B4373BFBC98532F8BF9 /* AppRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CEB197B1752AD6F0D4E4E0 /* AppRepository.swift */; };
-		72E9F54934B877FF05FD264A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD52FED4DC9160BC9383E7B /* ViewModel.swift */; };
-		776E4D1B5CE96D2EF288412C /* CutFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF8515A5FF3F169ECDA263 /* CutFormView.swift */; };
-		831FA917875B0913EA3AF069 /* BranchFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265AE5F2C555C80E9D73836E /* BranchFormView.swift */; };
-		8A040DA48BCC1488DB7E9F4A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6746857D1363B0EC3BEFD177 /* LoginViewModel.swift */; };
-		8DDF8ECF14AC4668DAA7CFA1 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CB154E4BF5AFDE69A054FD /* UserRole.swift */; };
-		90D31ABF1168AA6B531A7D6F /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E341930C03807F55A045F0E /* ChangePasswordViewModel.swift */; };
-		94ED200E2C056777FA1E6DD0 /* UserFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B31C9899AA864AE22BEA541 /* UserFormView.swift */; };
-		9C23777B04794336B07CB7AF /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC5D860FCC2D1EC02E118F7 /* RootViewModel.swift */; };
-		9DCCB493F41553A07F0CF4F5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB7DA946176CEEB7BE2BCA0 /* LoginView.swift */; };
-		9F39B0CDB6A77EEB00973116 /* UserFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE42F87C60F312E13158AD1 /* UserFormViewModel.swift */; };
-		A7A67092A9A75EC2F9357EC3 /* BranchManagerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125B28AB54091262E8BE09DF /* BranchManagerTabView.swift */; };
-		A888D89F583B788CD34EDB7B /* Tank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EFD2B697D12ACFA23909F8 /* Tank.swift */; };
-		AC8E5F8CDB947465D0749521 /* PriceEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454460FC90536DA2B8605C91 /* PriceEditView.swift */; };
-		AF8223B004131F34D28FA0EB /* FuelLoss.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC1D5BB1435A2642D794AE5 /* FuelLoss.swift */; };
-		B238F3B31D796E61932746D1 /* PumpSalesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F606F7FFBC135B62A3903EE2 /* PumpSalesRowView.swift */; };
-		B40048D5D55B2F64A5A5453B /* GeneralManagerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D81BD6140480E9D2464B43D /* GeneralManagerTabView.swift */; };
-		B4E7469A288CBBC1FC3F35C4 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6239E2E748722DE7D91A41E4 /* ForgotPasswordViewModel.swift */; };
-		BD56132C331282EA2D4B5A10 /* Reception.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7A66288EBB64EE67F6BF51 /* Reception.swift */; };
-		C3A527F03FC2073A3B3C5CA1 /* UserManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F26AFD513C293FE72137332 /* UserManagementView.swift */; };
-		C5BB18D9504D97440C92F437 /* BranchOverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94D4A5327FBD8D9B51244D6 /* BranchOverviewViewModel.swift */; };
-		D22B95E942737B1D86F082D1 /* FuelCut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940E9803DAEF7B6832BB10BC /* FuelCut.swift */; };
-		D2CEE2D5836BF80FDA705098 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F644CDAE792E1B0AF387D748 /* RootView.swift */; };
-		D83C79B41769ED35AD6242A0 /* BranchSummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1DD81E67FA8E2922C1013B /* BranchSummaryRow.swift */; };
-		DBB0CBA93068410F00C7BC00 /* App76App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB0CBA83068410F00C7BC00 /* App76App.swift */; };
+		5A1C0DE0A1B2C3D4E5F6071A /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5A1C0DE0A1B2C3D4E5F60719 /* Supabase */; };
 		DBB0CBAD3068411100C7BC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBB0CBAC3068411100C7BC00 /* Assets.xcassets */; };
 		DBB0CBB03068411100C7BC00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBB0CBAF3068411100C7BC00 /* Preview Assets.xcassets */; };
-		DCB99A96EF6A8A80A01EEED3 /* UserManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4837ED98983614D43A30F591 /* UserManagementViewModel.swift */; };
-		DD4E1EB1071DD29BAC0BC70E /* SummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F6C84709E93769BA5433F /* SummaryCard.swift */; };
-		E09F28DC249132419C69760B /* Pump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA5B692F2038E4770101ABA /* Pump.swift */; };
-		E1D68A8D3CCE10F6356733F6 /* ActionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777525BA718C306173848C1E /* ActionCard.swift */; };
-		E4A6163E25002A9BF4AF5A3B /* SalesCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C092960D1DB5A226D5D5F /* SalesCalculator.swift */; };
-		E6CDC5DB54287420EF62D7ED /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEDB0AE787BF2F7586FBA57 /* Branch.swift */; };
-		E77FEE67ECA72EEF638354D5 /* FuelPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D992342F6AF9EE7C1D6DE2 /* FuelPrice.swift */; };
-		F155DFD6170774B34EEC66B7 /* GMDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCCD313A0B7F9F531A84B41 /* GMDashboardViewModel.swift */; };
-		F58BBB159F52F5BDACA83972 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9D040B4DC7A4C99A5D78D6 /* AppUser.swift */; };
-		FD2251A23571C82AD6D7CCDD /* BranchManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512AA3C0F94A6A527F1D300 /* BranchManagementView.swift */; };
-		FD2AFB55006BB67C99EDEE33 /* BranchReportSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6217983EDE666D5E216A5 /* BranchReportSection.swift */; };
-		FF5EC0907E479F026B936B9F /* PriceEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3570D0A4801DC91503470 /* PriceEditViewModel.swift */; };
+		3DD9A88DAC42B36A20D26BA4 /* App76App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26C2139AEAB8C5277472150 /* App76App.swift */; };
+		81B486B949678BF87A164376 /* ClienteSupabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB59993CF8412166F9A42BD /* ClienteSupabase.swift */; };
+		554F7188B670E89D93EBD5DA /* Configuracion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7349D1FD85A154D757818 /* Configuracion.swift */; };
+		61D272527766A2E9F96ABFB6 /* ErrorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A56F6DB6B45701D4FFB81BD /* ErrorApp.swift */; };
+		5542D5309473EE178801B1D3 /* Formateadores.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43CA3EEF5BFD3F7E323D576 /* Formateadores.swift */; };
+		DA3BF3B9ED69822C8425CAA2 /* ConexionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA69E2A7D2145F1E3DCDA2D /* ConexionService.swift */; };
+		A13C1B35F2CB7AB73DD61193 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F887F84577A2F381BDE86569 /* Colors.swift */; };
+		D2892DDC6F4F0090C5A428C4 /* ArranqueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D23599A990163B50E3748 /* ArranqueViewModel.swift */; };
+		7D0122AF398CE01BC076AF37 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB518D413EC45884958DF9 /* RootView.swift */; };
+		2D9259AC1087062CE478E838 /* ActionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA62422B45055A1C4BB814 /* ActionCard.swift */; };
+		D8F9A53A70761192CC09A469 /* SummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A3D1EA96B965386649FEFD /* SummaryCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0BC5D860FCC2D1EC02E118F7 /* RootViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
-		125B28AB54091262E8BE09DF /* BranchManagerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchManagerTabView.swift; sourceTree = "<group>"; };
-		15A352C9DFD783ABFB30F2DA /* FuelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelType.swift; sourceTree = "<group>"; };
-		170AA65E83097D596793A31F /* ReconciliationRowView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReconciliationRowView.swift; sourceTree = "<group>"; };
-		17CEB197B1752AD6F0D4E4E0 /* AppRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppRepository.swift; sourceTree = "<group>"; };
-		2239A3566EA3EB68B6EAFADC /* BranchFormViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BranchFormViewModel.swift; sourceTree = "<group>"; };
-		265AE5F2C555C80E9D73836E /* BranchFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchFormView.swift; sourceTree = "<group>"; };
-		2B31C9899AA864AE22BEA541 /* UserFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFormView.swift; sourceTree = "<group>"; };
-		2F26AFD513C293FE72137332 /* UserManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementView.swift; sourceTree = "<group>"; };
-		32EB96E3C2400B6BA2E0F8E5 /* ReceptionFormViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReceptionFormViewModel.swift; sourceTree = "<group>"; };
-		374C092960D1DB5A226D5D5F /* SalesCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SalesCalculator.swift; sourceTree = "<group>"; };
-		3B94D33C423E2F201C02C8EE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		454460FC90536DA2B8605C91 /* PriceEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceEditView.swift; sourceTree = "<group>"; };
-		4837ED98983614D43A30F591 /* UserManagementViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserManagementViewModel.swift; sourceTree = "<group>"; };
-		495AB7EB7B3BC19C12252E82 /* BranchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchDetailView.swift; sourceTree = "<group>"; };
-		4B09A5EF0C179902D4DC5495 /* BranchManagementViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BranchManagementViewModel.swift; sourceTree = "<group>"; };
-		4BC382FD6661A9869BCEE339 /* CutFormViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CutFormViewModel.swift; sourceTree = "<group>"; };
-		4CD52FED4DC9160BC9383E7B /* ViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		4EE6C80B456DBDD8DE4EDF03 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		50DCDD26774249FD8283AA03 /* GMDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMDashboardView.swift; sourceTree = "<group>"; };
-		567787B10B1DCA89B9F0AAEF /* BMDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMDashboardView.swift; sourceTree = "<group>"; };
-		5E341930C03807F55A045F0E /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
-		6239E2E748722DE7D91A41E4 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
-		65EFD2B697D12ACFA23909F8 /* Tank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tank.swift; sourceTree = "<group>"; };
-		6746857D1363B0EC3BEFD177 /* LoginViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		6BA5B692F2038E4770101ABA /* Pump.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Pump.swift; sourceTree = "<group>"; };
-		75CB154E4BF5AFDE69A054FD /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
-		777525BA718C306173848C1E /* ActionCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ActionCard.swift; sourceTree = "<group>"; };
-		79DF8515A5FF3F169ECDA263 /* CutFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutFormView.swift; sourceTree = "<group>"; };
-		8CC41218B97D2722EBCE9A64 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
-		8D81BD6140480E9D2464B43D /* GeneralManagerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralManagerTabView.swift; sourceTree = "<group>"; };
-		8D9D040B4DC7A4C99A5D78D6 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
-		8F94507DF9A22C18CD42FEBA /* PriceManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceManagementView.swift; sourceTree = "<group>"; };
-		940E9803DAEF7B6832BB10BC /* FuelCut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelCut.swift; sourceTree = "<group>"; };
-		98DCC7980FBD61877001FD1B /* PriceManagementViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PriceManagementViewModel.swift; sourceTree = "<group>"; };
-		9DB49122257A41C6EB55CD52 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
-		9FCCD313A0B7F9F531A84B41 /* GMDashboardViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GMDashboardViewModel.swift; sourceTree = "<group>"; };
-		A8E6217983EDE666D5E216A5 /* BranchReportSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BranchReportSection.swift; sourceTree = "<group>"; };
-		A94D4A5327FBD8D9B51244D6 /* BranchOverviewViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BranchOverviewViewModel.swift; sourceTree = "<group>"; };
-		ABE42F87C60F312E13158AD1 /* UserFormViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserFormViewModel.swift; sourceTree = "<group>"; };
-		ACB7DA946176CEEB7BE2BCA0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		AF4E0B9566374615807CDDE0 /* TankLevelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankLevelRow.swift; sourceTree = "<group>"; };
-		B16CE3A55EDF5EC506C6D51F /* BranchManagerTabViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BranchManagerTabViewModel.swift; sourceTree = "<group>"; };
-		B512AA3C0F94A6A527F1D300 /* BranchManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchManagementView.swift; sourceTree = "<group>"; };
-		C5D992342F6AF9EE7C1D6DE2 /* FuelPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelPrice.swift; sourceTree = "<group>"; };
-		C8A3570D0A4801DC91503470 /* PriceEditViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PriceEditViewModel.swift; sourceTree = "<group>"; };
-		D40F6C84709E93769BA5433F /* SummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCard.swift; sourceTree = "<group>"; };
-		DA1DD81E67FA8E2922C1013B /* BranchSummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchSummaryRow.swift; sourceTree = "<group>"; };
 		DBB0CBA53068410F00C7BC00 /* App76.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App76.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBB0CBA83068410F00C7BC00 /* App76App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App76App.swift; sourceTree = "<group>"; };
 		DBB0CBAC3068411100C7BC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBB0CBAF3068411100C7BC00 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		EA7A66288EBB64EE67F6BF51 /* Reception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reception.swift; sourceTree = "<group>"; };
-		F606F7FFBC135B62A3903EE2 /* PumpSalesRowView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PumpSalesRowView.swift; sourceTree = "<group>"; };
-		F644CDAE792E1B0AF387D748 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		FA7E13C5DEFA4CB2B7D303B2 /* ReceptionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceptionFormView.swift; sourceTree = "<group>"; };
-		FAC1D5BB1435A2642D794AE5 /* FuelLoss.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FuelLoss.swift; sourceTree = "<group>"; };
-		FC17028E7123C816BCF87898 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		FDEDB0AE787BF2F7586FBA57 /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
-		FEDAC804A4C25088BF890D26 /* ProfileViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		B26C2139AEAB8C5277472150 /* App76App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App76App.swift; sourceTree = "<group>"; };
+		EAB59993CF8412166F9A42BD /* ClienteSupabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClienteSupabase.swift; sourceTree = "<group>"; };
+		21F7349D1FD85A154D757818 /* Configuracion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuracion.swift; sourceTree = "<group>"; };
+		7A56F6DB6B45701D4FFB81BD /* ErrorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorApp.swift; sourceTree = "<group>"; };
+		B43CA3EEF5BFD3F7E323D576 /* Formateadores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formateadores.swift; sourceTree = "<group>"; };
+		9BA69E2A7D2145F1E3DCDA2D /* ConexionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConexionService.swift; sourceTree = "<group>"; };
+		F887F84577A2F381BDE86569 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		845D23599A990163B50E3748 /* ArranqueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArranqueViewModel.swift; sourceTree = "<group>"; };
+		60EB518D413EC45884958DF9 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		B9AA62422B45055A1C4BB814 /* ActionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCard.swift; sourceTree = "<group>"; };
+		70A3D1EA96B965386649FEFD /* SummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,150 +45,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A1C0DE0A1B2C3D4E5F6071A /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		064F7B46254C69EB6DA7171A /* BranchManager */ = {
-			isa = PBXGroup;
-			children = (
-				B16CE3A55EDF5EC506C6D51F /* BranchManagerTabViewModel.swift */,
-				A94D4A5327FBD8D9B51244D6 /* BranchOverviewViewModel.swift */,
-				4BC382FD6661A9869BCEE339 /* CutFormViewModel.swift */,
-				32EB96E3C2400B6BA2E0F8E5 /* ReceptionFormViewModel.swift */,
-			);
-			name = BranchManager;
-			path = BranchManager;
-			sourceTree = "<group>";
-		};
-		123551952175213B1A24BC7C /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				D18B433949B0E8AE28B5D6CD /* Auth */,
-				064F7B46254C69EB6DA7171A /* BranchManager */,
-				2999900FC890FFB9121FFEF5 /* GeneralManager */,
-				0BC5D860FCC2D1EC02E118F7 /* RootViewModel.swift */,
-				F09193DEDD325C37F787925E /* Shared */,
-				4CD52FED4DC9160BC9383E7B /* ViewModel.swift */,
-			);
-			name = ViewModels;
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		2999900FC890FFB9121FFEF5 /* GeneralManager */ = {
-			isa = PBXGroup;
-			children = (
-				2239A3566EA3EB68B6EAFADC /* BranchFormViewModel.swift */,
-				4B09A5EF0C179902D4DC5495 /* BranchManagementViewModel.swift */,
-				9FCCD313A0B7F9F531A84B41 /* GMDashboardViewModel.swift */,
-				C8A3570D0A4801DC91503470 /* PriceEditViewModel.swift */,
-				98DCC7980FBD61877001FD1B /* PriceManagementViewModel.swift */,
-				ABE42F87C60F312E13158AD1 /* UserFormViewModel.swift */,
-				4837ED98983614D43A30F591 /* UserManagementViewModel.swift */,
-			);
-			name = GeneralManager;
-			path = GeneralManager;
-			sourceTree = "<group>";
-		};
-		4299974BBFE59AE4A469B558 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				FD98DE014F65728F249ABFA9 /* Components */,
-				FC17028E7123C816BCF87898 /* ProfileView.swift */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		4EC71D1210263C3FC29F28F5 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				17CEB197B1752AD6F0D4E4E0 /* AppRepository.swift */,
-				374C092960D1DB5A226D5D5F /* SalesCalculator.swift */,
-				4EE6C80B456DBDD8DE4EDF03 /* SessionManager.swift */,
-			);
-			name = Services;
-			path = Services;
-			sourceTree = "<group>";
-		};
-		54BE99FA86D92F987C255338 /* Root */ = {
-			isa = PBXGroup;
-			children = (
-				F644CDAE792E1B0AF387D748 /* RootView.swift */,
-			);
-			path = Root;
-			sourceTree = "<group>";
-		};
-		73DC3A6B8403BE2454524987 /* BranchManager */ = {
-			isa = PBXGroup;
-			children = (
-				567787B10B1DCA89B9F0AAEF /* BMDashboardView.swift */,
-				125B28AB54091262E8BE09DF /* BranchManagerTabView.swift */,
-				79DF8515A5FF3F169ECDA263 /* CutFormView.swift */,
-				FA7E13C5DEFA4CB2B7D303B2 /* ReceptionFormView.swift */,
-			);
-			path = BranchManager;
-			sourceTree = "<group>";
-		};
-		8335C4B590B420AE336BBBC5 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				8D9D040B4DC7A4C99A5D78D6 /* AppUser.swift */,
-				FDEDB0AE787BF2F7586FBA57 /* Branch.swift */,
-				940E9803DAEF7B6832BB10BC /* FuelCut.swift */,
-				C5D992342F6AF9EE7C1D6DE2 /* FuelPrice.swift */,
-				15A352C9DFD783ABFB30F2DA /* FuelType.swift */,
-				EA7A66288EBB64EE67F6BF51 /* Reception.swift */,
-				65EFD2B697D12ACFA23909F8 /* Tank.swift */,
-				75CB154E4BF5AFDE69A054FD /* UserRole.swift */,
-				6BA5B692F2038E4770101ABA /* Pump.swift */,
-				FAC1D5BB1435A2642D794AE5 /* FuelLoss.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		97AB29967DF2C89C3E1D0285 /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				3B94D33C423E2F201C02C8EE /* Colors.swift */,
-			);
-			path = Theme;
-			sourceTree = "<group>";
-		};
-		B36292E263126F4AEEA22FB5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D346288A2864387B38C3C194 /* Auth */,
-				73DC3A6B8403BE2454524987 /* BranchManager */,
-				FB87CC6767B37EC5AE0AD785 /* GeneralManager */,
-				54BE99FA86D92F987C255338 /* Root */,
-				4299974BBFE59AE4A469B558 /* Shared */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		D18B433949B0E8AE28B5D6CD /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				5E341930C03807F55A045F0E /* ChangePasswordViewModel.swift */,
-				6239E2E748722DE7D91A41E4 /* ForgotPasswordViewModel.swift */,
-				6746857D1363B0EC3BEFD177 /* LoginViewModel.swift */,
-			);
-			name = Auth;
-			path = Auth;
-			sourceTree = "<group>";
-		};
-		D346288A2864387B38C3C194 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				9DB49122257A41C6EB55CD52 /* ChangePasswordView.swift */,
-				8CC41218B97D2722EBCE9A64 /* ForgotPasswordView.swift */,
-				ACB7DA946176CEEB7BE2BCA0 /* LoginView.swift */,
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
 		DBB0CB9C3068410F00C7BC00 = {
 			isa = PBXGroup;
 			children = (
@@ -299,14 +71,14 @@
 		DBB0CBA73068410F00C7BC00 /* App76 */ = {
 			isa = PBXGroup;
 			children = (
-				DBB0CBA83068410F00C7BC00 /* App76App.swift */,
 				DBB0CBAC3068411100C7BC00 /* Assets.xcassets */,
 				DBB0CBAE3068411100C7BC00 /* Preview Content */,
-				8335C4B590B420AE336BBBC5 /* Models */,
-				97AB29967DF2C89C3E1D0285 /* Theme */,
-				B36292E263126F4AEEA22FB5 /* Views */,
-				4EC71D1210263C3FC29F28F5 /* Services */,
-				123551952175213B1A24BC7C /* ViewModels */,
+				B0968126E1CD7778B9D79B5A /* Core */,
+				BDE13DD60055D774C43E2297 /* Services */,
+				CC703FDB065E12705B1F6310 /* Theme */,
+				D1F5F969060F8435B7BA40C5 /* ViewModels */,
+				B860BC00D424BAB24C187B86 /* Views */,
+				B26C2139AEAB8C5277472150 /* App76App.swift */,
 			);
 			path = App76;
 			sourceTree = "<group>";
@@ -319,41 +91,71 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		F09193DEDD325C37F787925E /* Shared */ = {
+		B0968126E1CD7778B9D79B5A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				FEDAC804A4C25088BF890D26 /* ProfileViewModel.swift */,
+				EAB59993CF8412166F9A42BD /* ClienteSupabase.swift */,
+				21F7349D1FD85A154D757818 /* Configuracion.swift */,
+				7A56F6DB6B45701D4FFB81BD /* ErrorApp.swift */,
+				B43CA3EEF5BFD3F7E323D576 /* Formateadores.swift */,
 			);
-			name = Shared;
+			path = Core;
+			sourceTree = "<group>";
+		};
+		BDE13DD60055D774C43E2297 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9BA69E2A7D2145F1E3DCDA2D /* ConexionService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CC703FDB065E12705B1F6310 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				F887F84577A2F381BDE86569 /* Colors.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		D1F5F969060F8435B7BA40C5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				845D23599A990163B50E3748 /* ArranqueViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B860BC00D424BAB24C187B86 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A7BFC172C1FE109BC038A84D /* Root */,
+				0A06FF3ECF424A69460F9496 /* Shared */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A7BFC172C1FE109BC038A84D /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				60EB518D413EC45884958DF9 /* RootView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		0A06FF3ECF424A69460F9496 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C5A0BCF01961E85FCD9335D1 /* Components */,
+			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		FB87CC6767B37EC5AE0AD785 /* GeneralManager */ = {
+		C5A0BCF01961E85FCD9335D1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				495AB7EB7B3BC19C12252E82 /* BranchDetailView.swift */,
-				265AE5F2C555C80E9D73836E /* BranchFormView.swift */,
-				B512AA3C0F94A6A527F1D300 /* BranchManagementView.swift */,
-				50DCDD26774249FD8283AA03 /* GMDashboardView.swift */,
-				8D81BD6140480E9D2464B43D /* GeneralManagerTabView.swift */,
-				454460FC90536DA2B8605C91 /* PriceEditView.swift */,
-				8F94507DF9A22C18CD42FEBA /* PriceManagementView.swift */,
-				2B31C9899AA864AE22BEA541 /* UserFormView.swift */,
-				2F26AFD513C293FE72137332 /* UserManagementView.swift */,
-			);
-			path = GeneralManager;
-			sourceTree = "<group>";
-		};
-		FD98DE014F65728F249ABFA9 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				DA1DD81E67FA8E2922C1013B /* BranchSummaryRow.swift */,
-				D40F6C84709E93769BA5433F /* SummaryCard.swift */,
-				AF4E0B9566374615807CDDE0 /* TankLevelRow.swift */,
-				A8E6217983EDE666D5E216A5 /* BranchReportSection.swift */,
-				F606F7FFBC135B62A3903EE2 /* PumpSalesRowView.swift */,
-				170AA65E83097D596793A31F /* ReconciliationRowView.swift */,
-				777525BA718C306173848C1E /* ActionCard.swift */,
+				B9AA62422B45055A1C4BB814 /* ActionCard.swift */,
+				70A3D1EA96B965386649FEFD /* SummaryCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -374,6 +176,9 @@
 			dependencies = (
 			);
 			name = App76;
+			packageProductDependencies = (
+				5A1C0DE0A1B2C3D4E5F60719 /* Supabase */,
+			);
 			productName = App76;
 			productReference = DBB0CBA53068410F00C7BC00 /* App76.app */;
 			productType = "com.apple.product-type.application";
@@ -402,6 +207,9 @@
 				Base,
 			);
 			mainGroup = DBB0CB9C3068410F00C7BC00;
+			packageReferences = (
+				5A1C0DE0A1B2C3D4E5F60718 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			productRefGroup = DBB0CBA63068410F00C7BC00 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -428,63 +236,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBB0CBA93068410F00C7BC00 /* App76App.swift in Sources */,
-				F58BBB159F52F5BDACA83972 /* AppUser.swift in Sources */,
-				E6CDC5DB54287420EF62D7ED /* Branch.swift in Sources */,
-				D22B95E942737B1D86F082D1 /* FuelCut.swift in Sources */,
-				E77FEE67ECA72EEF638354D5 /* FuelPrice.swift in Sources */,
-				149DB9CF0978C9746C0E48AC /* FuelType.swift in Sources */,
-				BD56132C331282EA2D4B5A10 /* Reception.swift in Sources */,
-				A888D89F583B788CD34EDB7B /* Tank.swift in Sources */,
-				8DDF8ECF14AC4668DAA7CFA1 /* UserRole.swift in Sources */,
-				48452D2F26633A95D671609A /* Colors.swift in Sources */,
-				0D3F7551EE64A7CADAB785E3 /* ChangePasswordView.swift in Sources */,
-				2014240146582F8BBACD4CA5 /* ForgotPasswordView.swift in Sources */,
-				9DCCB493F41553A07F0CF4F5 /* LoginView.swift in Sources */,
-				508568F9E9E6EAC81E75A14E /* BMDashboardView.swift in Sources */,
-				A7A67092A9A75EC2F9357EC3 /* BranchManagerTabView.swift in Sources */,
-				776E4D1B5CE96D2EF288412C /* CutFormView.swift in Sources */,
-				52841494310CE53AE18207D5 /* ReceptionFormView.swift in Sources */,
-				046DF22068ACEF6E900A0A90 /* BranchDetailView.swift in Sources */,
-				831FA917875B0913EA3AF069 /* BranchFormView.swift in Sources */,
-				FD2251A23571C82AD6D7CCDD /* BranchManagementView.swift in Sources */,
-				33DD5F6CEA7596C5459C4F3B /* GMDashboardView.swift in Sources */,
-				B40048D5D55B2F64A5A5453B /* GeneralManagerTabView.swift in Sources */,
-				AC8E5F8CDB947465D0749521 /* PriceEditView.swift in Sources */,
-				3823489096C0CA1A4E50D38B /* PriceManagementView.swift in Sources */,
-				94ED200E2C056777FA1E6DD0 /* UserFormView.swift in Sources */,
-				C3A527F03FC2073A3B3C5CA1 /* UserManagementView.swift in Sources */,
-				D2CEE2D5836BF80FDA705098 /* RootView.swift in Sources */,
-				D83C79B41769ED35AD6242A0 /* BranchSummaryRow.swift in Sources */,
-				DD4E1EB1071DD29BAC0BC70E /* SummaryCard.swift in Sources */,
-				1414C4A4F95501F065E4B837 /* TankLevelRow.swift in Sources */,
-				5B89B25BFA3CD92D1A440AF0 /* ProfileView.swift in Sources */,
-				E09F28DC249132419C69760B /* Pump.swift in Sources */,
-				62A00B4373BFBC98532F8BF9 /* AppRepository.swift in Sources */,
-				E4A6163E25002A9BF4AF5A3B /* SalesCalculator.swift in Sources */,
-				2FA4753AA628D55DF62DC1FF /* SessionManager.swift in Sources */,
-				90D31ABF1168AA6B531A7D6F /* ChangePasswordViewModel.swift in Sources */,
-				B4E7469A288CBBC1FC3F35C4 /* ForgotPasswordViewModel.swift in Sources */,
-				8A040DA48BCC1488DB7E9F4A /* LoginViewModel.swift in Sources */,
-				1F91836D3EE1D200617302FB /* BranchManagerTabViewModel.swift in Sources */,
-				C5BB18D9504D97440C92F437 /* BranchOverviewViewModel.swift in Sources */,
-				367B8314CEC4958153053025 /* CutFormViewModel.swift in Sources */,
-				58475BED773316EBB55F8DEE /* ReceptionFormViewModel.swift in Sources */,
-				4CE4ED0D519D51A68C51F2FB /* BranchFormViewModel.swift in Sources */,
-				4F8AD19286B170A22DAF5AFA /* BranchManagementViewModel.swift in Sources */,
-				F155DFD6170774B34EEC66B7 /* GMDashboardViewModel.swift in Sources */,
-				FF5EC0907E479F026B936B9F /* PriceEditViewModel.swift in Sources */,
-				043921080337354AD0D5CF3E /* PriceManagementViewModel.swift in Sources */,
-				9F39B0CDB6A77EEB00973116 /* UserFormViewModel.swift in Sources */,
-				DCB99A96EF6A8A80A01EEED3 /* UserManagementViewModel.swift in Sources */,
-				9C23777B04794336B07CB7AF /* RootViewModel.swift in Sources */,
-				2E30CC879E43B7A34DE49684 /* ProfileViewModel.swift in Sources */,
-				72E9F54934B877FF05FD264A /* ViewModel.swift in Sources */,
-				FD2AFB55006BB67C99EDEE33 /* BranchReportSection.swift in Sources */,
-				B238F3B31D796E61932746D1 /* PumpSalesRowView.swift in Sources */,
-				57A8DD43BE0EC8A6DE4CE2F7 /* ReconciliationRowView.swift in Sources */,
-				AF8223B004131F34D28FA0EB /* FuelLoss.swift in Sources */,
-				E1D68A8D3CCE10F6356733F6 /* ActionCard.swift in Sources */,
+				3DD9A88DAC42B36A20D26BA4 /* App76App.swift in Sources */,
+				81B486B949678BF87A164376 /* ClienteSupabase.swift in Sources */,
+				554F7188B670E89D93EBD5DA /* Configuracion.swift in Sources */,
+				61D272527766A2E9F96ABFB6 /* ErrorApp.swift in Sources */,
+				5542D5309473EE178801B1D3 /* Formateadores.swift in Sources */,
+				DA3BF3B9ED69822C8425CAA2 /* ConexionService.swift in Sources */,
+				A13C1B35F2CB7AB73DD61193 /* Colors.swift in Sources */,
+				D2892DDC6F4F0090C5A428C4 /* ArranqueViewModel.swift in Sources */,
+				7D0122AF398CE01BC076AF37 /* RootView.swift in Sources */,
+				2D9259AC1087062CE478E838 /* ActionCard.swift in Sources */,
+				D8F9A53A70761192CC09A469 /* SummaryCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +450,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5A1C0DE0A1B2C3D4E5F60718 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5A1C0DE0A1B2C3D4E5F60719 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A1C0DE0A1B2C3D4E5F60718 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DBB0CB9D3068410F00C7BC00 /* Project object */;
 }
