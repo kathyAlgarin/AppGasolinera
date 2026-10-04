@@ -230,6 +230,32 @@ async function cambiarEstado(yo: Yo, b: Record<string, unknown>) {
   return { ok: true };
 }
 
+async function cambiarCorreo(yo: Yo, b: Record<string, unknown>) {
+  const correo = texto(b.correo).toLowerCase();
+  if (!EMAIL_RE.test(correo) || correo.length > 120) {
+    throw new ErrorHttp(400, "El correo no tiene un formato válido.");
+  }
+  const t = await objetivo(yo, b.usuario_id);
+
+  const { data: actual } = await admin.from("perfiles").select("correo").eq("id", t.id).maybeSingle();
+  if (actual?.correo === correo) return { ok: true };
+
+  // Primero el perfil (la base de datos impide correos repetidos); luego el correo de inicio de sesión.
+  const { error: e1 } = await admin.from("perfiles").update({ correo }).eq("id", t.id);
+  if (e1) throw errorBD(e1, "No se pudo cambiar el correo del usuario.");
+
+  const { error: e2 } = await admin.auth.admin.updateUserById(t.id, { email: correo, email_confirm: true });
+  if (e2) {
+    await admin.from("perfiles").update({ correo: actual?.correo }).eq("id", t.id); // revertir
+    if (/already|registered|exists/i.test(e2.message)) {
+      throw new ErrorHttp(409, "Ya existe un usuario con ese correo.");
+    }
+    console.error("No se pudo cambiar el correo de autenticación:", e2.message);
+    throw new ErrorHttp(500, "No se pudo cambiar el correo del usuario.");
+  }
+  return { ok: true };
+}
+
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: CORS });
   if (req.method !== "POST") return json(405, { error: "Método no permitido." });
@@ -251,6 +277,8 @@ Deno.serve(async (req: Request) => {
         return json(200, await restablecerPassword(yo, cuerpo));
       case "cambiar_estado":
         return json(200, await cambiarEstado(yo, cuerpo));
+      case "cambiar_correo":
+        return json(200, await cambiarCorreo(yo, cuerpo));
       default:
         throw new ErrorHttp(400, "Acción no válida.");
     }
