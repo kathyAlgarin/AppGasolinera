@@ -1,71 +1,63 @@
 import SwiftUI
 
 struct LoginView: View {
-    @StateObject private var viewModel = LoginViewModel()
-    @State private var showForgotPassword = false
+    @ObservedObject var sesion: SesionViewModel
+    @StateObject private var vm: LoginViewModel
+    @State private var mostrarRecuperar = false
+    @FocusState private var campo: Campo?
+    private enum Campo { case correo, password }
+
+    init(sesion: SesionViewModel) {
+        self.sesion = sesion
+        _vm = StateObject(wrappedValue: LoginViewModel(auth: Servicios.auth, alEntrar: { sesion.entrar($0) }))
+    }
 
     var body: some View {
         NavigationStack {
-            ZStack {
-                Color.gas76Background.ignoresSafeArea()
+            ScrollView {
+                VStack(spacing: 20) {
+                    Image("Logo76")
+                        .resizable().scaledToFit()
+                        .frame(width: 110, height: 110)
+                        .padding(.top, 40)
+                    Text("Gasolineras 76")
+                        .font(.title.bold()).foregroundColor(.gas76Blue)
+                    Text("Inicia sesión para continuar")
+                        .foregroundColor(.secondary)
 
-                VStack(spacing: 24) {
-                    Spacer()
+                    MensajeAviso(texto: sesion.aviso)
 
-                    VStack(spacing: 8) {
-                        Image("Logo76")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 96, height: 96)
-                        Text("Gasolinera 76")
-                            .font(.title2.bold())
-                            .foregroundColor(.gas76Blue)
-                        Text("Gestión de combustible")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+                    VStack(spacing: 14) {
+                        CampoTexto(titulo: "Correo", texto: $vm.correo, teclado: .emailAddress,
+                                   capitalizacion: .never, contenido: .username)
+                            .focused($campo, equals: .correo)
+                            .submitLabel(.next)
+                            .onSubmit { campo = .password }
+                        CampoPassword(titulo: "Contraseña", texto: $vm.password)
+                            .focused($campo, equals: .password)
+                            .submitLabel(.go)
+                            .onSubmit { Task { await vm.ingresar() } }
                     }
-                    .padding(.bottom, 8)
+                    .onChange(of: vm.correo) { _, _ in vm.limpiarError() }
+                    .onChange(of: vm.password) { _, _ in vm.limpiarError() }
 
-                    VStack(spacing: 16) {
-                        TextField("Correo electrónico", text: $viewModel.email)
-                            .textFieldStyle(.roundedBorder)
-                            .textInputAutocapitalization(.never)
-                            .keyboardType(.emailAddress)
-                            .autocorrectionDisabled()
+                    MensajeError(texto: vm.error)
 
-                        SecureField("Contraseña", text: $viewModel.password)
-                            .textFieldStyle(.roundedBorder)
-
-                        if viewModel.showError {
-                            Text("Correo o contraseña incorrectos.")
-                                .font(.footnote)
-                                .foregroundColor(.red)
-                        }
-
-                        Button {
-                            viewModel.login()
-                        } label: {
-                            Text("Ingresar")
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 4)
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .tint(.gas76Orange)
-
-                        Button("Olvidé mi contraseña") {
-                            showForgotPassword = true
-                        }
-                        .font(.footnote)
-                        .foregroundColor(.gas76Blue)
+                    BotonPrimario(titulo: "Ingresar", cargando: vm.cargando, habilitado: vm.puedeIngresar) {
+                        campo = nil
+                        Task { await vm.ingresar() }
                     }
-                    .padding(.horizontal, 32)
 
-                    Spacer()
-                    Spacer()
+                    Button("¿Olvidaste tu contraseña?") { mostrarRecuperar = true }
+                        .font(.subheadline)
+                        .foregroundColor(.gas76Orange)
                 }
+                .padding(24)
             }
-            .sheet(isPresented: $showForgotPassword) {
-                ForgotPasswordView()
+            .scrollDismissesKeyboard(.interactively)
+            .background(Color.gas76Background.ignoresSafeArea())
+            .navigationDestination(isPresented: $mostrarRecuperar) {
+                RecuperarPasswordView(sesion: sesion, visible: $mostrarRecuperar, correoInicial: vm.correo)
             }
         }
     }

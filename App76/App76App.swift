@@ -12,6 +12,7 @@ struct App76App: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .environment(\.locale, Locale(identifier: "es_SV"))
         }
     }
 }
