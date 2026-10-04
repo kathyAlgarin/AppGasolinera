@@ -5,6 +5,10 @@ import Supabase
 enum ClienteSupabase {
     static let compartido = SupabaseClient(
         supabaseURL: Configuracion.urlSupabase,
-        supabaseKey: Configuracion.clavePublishable
+        supabaseKey: Configuracion.clavePublishable,
+        options: SupabaseClientOptions(
+            db: .init(encoder: JSONSupabase.codificador, decoder: JSONSupabase.decodificador),
+            auth: .init(emitLocalSessionAsInitialSession: true)
+        )
     )
 }

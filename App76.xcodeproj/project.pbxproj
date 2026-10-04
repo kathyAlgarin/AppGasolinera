@@ -7,37 +7,251 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		037B4AB7A79C6CC81F72BF8C /* NavegacionSucursal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A07430548A9A91F4FAC093 /* NavegacionSucursal.swift */; };
+		03A5E69BC4810821AD53DD8D /* EditarUsuarioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB1C427B402251ED567383 /* EditarUsuarioViewModel.swift */; };
+		05054D7A2E9CEEB85CC05F75 /* CambioPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C583103B49DE76608108DF /* CambioPasswordView.swift */; };
+		05FCD121024F118D607BD755 /* AsignacionTurnoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9B1BB386C4437F0CB515F3 /* AsignacionTurnoViewModel.swift */; };
+		0654C1306F0C0AB0E61272D5 /* Decodificador.swift in Sources */ = {isa = PBXBuildFile; fileRef = D198C16A2DE04C9873153DD2 /* Decodificador.swift */; };
+		081D4ADB747EC9C405EC7C6F /* EnConstruccionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BAF18D6ADA75EC5A88C54 /* EnConstruccionView.swift */; };
+		09B10F822300A6C3F7C870A4 /* SupabaseLineasCorteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B98B5A888AF6A39CDAB5D41 /* SupabaseLineasCorteService.swift */; };
+		0E965EC766E4AACC42B53126 /* NuevoUsuarioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7E8AC3E9F08F7C4E896869 /* NuevoUsuarioView.swift */; };
+		0F04F8673AFC73CF8A91F6C8 /* SucursalesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9058EBBFBE6C0FC6B2C7BFB8 /* SucursalesViewModel.swift */; };
+		0FBA1C81303BC10C3DA62A33 /* SupabaseSucursalesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255E757837D29429ADDFD44 /* SupabaseSucursalesService.swift */; };
+		12D9CD7642E03D0FE4FFC98E /* Estados.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0795795CEA7CFC56219591DF /* Estados.swift */; };
+		130485390917D967DAAEBF9F /* CatalogoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34400EE57557CEC72ADBE35 /* CatalogoViewModel.swift */; };
+		149F3532BF619D9423102D07 /* Combustible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1689B2079EE490A5955EAE2 /* Combustible.swift */; };
+		166603640152CB37F49740E2 /* NivelesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A5E42CE82D295BC87D8EAA /* NivelesView.swift */; };
+		176FEC5508E2DA3A07985CB2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1D1A54A0DC0B408234ED3 /* LoginViewModel.swift */; };
+		19A92DC16805AADC737431AB /* InicioSucursalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D15AC34A370E6408AB30D21 /* InicioSucursalView.swift */; };
+		1A9FC809D0C62834BC1CA713 /* Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9A55D94351D972EA53E02C /* Personal.swift */; };
+		1CC702C98B58A144DFC3003F /* CorteEnCursoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6783854F3F01F5A6DE0A04 /* CorteEnCursoView.swift */; };
+		1E107E41FF1F4B8A603134DC /* Ayuda.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20AD676B19753453B50D448 /* Ayuda.swift */; };
+		1E75A4A0C7A77EE903BE9E9C /* TiendaYCajasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE97E25AC242A16593A088C /* TiendaYCajasView.swift */; };
+		24AC28FAC9D37439B20EA0A7 /* Validadores.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA877E457E2C8EF100D8FBD /* Validadores.swift */; };
+		28C7E0D32B4720756EB1084B /* ComprasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C77F68D6126ECB69A8B0B /* ComprasViewModel.swift */; };
+		2D9259AC1087062CE478E838 /* ActionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA62422B45055A1C4BB814 /* ActionCard.swift */; };
+		31BD86C17C911423A1407100 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFFDE8C71940E99700C64D7 /* LoginView.swift */; };
+		3668452A4FCF629619839C5E /* SupabaseUsuariosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76CF41968D5A32DC842B88F /* SupabaseUsuariosService.swift */; };
+		37462F38F8E50DA8ABFFC6F0 /* HistorialYReporteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312EF4C858B0E2242D109E8 /* HistorialYReporteView.swift */; };
+		38EE2379F43EEFED33A2A382 /* Carga.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B106859361760356CF3305 /* Carga.swift */; };
+		3AA51DA0BC4FA0F61EFD9280 /* SupabasePreciosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6C26FD496F61F23B5B26 /* SupabasePreciosService.swift */; };
+		3AC795138B9424DD7C28CDAB /* NuevoUsuarioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79062C7FA069D3A634584476 /* NuevoUsuarioViewModel.swift */; };
+		3BF61FAB1CF9EBF944FC5C46 /* SupabaseTanquesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEADC8D6B69C578369DEF6A /* SupabaseTanquesService.swift */; };
+		3C41EDF0666A3BAEFBEE56FE /* SucursalDelGerenteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E661611BA809A44C50BC2D66 /* SucursalDelGerenteViewModel.swift */; };
+		3DD9A88DAC42B36A20D26BA4 /* App76App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26C2139AEAB8C5277472150 /* App76App.swift */; };
+		3F9AD4E875B0F63882EBDCC8 /* PreciosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95246431D5811F4E912EAC13 /* PreciosViewModel.swift */; };
+		404132202AB0A99C4E225BE3 /* ProtocoloSucursales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960F509651A317DD87CACDC7 /* ProtocoloSucursales.swift */; };
+		40609901B167144038AE3DBA /* ProtocoloAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0C1E2CB2DA2711D5E98CFF /* ProtocoloAuth.swift */; };
+		444E686627B4C6E4BA2993D4 /* RecuperarPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F9077188ED797B51CF0E35 /* RecuperarPasswordViewModel.swift */; };
+		46357CF62993CE6C849052AF /* InicioSucursalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447752D02A02AD849A3D1900 /* InicioSucursalViewModel.swift */; };
+		480935E14C06022ED34C8FFD /* ProtocoloTienda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CD2EDDC3D4FDBCE6FAD90B /* ProtocoloTienda.swift */; };
+		4DE84F12CE0C69C21CDC5647 /* PersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B18ECECB8A2B8535CB2FF6 /* PersonalView.swift */; };
+		4E608CCA93E9BCF4CDCEC0E8 /* SupabaseReportesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F505F42E1B4DE22CA200231C /* SupabaseReportesService.swift */; };
+		4FAD7A833976E8844A3D5590 /* PanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2BF8F7482FD6FA2A46C1E1 /* PanelViewModel.swift */; };
+		52CD32234B795CADF1F6BAA9 /* PerdidasGlobalesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDC8E2A2F860075835435D4 /* PerdidasGlobalesViewModel.swift */; };
+		5542D5309473EE178801B1D3 /* Formateadores.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43CA3EEF5BFD3F7E323D576 /* Formateadores.swift */; };
+		554F7188B670E89D93EBD5DA /* Configuracion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7349D1FD85A154D757818 /* Configuracion.swift */; };
+		5881DE5B6197A4F356662A73 /* SucursalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA62E1EFC1966E7E4FBB8C /* SucursalesView.swift */; };
+		59515A089ED63D4965398749 /* Tienda.swift in Sources */ = {isa = PBXBuildFile; fileRef = E147EDE02B55E9AD481B1A7A /* Tienda.swift */; };
 		5A1C0DE0A1B2C3D4E5F6071A /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5A1C0DE0A1B2C3D4E5F60719 /* Supabase */; };
+		5A461E4D029C844D27D8421B /* VaciadoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FC5CA3360EDA51DED50276 /* VaciadoViewModel.swift */; };
+		5E9DC97F8CDE9630723AC959 /* UsuariosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E81BC486CF32332ECB80AF /* UsuariosViewModel.swift */; };
+		5ECF4DF4C97F7BA2A32ECC56 /* RecuperarPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64087AD8CE0018FC05B31CD2 /* RecuperarPasswordView.swift */; };
+		5F13392B3385239B7DA02E01 /* CorteEnCursoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BB65088355219C220EE0E /* CorteEnCursoViewModel.swift */; };
+		612A4642ED573F67252896C7 /* CashierTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC55E66BB1F81159EF0D676 /* CashierTabView.swift */; };
+		61D272527766A2E9F96ABFB6 /* ErrorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A56F6DB6B45701D4FFB81BD /* ErrorApp.swift */; };
+		64678413A03C399F950CC15B /* Servicios.swift in Sources */ = {isa = PBXBuildFile; fileRef = C324510E1386763BC4A68F30 /* Servicios.swift */; };
+		65154BFB18EF9E6B68B08E1B /* NuevaSucursalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8990F713E45AA8CA103BEE /* NuevaSucursalView.swift */; };
+		6BAADE0E9E2BE54729D403D6 /* ProtocoloCorte.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE38DA993B5EA6F53B6F06B /* ProtocoloCorte.swift */; };
+		6CB9686D6E92A2D5969DDD78 /* TurnoFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E891839905DD7E352A69B /* TurnoFormViewModel.swift */; };
+		709A3F1754D97BE172F0ECFF /* SesionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486EF3C28576895C6D80F3FA /* SesionViewModel.swift */; };
+		70A6F5FD1898316B5BC9B566 /* PanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA71267476B13D22BF5A8BB /* PanelView.swift */; };
+		71E107F198BA1DC15B7DA42E /* TiendaGerenteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD0C3DD553C9F04CD992DE7 /* TiendaGerenteViewModel.swift */; };
+		7209D241274E9781D44FEBAF /* EditarSucursalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4F381C1EA3984604CD718 /* EditarSucursalView.swift */; };
+		729D9386C220C6297524F57B /* DetalleSucursalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F75EB76D06F51448E75552 /* DetalleSucursalViewModel.swift */; };
+		7465BBB6CD9205BACA85B066 /* CajerosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FF149E2A45281D26526422 /* CajerosView.swift */; };
+		78CA025FD46A5D61F718E2AD /* CatalogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084706CB49F45CE53AC82224 /* CatalogoView.swift */; };
+		7D0122AF398CE01BC076AF37 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB518D413EC45884958DF9 /* RootView.swift */; };
+		7D7228654F0897EA63E725D1 /* TraductorErrores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5430E4D39ABABF3BE71CE931 /* TraductorErrores.swift */; };
+		7DEB9B4036B99E6F2B335865 /* CashierViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC326A36377E4E0AA71602C1 /* CashierViews.swift */; };
+		7FF24FB93A6DA10C4C1F7CE8 /* EditarSucursalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95909EDBB0EADCF8AD919016 /* EditarSucursalViewModel.swift */; };
+		81B486B949678BF87A164376 /* ClienteSupabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB59993CF8412166F9A42BD /* ClienteSupabase.swift */; };
+		827B32F65AA040F8A45DC599 /* CambioMedidorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2A432EA98B704DC225483 /* CambioMedidorViewModel.swift */; };
+		82D84047916A09B947E1F568 /* Enumeraciones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A35B38D5E5B3D26154EB94 /* Enumeraciones.swift */; };
+		8540648F44B30B0EC84DEC77 /* GeneralManagerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CE55B2DB5ECC63C50C8ED /* GeneralManagerTabView.swift */; };
+		889D2063588D3EA47A277C04 /* PersonalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113C5DD28D7DA5DDFF532BFA /* PersonalViewModel.swift */; };
+		8BD8C3908D2461165F1E904A /* PerfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB466A4A03DE40B3C2924EDA /* PerfilView.swift */; };
+		8E8991C802AE73AB08916B28 /* ComprasPerdidasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85C736A757AAB8FE146412 /* ComprasPerdidasView.swift */; };
+		8EAB7D0C8C94C3ECBF05CFC2 /* PerfilViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271FB9E51E62EDBD4FD85FB2 /* PerfilViewModel.swift */; };
+		979E200A86F53B6B2418E680 /* BranchManagerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BE39D7769F3B9A8FF77F11 /* BranchManagerTabView.swift */; };
+		9A7928AFDA406CCF3D6B3E98 /* PeriodoFiltro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6D0C10C92EECE60E03C94 /* PeriodoFiltro.swift */; };
+		9BA8F715C3CEC1F1B0278DF6 /* EmpleadoFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AB3251CFB5D3631F1F9051 /* EmpleadoFormViewModel.swift */; };
+		9F815338571C9AE4C249C68D /* SupabasePersonalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECE0717534AEE58622E2576 /* SupabasePersonalService.swift */; };
+		A0CD471E248546A2DA893B31 /* CambioPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D236C88F323EA3A802F63273 /* CambioPasswordViewModel.swift */; };
+		A13C1B35F2CB7AB73DD61193 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F887F84577A2F381BDE86569 /* Colors.swift */; };
+		A13C965C2A7400A144460C71 /* ResumenCierreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AAF9562A19678066A8D62B /* ResumenCierreViewModel.swift */; };
+		A5FD69D678D1AAEEB2C0E8C1 /* HistorialCortesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED0E977260B74E247B25ECD /* HistorialCortesViewModel.swift */; };
+		ABE90DCF7433E4A5A27D0672 /* Estructura.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2DBFCE8995A0A53A390481 /* Estructura.swift */; };
+		AC0CF3133355C61A79062156 /* TiendaYCajasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684AA5B88B31DF6B4CD93E41 /* TiendaYCajasViewModel.swift */; };
+		AC2E256E077217799842F4D2 /* ResumenCierreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEEB22F09F3DFCAF89B34C8 /* ResumenCierreView.swift */; };
+		AD0264435994742612D51B5F /* SupabaseTiendaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF0A6D178D9281B7B7F1867 /* SupabaseTiendaService.swift */; };
+		B1492257FB62F3CA89CC00F7 /* BombaFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD33DED40B95B9B50487B34 /* BombaFormViewModel.swift */; };
+		B32A1A75A6025B483B7B1779 /* AlmacenNivelesLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A335C154E6D9D228B570EE /* AlmacenNivelesLocal.swift */; };
+		B3E2465C7BC56104E649BEC7 /* SupabaseDashboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693B72D532F88493F16786C /* SupabaseDashboardService.swift */; };
+		B46734DFF6607B7A01A6B112 /* ArticuloFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0081D0EDDA829A8E7D1C6B /* ArticuloFormViewModel.swift */; };
+		B7FA93E27BC3EF703E1F274D /* FijarPrecioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A267D45DB6A12FA5AD8CB2E /* FijarPrecioViewModel.swift */; };
+		B8AB80F1C914A64FD4B67906 /* PerdidasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03808FBCADF4363319EB1E0D /* PerdidasViewModel.swift */; };
+		BA234BC083DF77D3DF23F74C /* Selectores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF1BBEE7AE05FA95C188947 /* Selectores.swift */; };
+		BB7030AC4FFCCA50E9D7E9DD /* SupabaseCatalogoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A690DB98F3F80FE763CFBD6 /* SupabaseCatalogoService.swift */; };
+		C00DECF62D7776E76C023A8E /* CampoNumerico.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0E54AEFC626D2B7940BD0 /* CampoNumerico.swift */; };
+		C06FD2E73DB3F8016BC9B06E /* CamposTexto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453A57874037F1A119D35672 /* CamposTexto.swift */; };
+		C0C18DF3463AAB162185F83D /* DetalleSucursalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C29BDED9BAF722E16DD340 /* DetalleSucursalView.swift */; };
+		C2D76DD15CFD801758B7DF6E /* SupabaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B5E6147FDF0CCDF007A4E /* SupabaseAuthService.swift */; };
+		C8DA8D561B8A7FE46F4EA759 /* UsuariosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0E209900EEF3C97C101E /* UsuariosView.swift */; };
+		CBE80F827CDACE1BABE16BAA /* ProtocoloAlmacenNiveles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC9C2438896CB72A50DB8D /* ProtocoloAlmacenNiveles.swift */; };
+		CDC07DE0F647661F3C1F5BA8 /* PreciosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D14080E7D3CD733F9E90853 /* PreciosView.swift */; };
+		D041082181828E84F7D1A6E8 /* ProtocoloDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DB5A5F9B9A2959EBA802CE /* ProtocoloDashboard.swift */; };
+		D4BDDF1024A4EF823081C51D /* ProtocoloPrecios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4AD042E96862517EEEF6A9 /* ProtocoloPrecios.swift */; };
+		D5AAC5B604A81318F065A077 /* TanqueRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE391D859221A2A0EB138738 /* TanqueRowView.swift */; };
+		D8F9A53A70761192CC09A469 /* SummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A3D1EA96B965386649FEFD /* SummaryCard.swift */; };
 		DBB0CBAD3068411100C7BC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBB0CBAC3068411100C7BC00 /* Assets.xcassets */; };
 		DBB0CBB03068411100C7BC00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBB0CBAF3068411100C7BC00 /* Preview Assets.xcassets */; };
-		3DD9A88DAC42B36A20D26BA4 /* App76App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26C2139AEAB8C5277472150 /* App76App.swift */; };
-		81B486B949678BF87A164376 /* ClienteSupabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB59993CF8412166F9A42BD /* ClienteSupabase.swift */; };
-		554F7188B670E89D93EBD5DA /* Configuracion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7349D1FD85A154D757818 /* Configuracion.swift */; };
-		61D272527766A2E9F96ABFB6 /* ErrorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A56F6DB6B45701D4FFB81BD /* ErrorApp.swift */; };
-		5542D5309473EE178801B1D3 /* Formateadores.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43CA3EEF5BFD3F7E323D576 /* Formateadores.swift */; };
-		DA3BF3B9ED69822C8425CAA2 /* ConexionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA69E2A7D2145F1E3DCDA2D /* ConexionService.swift */; };
-		A13C1B35F2CB7AB73DD61193 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F887F84577A2F381BDE86569 /* Colors.swift */; };
-		D2892DDC6F4F0090C5A428C4 /* ArranqueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D23599A990163B50E3748 /* ArranqueViewModel.swift */; };
-		7D0122AF398CE01BC076AF37 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB518D413EC45884958DF9 /* RootView.swift */; };
-		2D9259AC1087062CE478E838 /* ActionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA62422B45055A1C4BB814 /* ActionCard.swift */; };
-		D8F9A53A70761192CC09A469 /* SummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A3D1EA96B965386649FEFD /* SummaryCard.swift */; };
+		DBBA1F805FFC81B0F8FE4467 /* BombasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3120CF3C89651E809ED6B839 /* BombasView.swift */; };
+		DC64D134F233FA3D9F616D6B /* Fechas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FEAADE840EA5378E0411D /* Fechas.swift */; };
+		DC6ED6F618E223C0A65AC648 /* ProtocoloUsuarios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F2B27BA9F1211B811E3C0 /* ProtocoloUsuarios.swift */; };
+		DDFC80AFC7200CC128FE54EC /* InventarioSucursalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F5E6F24ACBD72AB2C7BB6B /* InventarioSucursalView.swift */; };
+		E3EBED83BDB29E2A78C5776C /* CajeroViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7764F823307D6084408547DD /* CajeroViewModels.swift */; };
+		E909F5A7BEBEDE03C6917D6A /* ProtocoloPersonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A284B36F80A7C3B0ED1A0 /* ProtocoloPersonal.swift */; };
+		E9EB996464CBFFBEA1B2EEA2 /* VaciadoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC90CFEFB095A5E0AC838904 /* VaciadoView.swift */; };
+		EF83A0E68F762AEDEBDD1931 /* ProtocoloCatalogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C28CC11A47207E2866D2E8 /* ProtocoloCatalogo.swift */; };
+		F0B80051C0B491460C742B23 /* SupabaseCorteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764E709BF67D60DD152E10AE /* SupabaseCorteService.swift */; };
+		FCC929434EB8160A00F77F58 /* EditarUsuarioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A1D41A31D93E0E4DE5662 /* EditarUsuarioView.swift */; };
+		FEF432BF0E43E7D2186A534A /* NuevaSucursalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B41CC0701C91D150DE75B09 /* NuevaSucursalViewModel.swift */; };
+		FF832F2D0491D5A8524ACC08 /* ReporteCorteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA674E83458B133036823F45 /* ReporteCorteViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03808FBCADF4363319EB1E0D /* PerdidasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerdidasViewModel.swift; sourceTree = "<group>"; };
+		0795795CEA7CFC56219591DF /* Estados.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Estados.swift; sourceTree = "<group>"; };
+		084706CB49F45CE53AC82224 /* CatalogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogoView.swift; sourceTree = "<group>"; };
+		084F2B27BA9F1211B811E3C0 /* ProtocoloUsuarios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocoloUsuarios.swift; sourceTree = "<group>"; };
+		0AA71267476B13D22BF5A8BB /* PanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelView.swift; sourceTree = "<group>"; };
+		0B9B1BB386C4437F0CB515F3 /* AsignacionTurnoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsignacionTurnoViewModel.swift; sourceTree = "<group>"; };
+		0CB2A432EA98B704DC225483 /* CambioMedidorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CambioMedidorViewModel.swift; sourceTree = "<group>"; };
+		113C5DD28D7DA5DDFF532BFA /* PersonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewModel.swift; sourceTree = "<group>"; };
+		13DB5A5F9B9A2959EBA802CE /* ProtocoloDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocoloDashboard.swift; sourceTree = "<group>"; };
+		16A335C154E6D9D228B570EE /* AlmacenNivelesLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlmacenNivelesLocal.swift; sourceTree = "<group>"; };
+		1A0C1E2CB2DA2711D5E98CFF /* ProtocoloAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocoloAuth.swift; sourceTree = "<group>"; };
+		1D15AC34A370E6408AB30D21 /* InicioSucursalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InicioSucursalView.swift; sourceTree = "<group>"; };
+		211E891839905DD7E352A69B /* TurnoFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnoFormViewModel.swift; sourceTree = "<group>"; };
+		21F7349D1FD85A154D757818 /* Configuracion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuracion.swift; sourceTree = "<group>"; };
+		248FEAADE840EA5378E0411D /* Fechas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fechas.swift; sourceTree = "<group>"; };
+		25A5E42CE82D295BC87D8EAA /* NivelesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NivelesView.swift; sourceTree = "<group>"; };
+		271FB9E51E62EDBD4FD85FB2 /* PerfilViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilViewModel.swift; sourceTree = "<group>"; };
+		2DA0E54AEFC626D2B7940BD0 /* CampoNumerico.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampoNumerico.swift; sourceTree = "<group>"; };
+		2DF1BBEE7AE05FA95C188947 /* Selectores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectores.swift; sourceTree = "<group>"; };
+		30B4F381C1EA3984604CD718 /* EditarSucursalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarSucursalView.swift; sourceTree = "<group>"; };
+		3120CF3C89651E809ED6B839 /* BombasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombasView.swift; sourceTree = "<group>"; };
+		38E81BC486CF32332ECB80AF /* UsuariosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsuariosViewModel.swift; sourceTree = "<group>"; };
+		39CC9C2438896CB72A50DB8D /* ProtocoloAlmacenNiveles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocoloAlmacenNiveles.swift; sourceTree = "<group>"; };
+		39CD2EDDC3D4FDBCE6FAD90B /* ProtocoloTienda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocoloTienda.swift; sourceTree = "<group>"; };
+		3B6BB65088355219C220EE0E /* CorteEnCursoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorteEnCursoViewModel.swift; sourceTree = "<group>"; };
+		41AAF9562A19678066A8D62B /* ResumenCierreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumenCierreViewModel.swift; sourceTree = "<group>"; };
+		447752D02A02AD849A3D1900 /* InicioSucursalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InicioSucursalViewModel.swift; sourceTree = "<group>"; };
+		453A57874037F1A119D35672 /* CamposTexto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamposTexto.swift; sourceTree = "<group>"; };
+		486EF3C28576895C6D80F3FA /* SesionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SesionViewModel.swift; sourceTree = "<group>"; };
+		49AB3251CFB5D3631F1F9051 /* EmpleadoFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpleadoFormViewModel.swift; sourceTree = "<group>"; };
+		4A267D45DB6A12FA5AD8CB2E /* FijarPrecioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FijarPrecioViewModel.swift; sourceTree = "<group>"; };
+		4B4AD042E96862517EEEF6A9 /* ProtocoloPrecios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocoloPrecios.swift; sourceTree = "<group>"; };
+		4DFFDE8C71940E99700C64D7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		50A35B38D5E5B3D26154EB94 /* Enumeraciones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumeraciones.swift; sourceTree = "<group>"; };
+		51F5E6F24ACBD72AB2C7BB6B /* InventarioSucursalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventarioSucursalView.swift; sourceTree = "<group>"; };
+		5255E757837D29429ADDFD44 /* SupabaseSucursalesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseSucursalesService.swift; sourceTree = "<group>"; };
+		5430E4D39ABABF3BE71CE931 /* TraductorErrores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraductorErrores.swift; sourceTree = "<group>"; };
+		55A1D1A54A0DC0B408234ED3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		5B98B5A888AF6A39CDAB5D41 /* SupabaseLineasCorteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseLineasCorteService.swift; sourceTree = "<group>"; };
+		5F7CE55B2DB5ECC63C50C8ED /* GeneralManagerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralManagerTabView.swift; sourceTree = "<group>"; };
+		60EB518D413EC45884958DF9 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		63C28CC11A47207E2866D2E8 /* ProtocoloCatalogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocoloCatalogo.swift; sourceTree = "<group>"; };
+		64087AD8CE0018FC05B31CD2 /* RecuperarPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperarPasswordView.swift; sourceTree = "<group>"; };
+		642A1D41A31D93E0E4DE5662 /* EditarUsuarioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarUsuarioView.swift; sourceTree = "<group>"; };
+		684AA5B88B31DF6B4CD93E41 /* TiendaYCajasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiendaYCajasViewModel.swift; sourceTree = "<group>"; };
+		70A3D1EA96B965386649FEFD /* SummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCard.swift; sourceTree = "<group>"; };
+		71C29BDED9BAF722E16DD340 /* DetalleSucursalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalleSucursalView.swift; sourceTree = "<group>"; };
+		7312EF4C858B0E2242D109E8 /* HistorialYReporteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorialYReporteView.swift; sourceTree = "<group>"; };
+		764E709BF67D60DD152E10AE /* SupabaseCorteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseCorteService.swift; sourceTree = "<group>"; };
+		7764F823307D6084408547DD /* CajeroViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CajeroViewModels.swift; sourceTree = "<group>"; };
+		79062C7FA069D3A634584476 /* NuevoUsuarioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevoUsuarioViewModel.swift; sourceTree = "<group>"; };
+		7A56F6DB6B45701D4FFB81BD /* ErrorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorApp.swift; sourceTree = "<group>"; };
+		7A85C736A757AAB8FE146412 /* ComprasPerdidasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComprasPerdidasView.swift; sourceTree = "<group>"; };
+		7B41CC0701C91D150DE75B09 /* NuevaSucursalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevaSucursalViewModel.swift; sourceTree = "<group>"; };
+		7E1C77F68D6126ECB69A8B0B /* ComprasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComprasViewModel.swift; sourceTree = "<group>"; };
+		845B5E6147FDF0CCDF007A4E /* SupabaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuthService.swift; sourceTree = "<group>"; };
+		87FC5CA3360EDA51DED50276 /* VaciadoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaciadoViewModel.swift; sourceTree = "<group>"; };
+		89BE39D7769F3B9A8FF77F11 /* BranchManagerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchManagerTabView.swift; sourceTree = "<group>"; };
+		89C583103B49DE76608108DF /* CambioPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CambioPasswordView.swift; sourceTree = "<group>"; };
+		8BEADC8D6B69C578369DEF6A /* SupabaseTanquesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseTanquesService.swift; sourceTree = "<group>"; };
+		8D14080E7D3CD733F9E90853 /* PreciosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreciosView.swift; sourceTree = "<group>"; };
+		8D6783854F3F01F5A6DE0A04 /* CorteEnCursoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorteEnCursoView.swift; sourceTree = "<group>"; };
+		8D9A55D94351D972EA53E02C /* Personal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personal.swift; sourceTree = "<group>"; };
+		9058EBBFBE6C0FC6B2C7BFB8 /* SucursalesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucursalesViewModel.swift; sourceTree = "<group>"; };
+		95246431D5811F4E912EAC13 /* PreciosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreciosViewModel.swift; sourceTree = "<group>"; };
+		95909EDBB0EADCF8AD919016 /* EditarSucursalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarSucursalViewModel.swift; sourceTree = "<group>"; };
+		960F509651A317DD87CACDC7 /* ProtocoloSucursales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocoloSucursales.swift; sourceTree = "<group>"; };
+		97DA62E1EFC1966E7E4FBB8C /* SucursalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucursalesView.swift; sourceTree = "<group>"; };
+		98D6D0C10C92EECE60E03C94 /* PeriodoFiltro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodoFiltro.swift; sourceTree = "<group>"; };
+		9A690DB98F3F80FE763CFBD6 /* SupabaseCatalogoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseCatalogoService.swift; sourceTree = "<group>"; };
+		9FE97E25AC242A16593A088C /* TiendaYCajasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiendaYCajasView.swift; sourceTree = "<group>"; };
+		9FEEB22F09F3DFCAF89B34C8 /* ResumenCierreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumenCierreView.swift; sourceTree = "<group>"; };
+		AE2DBFCE8995A0A53A390481 /* Estructura.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Estructura.swift; sourceTree = "<group>"; };
+		AEA877E457E2C8EF100D8FBD /* Validadores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validadores.swift; sourceTree = "<group>"; };
+		B01F0E209900EEF3C97C101E /* UsuariosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsuariosView.swift; sourceTree = "<group>"; };
+		B0F9077188ED797B51CF0E35 /* RecuperarPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperarPasswordViewModel.swift; sourceTree = "<group>"; };
+		B1689B2079EE490A5955EAE2 /* Combustible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combustible.swift; sourceTree = "<group>"; };
+		B26C2139AEAB8C5277472150 /* App76App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App76App.swift; sourceTree = "<group>"; };
+		B43CA3EEF5BFD3F7E323D576 /* Formateadores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formateadores.swift; sourceTree = "<group>"; };
+		B693B72D532F88493F16786C /* SupabaseDashboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDashboardService.swift; sourceTree = "<group>"; };
+		B6B18ECECB8A2B8535CB2FF6 /* PersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalView.swift; sourceTree = "<group>"; };
+		B76CF41968D5A32DC842B88F /* SupabaseUsuariosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseUsuariosService.swift; sourceTree = "<group>"; };
+		B7B106859361760356CF3305 /* Carga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carga.swift; sourceTree = "<group>"; };
+		B9AA62422B45055A1C4BB814 /* ActionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCard.swift; sourceTree = "<group>"; };
+		BA674E83458B133036823F45 /* ReporteCorteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReporteCorteViewModel.swift; sourceTree = "<group>"; };
+		BC0081D0EDDA829A8E7D1C6B /* ArticuloFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticuloFormViewModel.swift; sourceTree = "<group>"; };
+		C20AD676B19753453B50D448 /* Ayuda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ayuda.swift; sourceTree = "<group>"; };
+		C324510E1386763BC4A68F30 /* Servicios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Servicios.swift; sourceTree = "<group>"; };
+		C34400EE57557CEC72ADBE35 /* CatalogoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogoViewModel.swift; sourceTree = "<group>"; };
+		C9F75EB76D06F51448E75552 /* DetalleSucursalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalleSucursalViewModel.swift; sourceTree = "<group>"; };
+		CAF0A6D178D9281B7B7F1867 /* SupabaseTiendaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseTiendaService.swift; sourceTree = "<group>"; };
+		CE0A284B36F80A7C3B0ED1A0 /* ProtocoloPersonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocoloPersonal.swift; sourceTree = "<group>"; };
+		CE391D859221A2A0EB138738 /* TanqueRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanqueRowView.swift; sourceTree = "<group>"; };
+		CFD33DED40B95B9B50487B34 /* BombaFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombaFormViewModel.swift; sourceTree = "<group>"; };
+		D0A07430548A9A91F4FAC093 /* NavegacionSucursal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavegacionSucursal.swift; sourceTree = "<group>"; };
+		D198C16A2DE04C9873153DD2 /* Decodificador.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodificador.swift; sourceTree = "<group>"; };
+		D236C88F323EA3A802F63273 /* CambioPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CambioPasswordViewModel.swift; sourceTree = "<group>"; };
+		D36BAF18D6ADA75EC5A88C54 /* EnConstruccionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnConstruccionView.swift; sourceTree = "<group>"; };
+		D46B6C26FD496F61F23B5B26 /* SupabasePreciosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabasePreciosService.swift; sourceTree = "<group>"; };
+		DAE38DA993B5EA6F53B6F06B /* ProtocoloCorte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocoloCorte.swift; sourceTree = "<group>"; };
+		DB2BF8F7482FD6FA2A46C1E1 /* PanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewModel.swift; sourceTree = "<group>"; };
 		DBB0CBA53068410F00C7BC00 /* App76.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App76.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBB0CBAC3068411100C7BC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBB0CBAF3068411100C7BC00 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B26C2139AEAB8C5277472150 /* App76App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App76App.swift; sourceTree = "<group>"; };
+		DCD0C3DD553C9F04CD992DE7 /* TiendaGerenteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiendaGerenteViewModel.swift; sourceTree = "<group>"; };
+		DDDC8E2A2F860075835435D4 /* PerdidasGlobalesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerdidasGlobalesViewModel.swift; sourceTree = "<group>"; };
+		E147EDE02B55E9AD481B1A7A /* Tienda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tienda.swift; sourceTree = "<group>"; };
+		E661611BA809A44C50BC2D66 /* SucursalDelGerenteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucursalDelGerenteViewModel.swift; sourceTree = "<group>"; };
 		EAB59993CF8412166F9A42BD /* ClienteSupabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClienteSupabase.swift; sourceTree = "<group>"; };
-		21F7349D1FD85A154D757818 /* Configuracion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuracion.swift; sourceTree = "<group>"; };
-		7A56F6DB6B45701D4FFB81BD /* ErrorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorApp.swift; sourceTree = "<group>"; };
-		B43CA3EEF5BFD3F7E323D576 /* Formateadores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formateadores.swift; sourceTree = "<group>"; };
-		9BA69E2A7D2145F1E3DCDA2D /* ConexionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConexionService.swift; sourceTree = "<group>"; };
+		EC90CFEFB095A5E0AC838904 /* VaciadoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaciadoView.swift; sourceTree = "<group>"; };
+		ECDB1C427B402251ED567383 /* EditarUsuarioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarUsuarioViewModel.swift; sourceTree = "<group>"; };
+		ED7E8AC3E9F08F7C4E896869 /* NuevoUsuarioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevoUsuarioView.swift; sourceTree = "<group>"; };
+		EDC55E66BB1F81159EF0D676 /* CashierTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashierTabView.swift; sourceTree = "<group>"; };
+		EE8990F713E45AA8CA103BEE /* NuevaSucursalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevaSucursalView.swift; sourceTree = "<group>"; };
+		EED0E977260B74E247B25ECD /* HistorialCortesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorialCortesViewModel.swift; sourceTree = "<group>"; };
+		F505F42E1B4DE22CA200231C /* SupabaseReportesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseReportesService.swift; sourceTree = "<group>"; };
 		F887F84577A2F381BDE86569 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		845D23599A990163B50E3748 /* ArranqueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArranqueViewModel.swift; sourceTree = "<group>"; };
-		60EB518D413EC45884958DF9 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		B9AA62422B45055A1C4BB814 /* ActionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCard.swift; sourceTree = "<group>"; };
-		70A3D1EA96B965386649FEFD /* SummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCard.swift; sourceTree = "<group>"; };
+		F9FF149E2A45281D26526422 /* CajerosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CajerosView.swift; sourceTree = "<group>"; };
+		FB466A4A03DE40B3C2924EDA /* PerfilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilView.swift; sourceTree = "<group>"; };
+		FC326A36377E4E0AA71602C1 /* CashierViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashierViews.swift; sourceTree = "<group>"; };
+		FECE0717534AEE58622E2576 /* SupabasePersonalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabasePersonalService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +266,285 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		061F994D4916219F1D7CEC6E /* GeneralManager */ = {
+			isa = PBXGroup;
+			children = (
+				084706CB49F45CE53AC82224 /* CatalogoView.swift */,
+				71C29BDED9BAF722E16DD340 /* DetalleSucursalView.swift */,
+				30B4F381C1EA3984604CD718 /* EditarSucursalView.swift */,
+				642A1D41A31D93E0E4DE5662 /* EditarUsuarioView.swift */,
+				5F7CE55B2DB5ECC63C50C8ED /* GeneralManagerTabView.swift */,
+				EE8990F713E45AA8CA103BEE /* NuevaSucursalView.swift */,
+				ED7E8AC3E9F08F7C4E896869 /* NuevoUsuarioView.swift */,
+				0AA71267476B13D22BF5A8BB /* PanelView.swift */,
+				8D14080E7D3CD733F9E90853 /* PreciosView.swift */,
+				97DA62E1EFC1966E7E4FBB8C /* SucursalesView.swift */,
+				9FE97E25AC242A16593A088C /* TiendaYCajasView.swift */,
+				B01F0E209900EEF3C97C101E /* UsuariosView.swift */,
+			);
+			path = GeneralManager;
+			sourceTree = "<group>";
+		};
+		0A06FF3ECF424A69460F9496 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C5A0BCF01961E85FCD9335D1 /* Components */,
+				D36BAF18D6ADA75EC5A88C54 /* EnConstruccionView.swift */,
+				FB466A4A03DE40B3C2924EDA /* PerfilView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		149B3AB64D0933AFF58BD44B /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				B6B18ECECB8A2B8535CB2FF6 /* PersonalView.swift */,
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		1BDFDBC6AD48E37D354B92C6 /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				0B9B1BB386C4437F0CB515F3 /* AsignacionTurnoViewModel.swift */,
+				49AB3251CFB5D3631F1F9051 /* EmpleadoFormViewModel.swift */,
+				113C5DD28D7DA5DDFF532BFA /* PersonalViewModel.swift */,
+				211E891839905DD7E352A69B /* TurnoFormViewModel.swift */,
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		310F52830E4061FE9A4D58AE /* GeneralManager */ = {
+			isa = PBXGroup;
+			children = (
+				BC0081D0EDDA829A8E7D1C6B /* ArticuloFormViewModel.swift */,
+				C34400EE57557CEC72ADBE35 /* CatalogoViewModel.swift */,
+				C9F75EB76D06F51448E75552 /* DetalleSucursalViewModel.swift */,
+				95909EDBB0EADCF8AD919016 /* EditarSucursalViewModel.swift */,
+				ECDB1C427B402251ED567383 /* EditarUsuarioViewModel.swift */,
+				4A267D45DB6A12FA5AD8CB2E /* FijarPrecioViewModel.swift */,
+				7B41CC0701C91D150DE75B09 /* NuevaSucursalViewModel.swift */,
+				79062C7FA069D3A634584476 /* NuevoUsuarioViewModel.swift */,
+				DB2BF8F7482FD6FA2A46C1E1 /* PanelViewModel.swift */,
+				DDDC8E2A2F860075835435D4 /* PerdidasGlobalesViewModel.swift */,
+				95246431D5811F4E912EAC13 /* PreciosViewModel.swift */,
+				9058EBBFBE6C0FC6B2C7BFB8 /* SucursalesViewModel.swift */,
+				684AA5B88B31DF6B4CD93E41 /* TiendaYCajasViewModel.swift */,
+				38E81BC486CF32332ECB80AF /* UsuariosViewModel.swift */,
+			);
+			path = GeneralManager;
+			sourceTree = "<group>";
+		};
+		5A637907D7444C047ADF90A7 /* Cashier */ = {
+			isa = PBXGroup;
+			children = (
+				EDC55E66BB1F81159EF0D676 /* CashierTabView.swift */,
+				FC326A36377E4E0AA71602C1 /* CashierViews.swift */,
+			);
+			path = Cashier;
+			sourceTree = "<group>";
+		};
+		6DB25F140A9747BDF87758BD /* BranchManager */ = {
+			isa = PBXGroup;
+			children = (
+				3120CF3C89651E809ED6B839 /* BombasView.swift */,
+				89BE39D7769F3B9A8FF77F11 /* BranchManagerTabView.swift */,
+				F9FF149E2A45281D26526422 /* CajerosView.swift */,
+				7A85C736A757AAB8FE146412 /* ComprasPerdidasView.swift */,
+				8D6783854F3F01F5A6DE0A04 /* CorteEnCursoView.swift */,
+				7312EF4C858B0E2242D109E8 /* HistorialYReporteView.swift */,
+				1D15AC34A370E6408AB30D21 /* InicioSucursalView.swift */,
+				51F5E6F24ACBD72AB2C7BB6B /* InventarioSucursalView.swift */,
+				D0A07430548A9A91F4FAC093 /* NavegacionSucursal.swift */,
+				25A5E42CE82D295BC87D8EAA /* NivelesView.swift */,
+				9FEEB22F09F3DFCAF89B34C8 /* ResumenCierreView.swift */,
+				EC90CFEFB095A5E0AC838904 /* VaciadoView.swift */,
+			);
+			path = BranchManager;
+			sourceTree = "<group>";
+		};
+		6F9323E9D1D3196AF6723290 /* Componentes */ = {
+			isa = PBXGroup;
+			children = (
+				C20AD676B19753453B50D448 /* Ayuda.swift */,
+				2DA0E54AEFC626D2B7940BD0 /* CampoNumerico.swift */,
+				453A57874037F1A119D35672 /* CamposTexto.swift */,
+				0795795CEA7CFC56219591DF /* Estados.swift */,
+				2DF1BBEE7AE05FA95C188947 /* Selectores.swift */,
+			);
+			path = Componentes;
+			sourceTree = "<group>";
+		};
+		710865A5CC41EA6591DF6117 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B1689B2079EE490A5955EAE2 /* Combustible.swift */,
+				50A35B38D5E5B3D26154EB94 /* Enumeraciones.swift */,
+				AE2DBFCE8995A0A53A390481 /* Estructura.swift */,
+				8D9A55D94351D972EA53E02C /* Personal.swift */,
+				E147EDE02B55E9AD481B1A7A /* Tienda.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8852D2FB2EAB2E50EAC73C70 /* Tienda */ = {
+			isa = PBXGroup;
+			children = (
+				7764F823307D6084408547DD /* CajeroViewModels.swift */,
+				DCD0C3DD553C9F04CD992DE7 /* TiendaGerenteViewModel.swift */,
+			);
+			path = Tienda;
+			sourceTree = "<group>";
+		};
+		889C6BAD6B170F5B9588DC74 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				89C583103B49DE76608108DF /* CambioPasswordView.swift */,
+				4DFFDE8C71940E99700C64D7 /* LoginView.swift */,
+				64087AD8CE0018FC05B31CD2 /* RecuperarPasswordView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		8A2F523CB93421878994F00E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B7B106859361760356CF3305 /* Carga.swift */,
+				98D6D0C10C92EECE60E03C94 /* PeriodoFiltro.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		A7BFC172C1FE109BC038A84D /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				60EB518D413EC45884958DF9 /* RootView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		B0968126E1CD7778B9D79B5A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				EAB59993CF8412166F9A42BD /* ClienteSupabase.swift */,
+				21F7349D1FD85A154D757818 /* Configuracion.swift */,
+				D198C16A2DE04C9873153DD2 /* Decodificador.swift */,
+				7A56F6DB6B45701D4FFB81BD /* ErrorApp.swift */,
+				248FEAADE840EA5378E0411D /* Fechas.swift */,
+				B43CA3EEF5BFD3F7E323D576 /* Formateadores.swift */,
+				AEA877E457E2C8EF100D8FBD /* Validadores.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B860BC00D424BAB24C187B86 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				889C6BAD6B170F5B9588DC74 /* Auth */,
+				6DB25F140A9747BDF87758BD /* BranchManager */,
+				5A637907D7444C047ADF90A7 /* Cashier */,
+				6F9323E9D1D3196AF6723290 /* Componentes */,
+				061F994D4916219F1D7CEC6E /* GeneralManager */,
+				149B3AB64D0933AFF58BD44B /* Personal */,
+				A7BFC172C1FE109BC038A84D /* Root */,
+				0A06FF3ECF424A69460F9496 /* Shared */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BA85FD87FBE1224C8515A2D7 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				D236C88F323EA3A802F63273 /* CambioPasswordViewModel.swift */,
+				55A1D1A54A0DC0B408234ED3 /* LoginViewModel.swift */,
+				271FB9E51E62EDBD4FD85FB2 /* PerfilViewModel.swift */,
+				B0F9077188ED797B51CF0E35 /* RecuperarPasswordViewModel.swift */,
+				486EF3C28576895C6D80F3FA /* SesionViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		BB4616BFCD1C5E0DC4602258 /* BranchManager */ = {
+			isa = PBXGroup;
+			children = (
+				CFD33DED40B95B9B50487B34 /* BombaFormViewModel.swift */,
+				0CB2A432EA98B704DC225483 /* CambioMedidorViewModel.swift */,
+				7E1C77F68D6126ECB69A8B0B /* ComprasViewModel.swift */,
+				3B6BB65088355219C220EE0E /* CorteEnCursoViewModel.swift */,
+				EED0E977260B74E247B25ECD /* HistorialCortesViewModel.swift */,
+				447752D02A02AD849A3D1900 /* InicioSucursalViewModel.swift */,
+				03808FBCADF4363319EB1E0D /* PerdidasViewModel.swift */,
+				BA674E83458B133036823F45 /* ReporteCorteViewModel.swift */,
+				41AAF9562A19678066A8D62B /* ResumenCierreViewModel.swift */,
+				E661611BA809A44C50BC2D66 /* SucursalDelGerenteViewModel.swift */,
+				87FC5CA3360EDA51DED50276 /* VaciadoViewModel.swift */,
+			);
+			path = BranchManager;
+			sourceTree = "<group>";
+		};
+		BDE13DD60055D774C43E2297 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				16A335C154E6D9D228B570EE /* AlmacenNivelesLocal.swift */,
+				39CC9C2438896CB72A50DB8D /* ProtocoloAlmacenNiveles.swift */,
+				1A0C1E2CB2DA2711D5E98CFF /* ProtocoloAuth.swift */,
+				63C28CC11A47207E2866D2E8 /* ProtocoloCatalogo.swift */,
+				DAE38DA993B5EA6F53B6F06B /* ProtocoloCorte.swift */,
+				13DB5A5F9B9A2959EBA802CE /* ProtocoloDashboard.swift */,
+				CE0A284B36F80A7C3B0ED1A0 /* ProtocoloPersonal.swift */,
+				4B4AD042E96862517EEEF6A9 /* ProtocoloPrecios.swift */,
+				960F509651A317DD87CACDC7 /* ProtocoloSucursales.swift */,
+				39CD2EDDC3D4FDBCE6FAD90B /* ProtocoloTienda.swift */,
+				084F2B27BA9F1211B811E3C0 /* ProtocoloUsuarios.swift */,
+				C324510E1386763BC4A68F30 /* Servicios.swift */,
+				845B5E6147FDF0CCDF007A4E /* SupabaseAuthService.swift */,
+				9A690DB98F3F80FE763CFBD6 /* SupabaseCatalogoService.swift */,
+				764E709BF67D60DD152E10AE /* SupabaseCorteService.swift */,
+				B693B72D532F88493F16786C /* SupabaseDashboardService.swift */,
+				5B98B5A888AF6A39CDAB5D41 /* SupabaseLineasCorteService.swift */,
+				FECE0717534AEE58622E2576 /* SupabasePersonalService.swift */,
+				D46B6C26FD496F61F23B5B26 /* SupabasePreciosService.swift */,
+				F505F42E1B4DE22CA200231C /* SupabaseReportesService.swift */,
+				5255E757837D29429ADDFD44 /* SupabaseSucursalesService.swift */,
+				8BEADC8D6B69C578369DEF6A /* SupabaseTanquesService.swift */,
+				CAF0A6D178D9281B7B7F1867 /* SupabaseTiendaService.swift */,
+				B76CF41968D5A32DC842B88F /* SupabaseUsuariosService.swift */,
+				5430E4D39ABABF3BE71CE931 /* TraductorErrores.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C5A0BCF01961E85FCD9335D1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B9AA62422B45055A1C4BB814 /* ActionCard.swift */,
+				70A3D1EA96B965386649FEFD /* SummaryCard.swift */,
+				CE391D859221A2A0EB138738 /* TanqueRowView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		CC703FDB065E12705B1F6310 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				F887F84577A2F381BDE86569 /* Colors.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		D1F5F969060F8435B7BA40C5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BA85FD87FBE1224C8515A2D7 /* Auth */,
+				8A2F523CB93421878994F00E /* Base */,
+				BB4616BFCD1C5E0DC4602258 /* BranchManager */,
+				310F52830E4061FE9A4D58AE /* GeneralManager */,
+				1BDFDBC6AD48E37D354B92C6 /* Personal */,
+				8852D2FB2EAB2E50EAC73C70 /* Tienda */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		DBB0CB9C3068410F00C7BC00 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +567,7 @@
 				DBB0CBAC3068411100C7BC00 /* Assets.xcassets */,
 				DBB0CBAE3068411100C7BC00 /* Preview Content */,
 				B0968126E1CD7778B9D79B5A /* Core */,
+				710865A5CC41EA6591DF6117 /* Models */,
 				BDE13DD60055D774C43E2297 /* Services */,
 				CC703FDB065E12705B1F6310 /* Theme */,
 				D1F5F969060F8435B7BA40C5 /* ViewModels */,
@@ -89,75 +583,6 @@
 				DBB0CBAF3068411100C7BC00 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		B0968126E1CD7778B9D79B5A /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				EAB59993CF8412166F9A42BD /* ClienteSupabase.swift */,
-				21F7349D1FD85A154D757818 /* Configuracion.swift */,
-				7A56F6DB6B45701D4FFB81BD /* ErrorApp.swift */,
-				B43CA3EEF5BFD3F7E323D576 /* Formateadores.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		BDE13DD60055D774C43E2297 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				9BA69E2A7D2145F1E3DCDA2D /* ConexionService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		CC703FDB065E12705B1F6310 /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				F887F84577A2F381BDE86569 /* Colors.swift */,
-			);
-			path = Theme;
-			sourceTree = "<group>";
-		};
-		D1F5F969060F8435B7BA40C5 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				845D23599A990163B50E3748 /* ArranqueViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		B860BC00D424BAB24C187B86 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A7BFC172C1FE109BC038A84D /* Root */,
-				0A06FF3ECF424A69460F9496 /* Shared */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		A7BFC172C1FE109BC038A84D /* Root */ = {
-			isa = PBXGroup;
-			children = (
-				60EB518D413EC45884958DF9 /* RootView.swift */,
-			);
-			path = Root;
-			sourceTree = "<group>";
-		};
-		0A06FF3ECF424A69460F9496 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				C5A0BCF01961E85FCD9335D1 /* Components */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		C5A0BCF01961E85FCD9335D1 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				B9AA62422B45055A1C4BB814 /* ActionCard.swift */,
-				70A3D1EA96B965386649FEFD /* SummaryCard.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,14 +664,121 @@
 				3DD9A88DAC42B36A20D26BA4 /* App76App.swift in Sources */,
 				81B486B949678BF87A164376 /* ClienteSupabase.swift in Sources */,
 				554F7188B670E89D93EBD5DA /* Configuracion.swift in Sources */,
+				0654C1306F0C0AB0E61272D5 /* Decodificador.swift in Sources */,
 				61D272527766A2E9F96ABFB6 /* ErrorApp.swift in Sources */,
+				DC64D134F233FA3D9F616D6B /* Fechas.swift in Sources */,
 				5542D5309473EE178801B1D3 /* Formateadores.swift in Sources */,
-				DA3BF3B9ED69822C8425CAA2 /* ConexionService.swift in Sources */,
+				24AC28FAC9D37439B20EA0A7 /* Validadores.swift in Sources */,
+				149F3532BF619D9423102D07 /* Combustible.swift in Sources */,
+				82D84047916A09B947E1F568 /* Enumeraciones.swift in Sources */,
+				ABE90DCF7433E4A5A27D0672 /* Estructura.swift in Sources */,
+				1A9FC809D0C62834BC1CA713 /* Personal.swift in Sources */,
+				59515A089ED63D4965398749 /* Tienda.swift in Sources */,
+				B32A1A75A6025B483B7B1779 /* AlmacenNivelesLocal.swift in Sources */,
+				CBE80F827CDACE1BABE16BAA /* ProtocoloAlmacenNiveles.swift in Sources */,
+				40609901B167144038AE3DBA /* ProtocoloAuth.swift in Sources */,
+				EF83A0E68F762AEDEBDD1931 /* ProtocoloCatalogo.swift in Sources */,
+				6BAADE0E9E2BE54729D403D6 /* ProtocoloCorte.swift in Sources */,
+				D041082181828E84F7D1A6E8 /* ProtocoloDashboard.swift in Sources */,
+				E909F5A7BEBEDE03C6917D6A /* ProtocoloPersonal.swift in Sources */,
+				D4BDDF1024A4EF823081C51D /* ProtocoloPrecios.swift in Sources */,
+				404132202AB0A99C4E225BE3 /* ProtocoloSucursales.swift in Sources */,
+				480935E14C06022ED34C8FFD /* ProtocoloTienda.swift in Sources */,
+				DC6ED6F618E223C0A65AC648 /* ProtocoloUsuarios.swift in Sources */,
+				64678413A03C399F950CC15B /* Servicios.swift in Sources */,
+				C2D76DD15CFD801758B7DF6E /* SupabaseAuthService.swift in Sources */,
+				BB7030AC4FFCCA50E9D7E9DD /* SupabaseCatalogoService.swift in Sources */,
+				F0B80051C0B491460C742B23 /* SupabaseCorteService.swift in Sources */,
+				B3E2465C7BC56104E649BEC7 /* SupabaseDashboardService.swift in Sources */,
+				09B10F822300A6C3F7C870A4 /* SupabaseLineasCorteService.swift in Sources */,
+				9F815338571C9AE4C249C68D /* SupabasePersonalService.swift in Sources */,
+				3AA51DA0BC4FA0F61EFD9280 /* SupabasePreciosService.swift in Sources */,
+				4E608CCA93E9BCF4CDCEC0E8 /* SupabaseReportesService.swift in Sources */,
+				0FBA1C81303BC10C3DA62A33 /* SupabaseSucursalesService.swift in Sources */,
+				3BF61FAB1CF9EBF944FC5C46 /* SupabaseTanquesService.swift in Sources */,
+				AD0264435994742612D51B5F /* SupabaseTiendaService.swift in Sources */,
+				3668452A4FCF629619839C5E /* SupabaseUsuariosService.swift in Sources */,
+				7D7228654F0897EA63E725D1 /* TraductorErrores.swift in Sources */,
 				A13C1B35F2CB7AB73DD61193 /* Colors.swift in Sources */,
-				D2892DDC6F4F0090C5A428C4 /* ArranqueViewModel.swift in Sources */,
+				A0CD471E248546A2DA893B31 /* CambioPasswordViewModel.swift in Sources */,
+				176FEC5508E2DA3A07985CB2 /* LoginViewModel.swift in Sources */,
+				8EAB7D0C8C94C3ECBF05CFC2 /* PerfilViewModel.swift in Sources */,
+				444E686627B4C6E4BA2993D4 /* RecuperarPasswordViewModel.swift in Sources */,
+				709A3F1754D97BE172F0ECFF /* SesionViewModel.swift in Sources */,
+				38EE2379F43EEFED33A2A382 /* Carga.swift in Sources */,
+				9A7928AFDA406CCF3D6B3E98 /* PeriodoFiltro.swift in Sources */,
+				B1492257FB62F3CA89CC00F7 /* BombaFormViewModel.swift in Sources */,
+				827B32F65AA040F8A45DC599 /* CambioMedidorViewModel.swift in Sources */,
+				28C7E0D32B4720756EB1084B /* ComprasViewModel.swift in Sources */,
+				5F13392B3385239B7DA02E01 /* CorteEnCursoViewModel.swift in Sources */,
+				A5FD69D678D1AAEEB2C0E8C1 /* HistorialCortesViewModel.swift in Sources */,
+				46357CF62993CE6C849052AF /* InicioSucursalViewModel.swift in Sources */,
+				B8AB80F1C914A64FD4B67906 /* PerdidasViewModel.swift in Sources */,
+				FF832F2D0491D5A8524ACC08 /* ReporteCorteViewModel.swift in Sources */,
+				A13C965C2A7400A144460C71 /* ResumenCierreViewModel.swift in Sources */,
+				3C41EDF0666A3BAEFBEE56FE /* SucursalDelGerenteViewModel.swift in Sources */,
+				5A461E4D029C844D27D8421B /* VaciadoViewModel.swift in Sources */,
+				B46734DFF6607B7A01A6B112 /* ArticuloFormViewModel.swift in Sources */,
+				130485390917D967DAAEBF9F /* CatalogoViewModel.swift in Sources */,
+				729D9386C220C6297524F57B /* DetalleSucursalViewModel.swift in Sources */,
+				7FF24FB93A6DA10C4C1F7CE8 /* EditarSucursalViewModel.swift in Sources */,
+				03A5E69BC4810821AD53DD8D /* EditarUsuarioViewModel.swift in Sources */,
+				B7FA93E27BC3EF703E1F274D /* FijarPrecioViewModel.swift in Sources */,
+				FEF432BF0E43E7D2186A534A /* NuevaSucursalViewModel.swift in Sources */,
+				3AC795138B9424DD7C28CDAB /* NuevoUsuarioViewModel.swift in Sources */,
+				4FAD7A833976E8844A3D5590 /* PanelViewModel.swift in Sources */,
+				52CD32234B795CADF1F6BAA9 /* PerdidasGlobalesViewModel.swift in Sources */,
+				3F9AD4E875B0F63882EBDCC8 /* PreciosViewModel.swift in Sources */,
+				0F04F8673AFC73CF8A91F6C8 /* SucursalesViewModel.swift in Sources */,
+				AC0CF3133355C61A79062156 /* TiendaYCajasViewModel.swift in Sources */,
+				5E9DC97F8CDE9630723AC959 /* UsuariosViewModel.swift in Sources */,
+				05FCD121024F118D607BD755 /* AsignacionTurnoViewModel.swift in Sources */,
+				9BA8F715C3CEC1F1B0278DF6 /* EmpleadoFormViewModel.swift in Sources */,
+				889D2063588D3EA47A277C04 /* PersonalViewModel.swift in Sources */,
+				6CB9686D6E92A2D5969DDD78 /* TurnoFormViewModel.swift in Sources */,
+				E3EBED83BDB29E2A78C5776C /* CajeroViewModels.swift in Sources */,
+				71E107F198BA1DC15B7DA42E /* TiendaGerenteViewModel.swift in Sources */,
+				05054D7A2E9CEEB85CC05F75 /* CambioPasswordView.swift in Sources */,
+				31BD86C17C911423A1407100 /* LoginView.swift in Sources */,
+				5ECF4DF4C97F7BA2A32ECC56 /* RecuperarPasswordView.swift in Sources */,
+				DBBA1F805FFC81B0F8FE4467 /* BombasView.swift in Sources */,
+				979E200A86F53B6B2418E680 /* BranchManagerTabView.swift in Sources */,
+				7465BBB6CD9205BACA85B066 /* CajerosView.swift in Sources */,
+				8E8991C802AE73AB08916B28 /* ComprasPerdidasView.swift in Sources */,
+				1CC702C98B58A144DFC3003F /* CorteEnCursoView.swift in Sources */,
+				37462F38F8E50DA8ABFFC6F0 /* HistorialYReporteView.swift in Sources */,
+				19A92DC16805AADC737431AB /* InicioSucursalView.swift in Sources */,
+				DDFC80AFC7200CC128FE54EC /* InventarioSucursalView.swift in Sources */,
+				037B4AB7A79C6CC81F72BF8C /* NavegacionSucursal.swift in Sources */,
+				166603640152CB37F49740E2 /* NivelesView.swift in Sources */,
+				AC2E256E077217799842F4D2 /* ResumenCierreView.swift in Sources */,
+				E9EB996464CBFFBEA1B2EEA2 /* VaciadoView.swift in Sources */,
+				612A4642ED573F67252896C7 /* CashierTabView.swift in Sources */,
+				7DEB9B4036B99E6F2B335865 /* CashierViews.swift in Sources */,
+				1E107E41FF1F4B8A603134DC /* Ayuda.swift in Sources */,
+				C00DECF62D7776E76C023A8E /* CampoNumerico.swift in Sources */,
+				C06FD2E73DB3F8016BC9B06E /* CamposTexto.swift in Sources */,
+				12D9CD7642E03D0FE4FFC98E /* Estados.swift in Sources */,
+				BA234BC083DF77D3DF23F74C /* Selectores.swift in Sources */,
+				78CA025FD46A5D61F718E2AD /* CatalogoView.swift in Sources */,
+				C0C18DF3463AAB162185F83D /* DetalleSucursalView.swift in Sources */,
+				7209D241274E9781D44FEBAF /* EditarSucursalView.swift in Sources */,
+				FCC929434EB8160A00F77F58 /* EditarUsuarioView.swift in Sources */,
+				8540648F44B30B0EC84DEC77 /* GeneralManagerTabView.swift in Sources */,
+				65154BFB18EF9E6B68B08E1B /* NuevaSucursalView.swift in Sources */,
+				0E965EC766E4AACC42B53126 /* NuevoUsuarioView.swift in Sources */,
+				70A6F5FD1898316B5BC9B566 /* PanelView.swift in Sources */,
+				CDC07DE0F647661F3C1F5BA8 /* PreciosView.swift in Sources */,
+				5881DE5B6197A4F356662A73 /* SucursalesView.swift in Sources */,
+				1E75A4A0C7A77EE903BE9E9C /* TiendaYCajasView.swift in Sources */,
+				C8DA8D561B8A7FE46F4EA759 /* UsuariosView.swift in Sources */,
+				4DE84F12CE0C69C21CDC5647 /* PersonalView.swift in Sources */,
 				7D0122AF398CE01BC076AF37 /* RootView.swift in Sources */,
 				2D9259AC1087062CE478E838 /* ActionCard.swift in Sources */,
 				D8F9A53A70761192CC09A469 /* SummaryCard.swift in Sources */,
+				D5AAC5B604A81318F065A077 /* TanqueRowView.swift in Sources */,
+				081D4ADB747EC9C405EC7C6F /* EnConstruccionView.swift in Sources */,
+				8BD8C3908D2461165F1E904A /* PerfilView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

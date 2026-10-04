@@ -1,50 +1,68 @@
 import SwiftUI
 
-/// Fase 0: pantalla vacía que solo comprueba que el cliente Supabase está configurado y alcanzable.
-/// En la fase 1 se reemplaza por el enrutamiento por sesión y rol.
+/// Enruta por sesión y rol: arranque → login → (cambio obligatorio de contraseña) → inicio del rol.
 struct RootView: View {
-    @StateObject private var viewModel = ArranqueViewModel()
+    @StateObject private var sesion = SesionViewModel(auth: Servicios.auth)
 
     var body: some View {
-        ZStack {
-            Color.gas76Background.ignoresSafeArea()
-            VStack(spacing: 16) {
-                Image("Logo76")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 96, height: 96)
-                contenido
+        Group {
+            if !Configuracion.estaConfigurada {
+                avisoSinConfigurar
+            } else {
+                switch sesion.estado {
+                case .iniciando:
+                    pantallaCarga
+                case .errorConexion(let mensaje):
+                    pantallaError(mensaje)
+                case .sinSesion:
+                    LoginView(sesion: sesion)
+                case .cambioObligatorio:
+                    CambioObligatorioView(sesion: sesion)
+                case .dentro(let perfil):
+                    inicioDelRol(perfil)
+                }
             }
-            .padding(32)
         }
-        .task { await viewModel.iniciar() }
+        .task { await sesion.iniciar() }
     }
 
     @ViewBuilder
-    private var contenido: some View {
-        switch viewModel.estado {
-        case .cargando:
-            ProgressView("Conectando…")
-        case .listo:
-            Label("Conectado al servidor", systemImage: "checkmark.circle.fill")
-                .foregroundColor(.green)
-        case .sinConfigurar:
-            textoError("Falta pegar la clave publishable en Core/Configuracion.swift.", reintentar: false)
-        case .error(let mensaje):
-            textoError(mensaje, reintentar: true)
+    private func inicioDelRol(_ perfil: Perfil) -> some View {
+        switch perfil.rol {
+        case .gerenteGeneral:
+            GeneralManagerTabView(perfil: perfil, sesion: sesion).id(perfil.id)
+        case .gerenteSucursal:
+            BranchManagerTabView(perfil: perfil, sesion: sesion).id(perfil.id)
+        case .cajero:
+            CashierTabView(perfil: perfil, sesion: sesion).id(perfil.id)
         }
     }
 
-    private func textoError(_ mensaje: String, reintentar: Bool) -> some View {
-        VStack(spacing: 12) {
-            Text(mensaje)
-                .multilineTextAlignment(.center)
-                .foregroundColor(.red)
-            if reintentar {
-                Button("Reintentar") { Task { await viewModel.iniciar() } }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.gas76Orange)
+    private var pantallaCarga: some View {
+        ZStack {
+            Color.gas76Background.ignoresSafeArea()
+            VStack(spacing: 16) {
+                Image("Logo76").resizable().scaledToFit().frame(width: 96, height: 96)
+                ProgressView()
             }
         }
+    }
+
+    private func pantallaError(_ mensaje: String) -> some View {
+        ZStack {
+            Color.gas76Background.ignoresSafeArea()
+            VStack(spacing: 14) {
+                Image("Logo76").resizable().scaledToFit().frame(width: 80, height: 80)
+                Text(mensaje).multilineTextAlignment(.center).foregroundColor(.gas76Rojo)
+                Button("Reintentar") { Task { await sesion.iniciar() } }
+                    .buttonStyle(.borderedProminent).tint(.gas76Orange)
+            }
+            .padding(32)
+        }
+    }
+
+    private var avisoSinConfigurar: some View {
+        Text("Falta pegar la clave publishable en Core/Configuracion.swift.")
+            .multilineTextAlignment(.center).foregroundColor(.gas76Rojo).padding(32)
     }
 }

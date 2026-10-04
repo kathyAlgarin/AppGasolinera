@@ -6,7 +6,7 @@ enum Configuracion {
     static let urlSupabase = URL(string: "https://kpzdedcztufqwsqoywdp.supabase.co")!
 
     /// Pegar aquí la clave que empieza con `sb_publishable_` (Supabase → Settings → API Keys).
-    static let clavePublishable = "PEGAR_CLAVE_PUBLISHABLE"
+    static let clavePublishable = "sb_publishable_z-xfFUDUgSb3uKYCGR96ng_xPQ5LCtY"
 
     static var estaConfigurada: Bool {
         clavePublishable.hasPrefix("sb_publishable_")
