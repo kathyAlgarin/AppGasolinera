@@ -1,6 +1,6 @@
 # BASE DE DATOS — diseño para Supabase (PostgreSQL)
 
-Derivado de `docs/FLUJO.md` (temas 1–9). **Aplicado en Supabase el 2026-10-03/04: 12 migraciones en `supabase/migrations/` (las versiones coinciden con las del proyecto).**
+Derivado de `docs/FLUJO.md` (temas 1–9). **Aplicado en Supabase el 2026-10-03/04: 14 migraciones en `supabase/migrations/` (las versiones coinciden con las del proyecto).**
 Las 3 últimas refinan solo la vista `v_nivel_tanque_estimado` tras las pruebas. Verificado con pruebas reales dentro de transacciones
 que se deshicieron (no quedó ningún dato de prueba): ver la sección 10.
 Proyecto destino: `app_gasolinera` (ref `kpzdedcztufqwsqoywdp`, organización "kathyAlgarin Personal", vacío al momento de escribir esto).
@@ -256,6 +256,7 @@ la sesión no tiene permiso de Edge Functions; se despliega a mano desde el pane
 | `crear` | `correo`, `nombre`, `rol`, `sucursal_id` (según el rol), `password_temporal` | GG: cualquier rol. GS: solo `cajero` de su sucursal (ignora `sucursal_id`) | `201 {id}` |
 | `restablecer_password` | `usuario_id`, `password_temporal` | GG: cualquiera. GS: cajeros de su sucursal | `200 {ok:true}`; el usuario debe cambiarla al entrar |
 | `cambiar_estado` | `usuario_id`, `activo` (boolean) | GG: cualquiera. GS: cajeros de su sucursal | `200 {ok:true}`; además bloquea/desbloquea el inicio de sesión |
+| `cambiar_correo` | `usuario_id`, `correo` | GG: cualquiera. GS: cajeros de su sucursal | `200 {ok:true}`; cambia el correo de inicio de sesión y el del perfil (se revierte si falla); correo repetido → 409; no sobre uno mismo |
 
 Errores: `{ "error": "mensaje en español" }` con 400 (datos inválidos), 401 (sin sesión válida), 403 (sin permiso), 404, 409
 (duplicados: correo repetido, sucursal con gerente activo) o 500. Reglas: contraseña temporal de 8 a 72 caracteres; no se actúa
@@ -358,5 +359,13 @@ Se probaron con usuarios de prueba (Gerente General, dos Gerentes de Sucursal y 
 - Hallazgo corregido: la vista del nivel estimado dependía de comparar relojes; ahora ordena por la secuencia del corte y
   excluye por `vaciado_id` las líneas generadas por el vaciado (migraciones 10–12).
 
-**No probado todavía**: las Edge Functions de usuarios (aún no existen), el flujo de contraseña por correo (requiere el SMTP),
-el rendimiento con volumen real y el uso desde las apps (aún no están conectadas).
+### Migraciones 13 y 14 (aplicadas el 2026-10-04)
+
+- `20261004173102_resumen_previo_corte.sql`: función `resumen_previo_corte(corte, niveles)` (solo lectura) para mostrar el resumen **antes** de cerrar el
+  corte con las mismas fórmulas de `v_cuadre_tanque_corte`. Verificada en una transacción deshecha: devuelve exactamente lo que después registra `cerrar_corte`.
+- `20261004173103_fijar_stock_minimo.sql`: función `fijar_stock_minimo(articulo, minimo)` para el Gerente de Sucursal (ninguna función permitía fijar el
+  mínimo, que quedaba siempre en 0). Verificada en la misma transacción.
+
+**No probado todavía**: el camino de éxito de la Edge Function `gestionar-usuarios` (necesita una sesión real), el flujo de contraseña por correo
+(requiere el SMTP), el rendimiento con volumen real y el uso de las apps con una **sesión real** (la app se verificó compilando, con pruebas de lógica,
+con JSON real del servidor decodificado por los modelos y recorrida en el simulador).

@@ -13,6 +13,7 @@ mismo backend **Supabase**. Se entrega **completo**, no por fases. Requisitos or
 3. `docs/PLAN_DESARROLLO.md` — arquitectura iOS, mapa pantallas ↔ funciones/vistas de la BD, fases y pendientes.
 4. `FIGMA_INTERACCIONES.md` — pantallas e interacciones del diseño nuevo (el archivo de Figma aún es del diseño anterior).
 5. `supabase/migrations/` — SQL aplicado al proyecto. `supabase/functions/gestionar-usuarios/` — Edge Function.
+6. `docs/PANTALLAS.md` (y `docs/PANTALLAS.html`, una sola página) — guía de cada pantalla con capturas (`docs/capturas/`) y qué hace/cómo funciona; videos por rol en `docs/video/`. Se regenera con `python3 tools/generar_guia_pantallas.py`.
 
 Si algo del código contradice `docs/FLUJO.md`, manda `docs/FLUJO.md`. Una decisión ya cerrada ahí no se reabre sin preguntar.
 
@@ -43,12 +44,28 @@ Si algo del código contradice `docs/FLUJO.md`, manda `docs/FLUJO.md`. Una decis
 
 ## Estado actual
 
-- Base de datos: **aplicada y probada**. Edge Function `gestionar-usuarios`: **desplegada, camino de éxito sin probar**
-  (necesita una sesión real). Correo (SMTP de Gmail + plantilla con `{{ .Token }}`): lo configura la usuaria.
-- **El código de la app iOS actual es una demo anterior** (datos en memoria, litros, "premium", cortes Apertura/Cierre):
-  **no coincide con el diseño nuevo** y debe reescribirse sobre Supabase. El `README.md` y `FIGMA_INTERACCIONES.md` también
-  están desactualizados respecto a `docs/FLUJO.md`.
-- Decidido: **primero la app iOS completa, después la web** (React + Node.js), **todo en local, sin despliegue**.
-- **Limitación**: el código se escribe en Windows; **no se puede compilar ni ejecutar SwiftUI aquí**. Nunca afirmar que el código iOS
-  compila: lo compila y prueba la usuaria en un Mac y pega los errores.
-- La Edge Function debe tener **apagado** "Verify JWT with legacy secret" (el proyecto firma sesiones con ES256); la función ya valida la sesión sola.
+- Base de datos: **aplicada y probada** (14 migraciones; las 2 últimas, `resumen_previo_corte` y `fijar_stock_minimo`, se aplicaron el 2026-10-04 con confirmación
+  de la usuaria, tras probarlas en una transacción deshecha: la vista previa coincide exactamente con el cierre real).
+- Edge Function `gestionar-usuarios`: **desplegada y con «Verify JWT with legacy secret» apagado (verificado)**. Camino de éxito **probado el 2026-10-04** con usuarios
+  temporales: crear (201), correo repetido (409), contraseña corta (400), restablecer, desactivar (bloquea el inicio de sesión), reactivar, no actuar sobre uno mismo,
+  y el usuario creado entra con la temporal, cambia su contraseña y `marcar_password_cambiada` apaga la bandera. Correo por código (SMTP): sin probar.
+- Credenciales locales de pruebas en `.env` (ignorado por git; incluye la clave secreta, **solo para pruebas desde esta máquina**, nunca en la app). La clave secreta se
+  compartió en un chat: **conviene rotarla** en Supabase (Settings → API Keys) cuando terminen las pruebas.
+- Los usuarios temporales de las pruebas se eliminaron (a pedido de la usuaria, en una operación atómica que reactiva la protección `perfiles_no_borrar` al terminar); solo queda su usuario real.
+- **Datos de ejemplo cargados el 2026-10-04** a pedido de la usuaria (3 sucursales «… (ejemplo)»: Centro y Santa Ana con tienda, Aeropuerto sin tienda; 5 días de historial con
+  27 cortes cerrados, ventas, cajas, compras, pérdidas, un vaciado, un cambio de medidor y un ajuste por sucursal con extras; personal y turnos). Usuarios de ejemplo
+  `gerente.centro|aeropuerto|santaana@example.com` y `cajero.centro|santaana@example.com`, con contraseñas temporales en `.env` (`EJEMPLO_*`; la app obliga a cambiarlas).
+  Son datos reales de la BD: **no se pueden borrar** (cortes y ventas son inmutables; las sucursales solo se desactivan). Para que el historial tenga varios días se reubicaron
+  las fechas de los cortes desactivando y reactivando las protecciones dentro de la misma transacción (verificado: quedan todas activas). La sucursal «76 centro» es de la usuaria.
+- La Edge Function ahora también tiene `cambiar_correo` (versión 2, probada: correo nuevo entra, el viejo no, correo repetido 409, uno mismo 400).
+- **App iOS: fases 0–7 escritas, compiladas (`xcodebuild`) y recorridas en el simulador.** Contra el servidor real se probó por HTTP (login, RLS, vistas, Edge Function,
+  formas de consulta de PostgREST) pero **la app misma nunca inició sesión real** (el simulador no recibe texto tecleado desde la herramienta): falta el recorrido manual con la cuenta real.
+  La lógica está cubierta por `tools/correr_pruebas.sh` (480 verificaciones, incluida la decodificación de JSON real del servidor).
+- Estructura: `App76/{Core,Models,Services,ViewModels,Views,Theme}`. Los ViewModels solo dependen de protocolos de `Services/Protocolo*.swift`
+  (se prueban con falsos en `Pruebas/`); las vistas arman cada ViewModel con `Servicios.<x>` (`Services/Servicios.swift`).
+- Archivos obsoletos de la fase 0 que se pueden borrar a mano: `App76/ViewModels/ArranqueViewModel.swift` y `App76/Services/ConexionService.swift`
+  (ya no se usan; luego correr `python3 tools/sincronizar_proyecto.py`).
+- **Entorno de trabajo ahora es macOS con Xcode**: sí se puede compilar y correr el simulador. Aun así, afirmar «funciona» solo de lo ejercitado.
+- Pendiente: probar con la cuenta real, apagar «Verify JWT with legacy secret» en la Edge Function,
+  configurar el SMTP, actualizar el prototipo de Figma y la **versión web** (React + Node.js, después de la app).
+- Decidido: **primero la app iOS completa, después la web**, **todo en local, sin despliegue**.

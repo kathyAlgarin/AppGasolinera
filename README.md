@@ -4,9 +4,10 @@ Sistema para administrar una franquicia de estaciones de servicio: sucursales co
 (Súper, Regular y Diésel), precios, tienda de conveniencia y servicios, personal y turnos. Una **app iOS** (SwiftUI) y, después,
 una **versión web** (React + Node.js) con las mismas funcionalidades, sobre un mismo backend **Supabase**.
 
-> **Estado: en desarrollo.** La base de datos está aplicada y probada. La app iOS que hay en el repositorio es una **demo
-> anterior** (datos en memoria) que se está reescribiendo sobre Supabase; la versión web aún no existe.
-> Ver [`docs/PLAN_DESARROLLO.md`](docs/PLAN_DESARROLLO.md).
+> **Estado: app iOS completa (fases 0–7), pendiente de probar con datos reales; la web aún no existe.**
+> La base de datos está aplicada y probada; la app iOS ya se reescribió sobre Supabase, compila y corre en el simulador
+> en el simulador). Faltan tus pruebas con la cuenta real. Ver el estado detallado en
+> [`docs/PLAN_DESARROLLO.md`](docs/PLAN_DESARROLLO.md).
 
 ## Roles
 
@@ -53,19 +54,27 @@ en Supabase.
 
 ## Requisitos (app iOS)
 
-- Mac con **Xcode 15** o superior
+- Mac con **Xcode 15** o superior (se compiló y probó con Xcode 27 y el simulador iPhone 17 Pro)
 - **iOS 17.2+**, Swift 5
-- Paquete `supabase-swift` (Swift Package Manager)
+- Paquete `supabase-swift` ≥ 2.0.0 (Swift Package Manager; Xcode lo resuelve solo)
 
-La configuración (URL del proyecto y clave **publishable**) vive en la app; la clave secreta nunca.
+La configuración (URL del proyecto y clave **publishable**) vive en `App76/Core/Configuracion.swift`; la clave secreta nunca.
 
 ## Ejecución (iOS)
 
-1. Clona el repositorio.
-2. Abre `App76.xcodeproj` en Xcode.
-3. Selecciona un simulador y presiona **Run** (⌘R).
+1. Clona el repositorio y abre `App76.xcodeproj` en Xcode.
+2. Selecciona un simulador y presiona **Run** (⌘R). Inicia sesión con tu usuario de Supabase.
+3. Si agregas o borras archivos `.swift`, corre `python3 tools/sincronizar_proyecto.py` (con Xcode cerrado) para registrarlos en el proyecto.
 
-> Mientras se completa la reescritura, el proyecto puede no compilar o seguir mostrando la demo anterior.
+## Pruebas
+
+```bash
+tools/correr_pruebas.sh
+```
+
+Compila y corre en macOS (sin simulador) las pruebas de lógica: modelos, validadores, fechas, **todos los ViewModels** con servicios
+falsos, y la decodificación de JSON **real** que devuelve el servidor (`Pruebas/datos_reales_vistas.json`). Hoy: **480 verificaciones**.
+Los servicios de Supabase y las vistas se verifican compilando la app (`xcodebuild`) y en el simulador.
 
 ## Diseño
 

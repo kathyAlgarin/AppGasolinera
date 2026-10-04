@@ -17,15 +17,18 @@ Todo se trabaja en **local**: no hay despliegue, ni `git push`, ni commits hasta
 | Cliente Supabase en iOS | Paquete `supabase-swift` (Swift Package Manager). **Verificar su API contra la documentación al implementar**; este plan no fija firmas de métodos. |
 | Claves en la app | Solo la clave **publishable** y la URL del proyecto. Nunca la secreta ni contraseñas en el código. |
 
-## 2. Cómo se verifica (límite importante)
+## 2. Cómo se verifica
 
-El código se escribe en **Windows**, donde **no se puede compilar ni ejecutar SwiftUI** (Xcode solo existe en Mac).
-Por eso:
+Se trabajó en **macOS con Xcode**, así que el código **sí se compila y se ejecuta** (antes se escribía en Windows y no podía). Hay tres niveles:
 
-- Yo escribo el código y **no puedo afirmar que compila**. Lo compila y lo prueba Katherinne en un Mac con Xcode.
-- Cada fase termina con una lista **"Qué probar"**. Los errores de compilación o de ejecución se pegan tal cual y se corrigen.
-- Las reglas de negocio ya están probadas en la base de datos; en la app se prueba que **se llame bien y se muestre bien**.
-- Para que el trabajo avance en pasos pequeños y comprobables, cada fase es corta y deja la app **ejecutable**.
+1. **Compilación**: `xcodebuild -project App76.xcodeproj -scheme App76 -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build`.
+2. **Pruebas de lógica** (`tools/correr_pruebas.sh`, sin simulador): modelos, validadores, fechas y **todos los ViewModels** con servicios falsos,
+   más la decodificación de **JSON real** del servidor (`Pruebas/datos_reales_vistas.json`, capturado de un escenario completo en una transacción
+   deshecha). Hoy: 480 verificaciones.
+3. **Simulador**: se recorrieron las pantallas con datos de ejemplo en una versión anterior (el modo demo se retiró; la app queda conectada solo al backend).
+
+**Lo que no se ha ejercitado**: nada de la app contra el servidor real con una **sesión** (login, llamadas RPC de cada pantalla, Edge Function,
+código por correo). No hay credenciales en el entorno de trabajo y no se piden ni se crean cuentas. Eso lo prueba Katherinne (lista «Qué probar»).
 
 ## 3. Arquitectura iOS
 
@@ -106,7 +109,8 @@ modelos, servicios, `AppRepository` y `SalesCalculator` se eliminan.
 
 Cada fase deja la app ejecutable. "Listo cuando" es el criterio de aceptación; "Qué probar" lo hace Katherinne en el Mac.
 
-### Fase 0 · Preparación (código escrito, pendiente de compilar en el Mac)
+### Fase 0 · Preparación
+**Estado: hecha.** Compila; el proyecto registra los archivos con `tools/sincronizar_proyecto.py`; el cliente Supabase usa decodificador `snake_case`.
 - Sin paquete local: el código vive directo en `App76/` (MVVM). Los archivos nuevos se registran en el proyecto con
   `python3 tools/sincronizar_proyecto.py` (cierra Xcode antes; también agrega `supabase-swift` ≥ 2.0.0).
 - Hecho: `Core/` (Configuracion, ClienteSupabase, ErrorApp, Formateadores), `Services/ConexionService`, `ArranqueViewModel`, `RootView`.
@@ -115,34 +119,41 @@ Cada fase deja la app ejecutable. "Listo cuando" es el criterio de aceptación; 
 - **Qué probar**: pegar la clave `sb_publishable_…` en `Core/Configuracion.swift`; compila; al abrir dice «Conectado al servidor».
 
 ### Fase 1 · Acceso y navegación por rol
+**Estado: escrita y probada con falsos y por HTTP contra el servidor; falta el recorrido manual con sesión real.** Incluye cambio obligatorio de contraseña y recuperación por código (3 pasos).
 - Login, sesión persistente, enrutamiento por rol, cambio obligatorio de contraseña, "Olvidé mi contraseña" (código), perfil y cerrar sesión.
 - **Listo cuando**: Katherinne inicia sesión y ve el esqueleto de pestañas del Gerente General; un usuario inactivo no entra.
 - **Qué probar**: login correcto e incorrecto; cerrar sesión y volver a abrir la app (sesión persistente); el código por correo (después de configurar el SMTP).
 
 ### Fase 2 · Gerente General: sucursales, usuarios, precios y catálogo
+**Estado: escrita; la Edge Function sigue sin ejercitar.**
 - Sucursales (crear con tanques, editar, activar/desactivar, tienda), precios (individual o a todas), usuarios (crear, restablecer, activar), catálogo.
 - **Listo cuando**: se crea una sucursal con 3 tanques y se ve su 6×3; se crea un Gerente de Sucursal; se fijan los 3 precios.
 - **Qué probar**: la **Edge Function** con un caso real (su camino de éxito todavía no se ha ejercitado); errores como un segundo gerente en la misma sucursal.
 
 ### Fase 3 · Gerente de Sucursal: corte completo
+**Estado: escrita; «Resumen y cierre» usa la función `resumen_previo_corte` (migración aplicada).** El borrador de niveles se guarda en el teléfono hasta cerrar.
 - Inicio con tanques; corte en curso: bombas (lecturas, primer corte con inicial y final, cambio de medidor), compras, pérdidas, descarga errónea y vaciado,
   niveles medidos, resumen con cuadre, cierre; historial y reporte; ajuste del Gerente General.
 - **Listo cuando**: se cierra un corte completo y el siguiente queda en curso con las lecturas iniciales derivadas.
 - **Qué probar**: lecturas inválidas, cierre incompleto, cuadre con diferencia, vaciado, ajuste.
 
 ### Fase 4 · Dashboards
+**Estado: escrita** (Panel con Swift Charts, detalle de combustible y de sucursal, pérdidas globales).
 - Panel del Gerente General (filtros, tendencia, ranking, tanques críticos, sucursales sin corte, mensajes "Sin cortes cerrados hoy"), detalle por sucursal y combustible.
 - **Listo cuando**: las cifras coinciden con los reportes de corte y se explican los ceros.
 
 ### Fase 5 · Personal y turnos
+**Estado: escrita** (empleados, turnos, horario semanal, «Quién trabaja ahora»; el Gerente General solo consulta).
 - Empleados, turnos (que cruzan la medianoche, con solapes), asignaciones, horario semanal, "Quién trabaja ahora".
 
 ### Fase 6 · Tienda, caja y ventas
+**Estado: escrita; el stock mínimo usa `fijar_stock_minimo` (migración aplicada).** El pago es simulado.
 - Inventario, entradas y bajas (Gerente de Sucursal); POS del Cajero con carrito, cobro, vuelto y **animación de pago simulado**; cierre de caja;
   anulaciones; cierre forzado; bloque "Tienda y servicios" en los dashboards; crear cajeros.
 - **Listo cuando**: se vende, se anula, se cierra una caja con diferencia y el corte se puede cerrar solo sin cajas abiertas.
 
 ### Fase 7 · Pulido
+**Estado: parcial.** Hecho: validaciones en todos los campos numéricos y de texto, estados de carga/vacío/error en todas las pantallas, etiquetas de accesibilidad en los botones de icono, revisión contra `FIGMA_INTERACCIONES.md`. Pendiente: probar con Dynamic Type grande y modo oscuro en dispositivo, y actualizar el prototipo de Figma.
 - Validaciones en todos los campos, estados vacíos y de error, accesibilidad básica, revisión contra `FIGMA_INTERACCIONES.md`, actualización del prototipo en Figma.
 
 ## 6. Web (después de la app)
@@ -155,9 +166,11 @@ La clave que lleve será solo la publishable. Si el ingeniero espera además un 
 
 | Pendiente | Quién | Nota |
 |---|---|---|
-| Apagar "Verify JWT with legacy secret" en la Edge Function | Katherinne | El proyecto firma sesiones con ES256; con la opción encendida pueden rechazarse. La función ya verifica la sesión por su cuenta. |
-| SMTP de Gmail + plantilla "Reset password" con `{{ .Token }}` | Katherinne | Necesario para "Olvidé mi contraseña" (fase 1). |
-| Camino de éxito de `gestionar-usuarios` sin ejercitar | Se prueba en la fase 2 | Solo se verificaron los rechazos. |
-| Compilación y ejecución en iOS | Katherinne en Mac | No se puede hacer desde Windows. |
-| Prototipo de Figma desactualizado | Se actualiza al final (fase 7) | `FIGMA_INTERACCIONES.md` ya describe el diseño nuevo. |
-| Decimales `numeric` de Postgres en JSON | Revisar en la fase 0 | Mostrar siempre formateados a 2 decimales; no operar en el cliente. |
+| Probar la app con la cuenta real | Katherinne | Login, un corte completo, POS, Edge Function (crear usuario). Pegar cualquier error. |
+| Apagar «Verify JWT with legacy secret» en la Edge Function | Katherinne | El proyecto firma sesiones con ES256; la función ya verifica la sesión por su cuenta. |
+| SMTP de Gmail + plantilla «Reset password» con `{{ .Token }}` | Katherinne | Necesario para «Olvidé mi contraseña». |
+| Camino de éxito de `gestionar-usuarios` sin ejercitar | Se prueba al crear el primer usuario | Solo se verificaron los rechazos. |
+| Borrar a mano `ArranqueViewModel.swift` y `ConexionService.swift` (fase 0, ya sin uso) y correr el script de sincronización | Katherinne | Un permiso del entorno impidió borrarlos desde la sesión. |
+| Prototipo de Figma desactualizado | Al final | `FIGMA_INTERACCIONES.md` ya describe el diseño nuevo. |
+| Versión web (React + Node.js) | Después de la app | Mismo Supabase, mismas funciones y vistas. |
+| Primer corte de cada sucursal | Operación | Pide lecturas iniciales y finales de las 18 mangueras y si es Matutino o Vespertino. |

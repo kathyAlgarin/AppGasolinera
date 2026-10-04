@@ -62,7 +62,7 @@ fila de lista estándar, selector de periodo, selector de sucursal, **campo num�
 | Elemento | Acción |
 |---|---|
 | **Sucursal** (menú) | *Todas* o una sucursal → **Change to**: todas las cifras se recalculan. |
-| **Periodo** (segmentado) | **Hoy · 7 días · 30 días · Personalizado** (este último abre calendario sin fechas futuras). |
+| **Periodo** (segmentado) | **Hoy · 7 días · 30 días · Fechas** (este último abre calendario sin fechas futuras). |
 | Tarjetas por combustible (Súper, Regular, Diésel) | Galones vendidos, ingreso USD, compras, pérdidas. Tocar → `11`. |
 | Aviso de datos | "**Datos de N de M cortes**". Si no hay cortes cerrados: cifras en cero con el texto **"Sin cortes cerrados hoy"** y un **?** que explica que las ventas se conocen al cerrar el corte. |
 | Gráfico de tendencia | Galones vendidos por día (series por combustible). |
@@ -98,7 +98,7 @@ Si el corte siguiente ya se cerró, el botón no aparece y un texto explica que 
 | Pantalla | Interacción |
 |---|---|
 | **15 Lista** | **＋** → `16`. Fila → `17`. Insignias *Inactiva* y *Con tienda*. |
-| **16 Nueva sucursal** (hoja) | **Nombre**, **Dirección**, interruptor **Tiene tienda**, y por cada combustible (**Súper, Regular, Diésel**): **capacidad (gal)** y **nivel inicial (gal)**, con el nivel ≤ capacidad. **Crear sucursal** (deshabilitado hasta que todo sea válido). Texto de apoyo: "Se crearán 6 bombas, 18 mangueras y 3 tanques." |
+| **16 Nueva sucursal** (hoja) | **Nombre**, **Dirección**, interruptor **Tiene tienda**, y por cada combustible (**Súper, Regular, Diésel**): **capacidad (gal)** (obligatoria, > 0) y **nivel inicial (gal)** (opcional: vacío = 0), con el nivel ≤ capacidad. **Crear sucursal** (deshabilitado hasta que todo sea válido). Texto de apoyo: "Se crearán 6 bombas, 18 mangueras y 3 tanques." |
 | **17 Editar sucursal** | Nombre y dirección; interruptores **Activa** y **Tiene tienda** (no se apaga con cajas abiertas). Los tanques son de solo lectura. |
 
 ### 18–20 — Precios
@@ -113,7 +113,7 @@ Si el corte siguiente ya se cerró, el botón no aparece y un texto explica que 
 |---|---|
 | **21 Lista** | Filtros por rol y sucursal; fila con nombre, correo, rol, sucursal e insignia *Inactivo*. **＋** → `22`. Fila → `23`. |
 | **22 Nuevo usuario** (hoja) | Nombre, correo (formato válido), **contraseña temporal** (8–72 caracteres, con ojo para verla), **Rol** (*Gerente General · Gerente de Sucursal · Cajero*). **Sucursal** solo para *Gerente de Sucursal* y *Cajero* (para *Cajero*, solo sucursales con tienda). Error posible: "Esa sucursal ya tiene un Gerente de Sucursal activo." Texto: "Deberá cambiarla al iniciar sesión." |
-| **23 Editar usuario** | Datos en solo lectura · **Restablecer contraseña** (hoja con contraseña temporal) · interruptor **Activo** (no se puede desactivar al último Gerente General ni a uno mismo; mensaje del servidor). |
+| **23 Editar usuario** | Datos en solo lectura · **Restablecer contraseña** (hoja con contraseña temporal) · **Cambiar correo** (por si estaba mal escrito; no sobre uno mismo) · interruptor **Activo** (no se puede desactivar al último Gerente General ni a uno mismo; mensaje del servidor). |
 
 ### 24–25 — Catálogo (Más)
 | Pantalla | Interacción |
@@ -262,7 +262,7 @@ Lista de cajeros de la sucursal; **＋** crea un cajero (nombre, correo, contras
 | Flotante | Se abre desde | Qué hace |
 |---|---|---|
 | Menú de sucursal | Selector del Panel y formularios | Elige una sucursal y actualiza la pantalla. |
-| Calendario | Periodo *Personalizado* | Sin fechas futuras. |
+| Calendario | Periodo *Fechas* (rango personalizado) | Sin fechas futuras. |
 | Popover **?** | Iconos de ayuda (autonomía, captura manual, bomba opcional, primer corte, tolerancia del cuadre, "Sin cortes cerrados hoy") | Muestra la explicación; se cierra tocando fuera. |
 | Alerta | Cerrar corte · Registrar y vaciar · Cerrar caja · Anular venta | **Cancelar** / confirmar. |
 | Hojas de formulario | Casi todas las altas | **X** para cerrar. |
