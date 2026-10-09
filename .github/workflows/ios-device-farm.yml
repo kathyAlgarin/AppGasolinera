@@ -1,0 +1,57 @@
+name: iOS - AWS Device Farm
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, development]
+  pull_request:
+    branches: [main, development]
+
+permissions:
+  contents: read
+
+jobs:
+  build-ios:
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Xcode version
+        run: xcodebuild -version
+
+      - name: Resolve Swift packages
+        run: xcodebuild -resolvePackageDependencies -project App76.xcodeproj -scheme App76
+
+      - name: Build for physical iOS devices (without Apple signing)
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project App76.xcodeproj \
+            -scheme App76 \
+            -configuration Debug \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath "$RUNNER_TEMP/App76DerivedData" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO
+
+      - name: Package IPA for Device Farm
+        run: |
+          set -euo pipefail
+          APP="$RUNNER_TEMP/App76DerivedData/Build/Products/Debug-iphoneos/App76.app"
+          test -d "$APP"
+          mkdir -p "$RUNNER_TEMP/ipa/Payload" "$GITHUB_WORKSPACE/dist"
+          cp -R "$APP" "$RUNNER_TEMP/ipa/Payload/"
+          cd "$RUNNER_TEMP/ipa"
+          /usr/bin/zip -qry "$GITHUB_WORKSPACE/dist/App76-DeviceFarm.ipa" Payload
+          unzip -l "$GITHUB_WORKSPACE/dist/App76-DeviceFarm.ipa" | head -20
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: App76-DeviceFarm-${{ github.run_number }}
+          path: dist/App76-DeviceFarm.ipa
+          if-no-files-found: error
+          retention-days: 14
