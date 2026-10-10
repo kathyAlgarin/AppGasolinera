@@ -254,31 +254,145 @@ final class MisVentasViewModel: ObservableObject {
     func nombre(de articuloId: UUID) -> String { estado.valor?.nombres[articuloId] ?? "Artículo" }
 }
 
-/// 67 · Cerrar caja: el servidor devuelve esperado, contado y diferencia.
+/// 67 · Cerrar caja: calcula y muestra la diferencia en tiempo real antes del cierre;
+/// el servidor devuelve esperado, contado y diferencia definitivos tras el arqueo oficial.
 @MainActor
 final class CerrarCajaViewModel: ObservableObject {
+    enum EstadoDiferencia: Equatable {
+        case cuadrado
+        case faltante(Decimal)
+        case sobrante(Decimal)
+
+        var titulo: String {
+            switch self {
+            case .cuadrado: return "Cuadrado"
+            case .faltante: return "Faltante"
+            case .sobrante: return "Sobrante"
+            }
+        }
+
+        var nombreIcono: String {
+            switch self {
+            case .cuadrado: return "checkmark.circle.fill"
+            case .faltante: return "exclamationmark.triangle.fill"
+            case .sobrante: return "plus.circle.fill"
+            }
+        }
+    }
+
     @Published var contado = ""
     @Published private(set) var error: String?
     @Published private(set) var cerrando = false
     @Published private(set) var resultado: ResultadoCierreCaja?
 
+    @Published private(set) var ventas: [Venta]?
+    @Published private(set) var cargandoEsperado = false
+    @Published private(set) var errorCargaEsperado: String?
+
     let sesion: SesionCaja
     private let servicio: CajaService
     private let alCerrar: () -> Void
 
-    init(sesion: SesionCaja, servicio: CajaService, alCerrar: @escaping () -> Void) {
+    init(sesion: SesionCaja, servicio: CajaService, ventas: [Venta]? = nil, alCerrar: @escaping () -> Void) {
         self.sesion = sesion
         self.servicio = servicio
+        self.ventas = ventas
         self.alCerrar = alCerrar
     }
 
-    var errorContado: String? { Validadores.decimal(contado) == nil ? "Escribe el efectivo contado (puede ser 0)." : nil }
-    var esValido: Bool { errorContado == nil && resultado == nil }
+    func cargar() async {
+        guard resultado == nil else { return }
+        cargandoEsperado = true
+        errorCargaEsperado = nil
+        do {
+            ventas = try await servicio.ventas(sesionId: sesion.id)
+            cargandoEsperado = false
+        } catch {
+            cargandoEsperado = false
+            errorCargaEsperado = mensajeDe(error)
+        }
+    }
 
-    func limpiarError() { error = nil }
+    var ventasEfectivo: [Venta] {
+        (ventas ?? []).filter { $0.estado == .completada && $0.metodoPago == .efectivo }
+    }
+
+    var totalVentasEfectivo: Decimal {
+        ventasEfectivo.reduce(Decimal.zero) { $0 + $1.totalUsd }
+    }
+
+    /// Efectivo esperado previo: fondo inicial + ventas completadas en efectivo.
+    /// Es nil si aún no se han cargado las ventas de la sesión.
+    var efectivoEsperado: Decimal? {
+        guard ventas != nil else { return nil }
+        return sesion.fondoInicialUsd + totalVentasEfectivo
+    }
+
+    /// Efectivo contado escrito por el cajero (nil si está vacío o no es un decimal válido).
+    var efectivoContado: Decimal? {
+        Validadores.decimal(contado)
+    }
+
+    /// diferencia = efectivoContado - efectivoEsperado
+    /// Es nil si no se ha introducido un contado válido o si no se tiene el esperado.
+    var diferencia: Decimal? {
+        guard let contado = efectivoContado, let esperado = efectivoEsperado else { return nil }
+        return contado - esperado
+    }
+
+    var estadoDiferencia: EstadoDiferencia? {
+        guard let d = diferencia else { return nil }
+        if d == 0 {
+            return .cuadrado
+        } else if d < 0 {
+            return .faltante(-d)
+        } else {
+            return .sobrante(d)
+        }
+    }
+
+    var errorContado: String? {
+        Validadores.decimal(contado) == nil ? "Escribe el efectivo contado (puede ser 0)." : nil
+    }
+
+    var esValido: Bool {
+        errorContado == nil && resultado == nil && !cerrando
+    }
+
+    var mensajeConfirmacion: String {
+        guard let esperado = efectivoEsperado, let contado = efectivoContado, let diff = diferencia else {
+            if let contado = efectivoContado {
+                return "Efectivo contado: \(Formateadores.dolares(contado))\n\n¿Desea cerrar la caja con este importe? El servidor calculará el arqueo oficial."
+            }
+            return "¿Desea cerrar la caja?"
+        }
+
+        var lineas = [
+            "Efectivo esperado: \(Formateadores.dolares(esperado))",
+            "Efectivo contado: \(Formateadores.dolares(contado))"
+        ]
+
+        if diff < 0 {
+            let absDiff = -diff
+            lineas.append("Faltante: \(Formateadores.dolares(absDiff))")
+            lineas.append("\n¿Desea cerrar la caja con esta diferencia?")
+        } else if diff > 0 {
+            lineas.append("Sobrante: \(Formateadores.dolares(diff))")
+            lineas.append("\n¿Desea cerrar la caja con esta diferencia?")
+        } else {
+            lineas.append("Caja cuadrada ($0.00)")
+            lineas.append("\n¿Desea confirmar el cierre de caja?")
+        }
+
+        return lineas.joined(separator: "\n")
+    }
+
+    func limpiarError() {
+        error = nil
+    }
 
     func cerrar() async {
-        guard esValido, let c = Validadores.decimal(contado) else { return }
+        guard esValido, !cerrando, let c = Validadores.decimal(contado) else { return }
         cerrando = true
         error = nil
         defer { cerrando = false }
