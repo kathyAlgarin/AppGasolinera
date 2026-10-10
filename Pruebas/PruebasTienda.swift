@@ -241,6 +241,65 @@ func pruebasTienda() async {
         verificar(!cc.esValido, "ya cerrada: no se cierra otra vez")
     }
 
+    await grupo("CerrarCajaViewModel: arqueo previo en tiempo real") {
+        let c = CajaFalso()
+        let s = sesion(abierta: true)
+        c.sesion = s
+        let v1 = venta(s, 1, estado: .completada, total: 30, metodo: .efectivo)
+        let v2 = venta(s, 2, estado: .completada, total: 15, metodo: .tarjeta)
+        let v3 = venta(s, 3, estado: .anulada, total: 50, metodo: .efectivo)
+        c.ventasLista = [v1, v2, v3]
+
+        var cerro = false
+        let vm = CerrarCajaViewModel(sesion: s, servicio: c) { cerro = true }
+
+        verificar(vm.efectivoEsperado == nil, "sin cargar, esperado es nil")
+        verificar(vm.diferencia == nil, "sin esperado, diferencia es nil")
+
+        await vm.cargar()
+        igual(vm.efectivoEsperado, 50, "esperado = fondo inicial + ventas efectivo completadas")
+
+        vm.contado = ""
+        verificar(!vm.esValido, "campo vacío no es válido")
+        verificar(vm.errorContado != nil, "muestra error para contado vacío")
+        verificar(vm.diferencia == nil, "diferencia nil si no hay contado")
+
+        vm.contado = "0"
+        verificar(vm.esValido, "contado 0 es válido")
+        igual(vm.diferencia, -50, "diferencia con 0 contado es -50")
+        igual(vm.estadoDiferencia, .faltante(50), "estado faltante con 0")
+        verificar(vm.mensajeConfirmacion.contains("Faltante: $50.00"), "mensaje confirmación faltante 0")
+
+        vm.contado = "50"
+        igual(vm.diferencia, 0, "diferencia 0")
+        igual(vm.estadoDiferencia, .cuadrado, "estado cuadrado")
+        verificar(vm.mensajeConfirmacion.contains("Caja cuadrada ($0.00)"), "mensaje confirmación cuadrado")
+
+        vm.contado = "48.50"
+        igual(vm.diferencia, Decimal(string: "-1.50")!, "diferencia negativa")
+        igual(vm.estadoDiferencia, .faltante(Decimal(string: "1.50")!), "estado faltante")
+        verificar(vm.mensajeConfirmacion.contains("Faltante: $1.50"), "mensaje confirmación faltante")
+
+        vm.contado = "53.25"
+        igual(vm.diferencia, Decimal(string: "3.25")!, "diferencia positiva")
+        igual(vm.estadoDiferencia, .sobrante(Decimal(string: "3.25")!), "estado sobrante")
+        verificar(vm.mensajeConfirmacion.contains("Sobrante: $3.25"), "mensaje confirmación sobrante")
+
+        await vm.cerrar()
+        verificar(cerro, "caja cerrada tras confirmar")
+        verificar(!vm.esValido, "invalido tras cerrar")
+
+        let cFallo = CajaFalso()
+        cFallo.error = ErrorApp(mensaje: "Error de red")
+        let vmFallo = CerrarCajaViewModel(sesion: s, servicio: cFallo) {}
+        await vmFallo.cargar()
+        verificar(vmFallo.efectivoEsperado == nil, "esperado nil en fallo")
+        verificar(vmFallo.errorCargaEsperado != nil, "registra error de carga")
+        vmFallo.contado = "50"
+        verificar(vmFallo.esValido, "aún sin esperado permite cerrar con confirmación general")
+        verificar(vmFallo.mensajeConfirmacion.contains("Efectivo contado: $50.00"), "mensaje confirmación sin esperado previo")
+    }
+
     await grupo("TiendaYCajasViewModel") {
         let suc1 = Sucursal(id: sid, nombre: "Centro", direccion: "x", tieneTienda: true, activa: true)
         let suc2 = Sucursal(id: Ejemplo.sucursal2Id, nombre: "Aeropuerto", direccion: "y", tieneTienda: false, activa: true)

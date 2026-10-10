@@ -386,11 +386,32 @@ struct CerrarCajaView: View {
                     ResultadoCajaView(resultado: r)
                     BotonPrimario(titulo: "Listo", cargando: false, habilitado: true) { dismiss() }
                 } else {
-                    Text("Cuenta el efectivo que hay en tu caja y escríbelo.").foregroundColor(.secondary)
-                    CampoNumerico(titulo: "Efectivo contado (USD)", texto: $vm.contado, unidad: "USD", error: vm.contado.isEmpty ? nil : vm.errorContado)
-                    Text("Después de cerrar no se pueden anular ventas de esta caja.").font(.footnote).foregroundColor(.secondary)
+                    resumenDeCaja
+
+                    Text("Cuenta el efectivo que hay en tu caja y escríbelo.")
+                        .foregroundColor(.secondary)
+
+                    CampoNumerico(
+                        titulo: "Efectivo contado (USD)",
+                        texto: $vm.contado,
+                        unidad: "USD",
+                        error: vm.contado.isEmpty ? nil : vm.errorContado
+                    )
+                    .onChange(of: vm.contado) { _, _ in vm.limpiarError() }
+
+                    Text("Después de cerrar no se pueden anular ventas de esta caja.")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+
                     MensajeError(texto: vm.error)
-                    BotonPrimario(titulo: "Cerrar caja", cargando: vm.cerrando, habilitado: vm.esValido) { confirmando = true }
+
+                    BotonPrimario(
+                        titulo: "Cerrar caja",
+                        cargando: vm.cerrando,
+                        habilitado: vm.esValido
+                    ) {
+                        confirmando = true
+                    }
                 }
             }
             .padding()
@@ -400,9 +421,102 @@ struct CerrarCajaView: View {
         .navigationTitle("Cerrar caja")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(vm.resultado != nil)
-        .alert("¿Cerrar la caja?", isPresented: $confirmando) {
-            Button("Cancelar", role: .cancel) {}
-            Button("Cerrar caja", role: .destructive) { Task { await vm.cerrar() } }
-        } message: { Text("Se comparará el efectivo contado con el esperado.") }
+        .task { await vm.cargar() }
+        .refreshable { await vm.cargar() }
+        .alert("Confirmar cierre de caja", isPresented: $confirmando) {
+            Button("Volver", role: .cancel) {}
+            Button("Confirmar cierre", role: (vm.diferencia ?? 0) < 0 ? .destructive : .none) {
+                Task { await vm.cerrar() }
+            }
+        } message: {
+            Text(vm.mensajeConfirmacion)
+        }
+    }
+
+    @ViewBuilder
+    private var resumenDeCaja: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text("Resumen de caja")
+                    .font(.headline)
+                Spacer()
+                if vm.cargandoEsperado {
+                    ProgressView()
+                        .controlSize(.small)
+                } else if vm.efectivoEsperado != nil {
+                    Text("Estimación previa")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+
+            if let esperado = vm.efectivoEsperado {
+                VStack(spacing: 8) {
+                    FilaDato(titulo: "Efectivo esperado", valor: Formateadores.dolares(esperado))
+                    FilaDato(
+                        titulo: "Efectivo contado",
+                        valor: vm.efectivoContado != nil ? Formateadores.dolares(vm.efectivoContado!) : "—"
+                    )
+                    Divider()
+
+                    if let diff = vm.diferencia, let estado = vm.estadoDiferencia {
+                        HStack {
+                            HStack(spacing: 6) {
+                                Image(systemName: estado.nombreIcono)
+                                    .foregroundColor(color(para: estado))
+                                Text("Diferencia")
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                            Text("\(Formateadores.dolaresConSigno(diff)) — \(estado.titulo)")
+                                .fontWeight(.semibold)
+                                .foregroundColor(color(para: estado))
+                        }
+                        .font(.subheadline)
+                    } else {
+                        FilaDato(titulo: "Diferencia", valor: "Escribe el efectivo contado")
+                    }
+                }
+                .tarjeta(radio: 12)
+
+                Text("La diferencia previa es una estimación de referencia. El arqueo oficial lo determina el servidor.")
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+            } else if vm.cargandoEsperado {
+                HStack {
+                    Spacer()
+                    ProgressView("Calculando efectivo esperado…")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                }
+                .padding(.vertical, 8)
+                .tarjeta(radio: 12)
+            } else if let err = vm.errorCargaEsperado {
+                HStack(alignment: .top, spacing: 8) {
+                    Image(systemName: "exclamationmark.triangle")
+                        .foregroundColor(.gas76Orange)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("No se pudo obtener el efectivo esperado previo (\(err)).")
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                        Button("Reintentar") {
+                            Task { await vm.cargar() }
+                        }
+                        .font(.footnote.bold())
+                    }
+                    Spacer()
+                }
+                .tarjeta(radio: 12)
+            }
+        }
+    }
+
+    private func color(para estado: CerrarCajaViewModel.EstadoDiferencia) -> Color {
+        switch estado {
+        case .cuadrado: return .gas76Verde
+        case .faltante: return .gas76Rojo
+        case .sobrante: return .gas76Orange
+        }
     }
 }
