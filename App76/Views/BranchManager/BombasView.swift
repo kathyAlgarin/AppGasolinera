@@ -67,39 +67,20 @@ private struct ContenidoBomba: View {
             VStack(alignment: .leading, spacing: 16) {
                 if form.esPrimerCorte {
                     HStack(spacing: 4) {
-                        Text("Primer corte: captura también la lectura inicial.").font(.callout)
-                        AyudaBoton(texto: "Solo se pide una vez: es lo que marcaba cada manguera al empezar a usar el sistema. Desde el segundo corte, la inicial es la final del corte anterior.")
+                        Text("Primer corte: captura también el contador inicial.").font(.callout)
+                        AyudaBoton(texto: "Solo se pide una vez: es lo que marcaba cada manguera al empezar a usar el sistema. Desde el segundo corte, el contador inicial es el final del corte anterior.")
                     }
                     .foregroundColor(.secondary)
                 }
+
                 ForEach($form.lineas) { $linea in
-                    VStack(alignment: .leading, spacing: 10) {
-                        HStack {
-                            Label(linea.manguera.combustible.nombre, systemImage: "fuelpump.fill")
-                                .font(.headline).foregroundColor(linea.manguera.combustible.color)
-                            Spacer()
-                            if form.cambio(de: linea) != nil { Insignia(texto: "Cambio de medidor", color: .gas76Blue) }
-                        }
-                        if form.esPrimerCorte {
-                            CampoNumerico(titulo: "Lectura inicial", texto: $linea.inicial, unidad: "gal",
-                                          error: linea.inicial.isEmpty ? nil : form.errorInicial(linea))
-                        } else if let i = form.iniciales[linea.manguera.id] {
-                            FilaDato(titulo: "Lectura inicial", valor: Formateadores.galones(i))
-                        } else {
-                            Text("Sin lectura inicial: el corte anterior no tiene lectura de esta manguera.")
-                                .font(.caption).foregroundColor(.gas76Rojo)
-                        }
-                        CampoNumerico(titulo: "Lectura final", texto: $linea.final, unidad: "gal",
-                                      error: linea.final.isEmpty ? nil : form.errorFinal(linea))
-                        Button(form.cambio(de: linea) == nil ? "El medidor se cambió" : "Ver cambio de medidor") {
-                            cambiandoMedidor = linea.manguera.id
-                        }
-                        .font(.footnote).tint(.gas76Orange)
+                    TarjetaManguera(form: form, linea: $linea) {
+                        cambiandoMedidor = linea.manguera.id
                     }
-                    .padding()
-                    .background(Color.gas76Card)
-                    .clipShape(RoundedRectangle(cornerRadius: 14))
                 }
+
+                TarjetaResumenBomba(form: form, bombaNumero: bomba.numero)
+
                 MensajeError(texto: form.error)
                 BotonPrimario(titulo: "Guardar bomba", cargando: form.guardando, habilitado: form.esValido) {
                     Task {
@@ -124,6 +105,197 @@ private struct ContenidoBomba: View {
                 Task { await vm.cargar() }
             } cerrar: { cambiandoMedidor = nil }
         }
+    }
+}
+
+private struct TarjetaManguera: View {
+    @ObservedObject var form: BombaFormViewModel
+    @Binding var linea: BombaFormViewModel.Linea
+    let alCambiarMedidor: () -> Void
+
+    var body: some View {
+        let combustible = linea.manguera.combustible
+        let despachados = form.galonesDespachados(de: linea)
+
+        VStack(alignment: .leading, spacing: 12) {
+            // 1. Identificación del combustible
+            HStack(alignment: .center) {
+                Label {
+                    Text(combustible.nombre)
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                } icon: {
+                    Image(systemName: "fuelpump.fill")
+                        .foregroundColor(combustible.color)
+                }
+                Spacer()
+                if form.cambio(de: linea) != nil {
+                    Insignia(texto: "Cambio de medidor", color: .gas76Blue)
+                }
+            }
+
+            // 2. Destacado: Volumen despachado durante este corte
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Galones despachados en este corte")
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .foregroundColor(.secondary)
+                HStack(alignment: .firstTextBaseline) {
+                    if let g = despachados {
+                        Text(Formateadores.galones(g))
+                            .font(.title2.bold())
+                            .foregroundColor(combustible.color)
+                    } else {
+                        Text("— gal")
+                            .font(.title2.bold())
+                            .foregroundColor(.secondary.opacity(0.5))
+                        if !linea.final.isEmpty && form.errorFinal(linea) != nil {
+                            Text("Dato no válido")
+                                .font(.caption)
+                                .foregroundColor(.gas76Rojo)
+                        } else {
+                            Text("Pendiente de contador final")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    Spacer()
+                    Image(systemName: "drop.fill")
+                        .font(.callout)
+                        .foregroundColor(despachados != nil ? combustible.color : .secondary.opacity(0.25))
+                }
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(despachados != nil
+                          ? combustible.color.opacity(0.08)
+                          : Color(UIColor.tertiarySystemGroupedBackground))
+            )
+
+            // 3. Contadores agrupados (inicial y final)
+            VStack(alignment: .leading, spacing: 10) {
+                if form.esPrimerCorte {
+                    CampoNumerico(titulo: "Contador inicial",
+                                  texto: $linea.inicial,
+                                  unidad: "gal",
+                                  error: linea.inicial.isEmpty ? nil : form.errorInicial(linea))
+                } else if let i = form.iniciales[linea.manguera.id] {
+                    FilaDato(titulo: "Contador inicial", valor: Formateadores.galones(i))
+                        .padding(.horizontal, 4)
+                        .padding(.top, 2)
+                } else {
+                    Text("Sin contador inicial: el corte anterior no tiene lectura de esta manguera.")
+                        .font(.caption)
+                        .foregroundColor(.gas76Rojo)
+                }
+
+                CampoNumerico(titulo: "Contador final",
+                              texto: $linea.final,
+                              unidad: "gal",
+                              error: linea.final.isEmpty ? nil : form.errorFinal(linea))
+            }
+            .padding(10)
+            .background(Color(UIColor.tertiarySystemGroupedBackground).opacity(0.55))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+
+            // 4. Cambio de medidor
+            Button(form.cambio(de: linea) == nil ? "El medidor se cambió" : "Ver cambio de medidor", action: alCambiarMedidor)
+                .font(.footnote)
+                .tint(.gas76Orange)
+        }
+        .padding()
+        .background(Color.gas76Card)
+        .clipShape(RoundedRectangle(cornerRadius: 14))
+    }
+}
+
+private struct TarjetaResumenBomba: View {
+    @ObservedObject var form: BombaFormViewModel
+    let bombaNumero: Int
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            // Encabezado
+            HStack {
+                Label("Resumen de Bomba \(bombaNumero)", systemImage: "gauge.with.dots.needle.bottom.50percent")
+                    .font(.headline)
+                    .foregroundColor(.gas76Blue)
+                Spacer()
+                if form.totalBombaCompleto {
+                    Insignia(texto: "Completo", color: .gas76Verde, conAyuda: false)
+                } else if form.totalBombaParcial {
+                    Insignia(texto: "Parcial", color: .gas76Orange, conAyuda: false)
+                } else {
+                    Insignia(texto: "Pendiente", color: .gas76Gris, conAyuda: false)
+                }
+            }
+
+            // Volumen total despachado por esta bomba
+            VStack(alignment: .leading, spacing: 3) {
+                Text(form.totalBombaParcial ? "Total parcial despachado en este corte" : "Total despachado en este corte")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                if let total = form.totalGalonesBomba {
+                    Text(Formateadores.galones(total))
+                        .font(.title2.bold())
+                        .foregroundColor(.primary)
+                } else {
+                    Text("— gal")
+                        .font(.title2.bold())
+                        .foregroundColor(.secondary.opacity(0.6))
+                }
+            }
+
+            Divider()
+
+            // Desglose por combustible de esta bomba
+            VStack(spacing: 8) {
+                ForEach(form.lineas) { linea in
+                    HStack {
+                        Circle()
+                            .fill(linea.manguera.combustible.color)
+                            .frame(width: 8, height: 8)
+                        Text(linea.manguera.combustible.nombre)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        if let g = form.galonesDespachados(de: linea) {
+                            Text(Formateadores.galones(g))
+                                .font(.subheadline.monospacedDigit())
+                                .fontWeight(.medium)
+                        } else {
+                            Text("Pendiente")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
+            }
+
+            // Nota contextual sobre la bomba
+            HStack(alignment: .top, spacing: 6) {
+                Image(systemName: "info.circle")
+                    .font(.caption)
+                    .foregroundColor(form.totalBombaParcial ? .gas76Orange : .secondary)
+                Group {
+                    if form.totalBombaCompleto {
+                        Text("Suma de las \(form.lineas.count) mangueras de la Bomba \(bombaNumero). No incluye otras bombas ni inventario de tanques.")
+                    } else if form.totalBombaParcial {
+                        Text("Cálculo parcial (\(form.manguerasCompletasConteo) de \(form.lineas.count) mangueras). Faltan contadores para el total definitivo.")
+                    } else {
+                        Text("Introduce el contador final de cada manguera para calcular el total despachado por esta bomba.")
+                    }
+                }
+                .font(.caption)
+                .foregroundColor(form.totalBombaParcial ? .gas76Orange : .secondary)
+            }
+        }
+        .padding()
+        .background(Color.gas76Card)
+        .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 }
 

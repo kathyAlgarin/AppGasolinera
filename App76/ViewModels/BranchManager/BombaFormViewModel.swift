@@ -72,6 +72,54 @@ final class BombaFormViewModel: ObservableObject {
 
     var esValido: Bool { lineas.allSatisfy { errorInicial($0) == nil && errorFinal($0) == nil } }
 
+    // MARK: - Presentación de volumen despachado y resumen
+
+    /// Galones despachados en una manguera durante este corte:
+    /// - Caso normal: lecturaFinal − lecturaInicial.
+    /// - Caso cambio de medidor: (finalViejo − lecturaInicial) + (lecturaFinal − inicialNuevo).
+    /// Devuelve nil si los datos están incompletos o no pasan las validaciones.
+    func galonesDespachados(de linea: Linea) -> Decimal? {
+        guard !linea.final.isEmpty, errorFinal(linea) == nil,
+              let final = Validadores.decimal(linea.final) else {
+            return nil
+        }
+        guard errorInicial(linea) == nil,
+              let inicial = inicial(de: linea) else {
+            return nil
+        }
+        if let c = cambio(de: linea) {
+            let tramoViejo = c.lecturaFinalViejoGal - inicial
+            let tramoNuevo = final - c.lecturaInicialNuevoGal
+            let total = tramoViejo + tramoNuevo
+            return total >= 0 ? total : nil
+        }
+        let total = final - inicial
+        return total >= 0 ? total : nil
+    }
+
+    /// Cantidad de mangueras con volumen despachado calculado válidamente.
+    var manguerasCompletasConteo: Int {
+        lineas.filter { galonesDespachados(de: $0) != nil }.count
+    }
+
+    /// Indica si todas las mangueras de la bomba tienen sus datos completos y válidos.
+    var totalBombaCompleto: Bool {
+        !lineas.isEmpty && manguerasCompletasConteo == lineas.count
+    }
+
+    /// Indica si hay al menos una manguera calculada, pero faltan otras para completar la bomba.
+    var totalBombaParcial: Bool {
+        manguerasCompletasConteo > 0 && manguerasCompletasConteo < lineas.count
+    }
+
+    /// Suma de galones despachados de las mangueras que tienen lecturas válidas en esta bomba.
+    /// Devuelve nil si ninguna manguera tiene lectura válida aún.
+    var totalGalonesBomba: Decimal? {
+        let calculados = lineas.compactMap { galonesDespachados(de: $0) }
+        guard !calculados.isEmpty else { return nil }
+        return calculados.reduce(Decimal.zero, +)
+    }
+
     func limpiarError() { error = nil }
 
     func guardar() async {

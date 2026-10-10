@@ -75,12 +75,23 @@ func pruebasCorte() async {
         let vm = BombaFormViewModel(bomba: bomba, mangueras: ms, corte: corte, borrador: [], iniciales: iniciales, cambios: [], servicio: svc) { guardo = true }
         verificar(!vm.esPrimerCorte, "no es el primero")
         verificar(!vm.esValido, "vacío no es válido")
+        verificar(vm.galonesDespachados(de: vm.lineas[0]) == nil, "galones vacíos es nil")
+        verificar(vm.totalGalonesBomba == nil, "total bomba vacío es nil")
+        verificar(!vm.totalBombaCompleto, "no completo")
+        verificar(!vm.totalBombaParcial, "no parcial")
         igual(vm.errorFinal(vm.lineas[0]), "Escribe la lectura final.", "final vacía")
         vm.lineas[0].final = "999"
+        verificar(vm.galonesDespachados(de: vm.lineas[0]) == nil, "galones con error es nil")
         verificar(vm.errorFinal(vm.lineas[0])?.contains("no puede ser menor que la inicial (1,000.00)") == true, "final menor que la inicial: \(vm.errorFinal(vm.lineas[0]) ?? "")")
         vm.lineas[0].final = "1000"
+        verificar(vm.galonesDespachados(de: vm.lineas[0]) == 0, "1000 - 1000 = 0 gal")
+        verificar(vm.totalBombaParcial, "parcial con 1 manguera")
         vm.lineas[1].final = "1250.5"
+        verificar(vm.galonesDespachados(de: vm.lineas[1]) == Decimal(string: "250.5"), "1250.5 - 1000 = 250.5 gal")
         vm.lineas[2].final = "1100"
+        verificar(vm.galonesDespachados(de: vm.lineas[2]) == 100, "1100 - 1000 = 100 gal")
+        verificar(vm.totalBombaCompleto, "completo con 3 mangueras")
+        verificar(vm.totalGalonesBomba == Decimal(string: "350.5"), "total bomba 350.5 gal")
         verificar(vm.esValido, "válido")
         await vm.guardar()
         verificar(guardo, "guardó")
@@ -116,6 +127,7 @@ func pruebasCorte() async {
         igual(vm.lineas[0].final, "1234.5", "precarga la final guardada")
         verificar(vm.errorFinal(vm.lineas[0]) == nil, "con cambio de medidor, 1234.5 ≥ 0 (inicial del medidor nuevo) es válido")
         verificar(vm.cambio(de: vm.lineas[0]) != nil, "reconoce el cambio")
+        igual(vm.galonesDespachados(de: vm.lineas[0]), Decimal(string: "2233.5"), "cálculo de galones con cambio de medidor")
         verificar(vm.errorFinal(vm.lineas[1]) != nil, "las demás mangueras siguen con su regla")
     }
 
